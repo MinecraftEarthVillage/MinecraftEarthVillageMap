@@ -10,11 +10,47 @@
 position: absolute;
 top: 6%;
 left: 50%;
-transform: translate(-50%, -50%);
+transform: translate(-50%,-50%);
 text-align: center;
 color: white;
 font-size: 24px;
+animation: 放大 2s ease-in-out forwards;
 }
+
+
+@keyframes 飞入 {
+        0% {
+          opacity: 0;
+          top: 4%;
+		left: -100px;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+		  top: 4%;
+		  left: 50%;
+        }
+      }
+
+ @keyframes 放大 {
+	0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.2);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+	
+	
+	
 #页面底部 {
 position: absolute;
 bottom: 5%;
@@ -24,7 +60,24 @@ text-align: center;
 color: lightblue;
 font-family: 楷体;
 font-size: 24px;
+animation: 飞入 2s ease-in-out forwards;
 }
+
+@keyframes 飞入 {
+        0% {
+          opacity: 0;
+          bottom: 5%;
+          left: -100px;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+		  bottom: 5%;
+		  left: 50%;
+        }
+      }
 
   .大背景::before{
 		content: "";
