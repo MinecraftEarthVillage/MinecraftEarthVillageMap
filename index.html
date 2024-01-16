@@ -3,13 +3,15 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Minecraft世界地图网站导航</title>
+		<link rel="stylesheet" href="./css/CSS效果.css" />	
 	</head>
 	<body>
-<link rel="stylesheet" href="./css/CSS效果.css" />	
-
 
 <div class="大背景">
-
+	<div class="页面顶部">
+		<h2>每个单元格都是预览窗口，可以单独操作</h2>
+		<p>点击下方小标题即可跳转到对应网页</p>
+	</div>
 	<div class="田字排序">
 		<div class="一个单元格">
 			<iframe src="http://map.earthvillage.top:40011/"></iframe>
@@ -28,7 +30,19 @@
 			<div class="标题" onclick="openWebsite('http://earth.gs:8123/')">地球OL2(1:250)</div>
 		</div>
 	</div>
+	<div id="页面底部">
+		<h5>很简约？纯手打代码，没有套任何模板</h5>
+	</div>
 </div>
+
+    <div class="音乐按钮">
+      <img src="play.png" alt="Play" id="play-pause">
+    </div>
+    
+    <audio id="music" autoplay loop>
+      <source src="./太阳照常升起.mp3" type="audio/mpeg">
+    </audio>
+	
 <div class="按钮中队">
 	<div class="按钮小队">
 		<button onclick="openWebsite('http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=-hk56PRz-K7BI80NJUNIhNmcXjqoIjeF&authKey=rL45xGxWm7K868Xm%2Bew0jolXawNqhIfMI6PH%2BgNKC%2BSct2zfYW6xDFFO95JU%2FE%2Fc&noverify=0&group_code=1035676547')">戳我加群（地球村——交通强服）</button>
@@ -39,11 +53,38 @@
 	</div>
 </div>
 
-<!--控制跳转用的脚本 -->
+<!--脚本区-->
 <script>
+	
+	<!--控制跳转用的脚本 -->
   function openWebsite(url) {
     window.open(url, "_blank");
   }
+  
+	
+	<!--音乐脚本-->
+var music = document.getElementById("music");
+      var playPause = document.getElementById("play-pause");
+      var 大背景 = document.querySelector(".大背景");
+      
+      // 自动播放音乐
+      大背景.addEventListener("mouseover", function() {
+        if (music.paused) {
+          music.play();
+          playPause.src = "pause.png";
+        }
+      });
+      
+      // 点击按钮切换播放/暂停状态
+      playPause.addEventListener("click", function() {
+        if (music.paused) {
+          music.play();
+          playPause.src = "pause.png";
+        } else {
+          music.pause();
+          playPause.src = "play.png";
+        }
+      });
 </script>
 	</body>
 </html>
