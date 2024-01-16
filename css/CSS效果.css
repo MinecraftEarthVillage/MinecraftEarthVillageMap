@@ -79,7 +79,7 @@ font-size: 24px;
   .按钮小队 {
     display: flex;
     justify-content: center;
-    margin-top: -45px;
+    margin-bottom: 70px;
   }
 
   .按钮小队 button {
