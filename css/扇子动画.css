@@ -1,0 +1,167 @@
+
+.背景{
+	width: 1000px;
+	height: 800px;
+	border: 1px solid red;
+	margin: 60px auto;
+	position: relative;
+}
+
+.中间{
+	background-color: navy;
+}
+
+.一条{
+	width: 60px;
+	height: 300px;
+	background-color: red;
+	margin: 40px auto;
+	position: absolute;
+	top:40px;
+	left:50%;
+	border-radius: 20%;
+	opacity: 0.6;
+}
+
+.一{
+	background-color: blue;
+	transition: all 1s;
+	transform-origin:bottom center;
+	
+}
+.二{
+	background-color: yellowgreen;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.三{
+	background-color: red;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.四{
+	background-color: darkgreen;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.五{
+	background-color: darkgreen;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.六{
+	background-color: lemonchiffon;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.七{
+	background-color: darkcyan;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.八{
+	background-color: blueviolet;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.-一{
+	background-color: blue;
+	transition: all 1s;
+	transform-origin:bottom center;
+	
+}
+.-二{
+	background-color: yellowgreen;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.-三{
+	background-color: red;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.-四{
+	background-color: darkgreen;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.-五{
+	background-color: palevioletred;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.-六{
+	background-color: dodgerblue;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.-七{
+	background-color: aqua;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+.-八{
+	background-color: blueviolet;
+	transition: all 1s;
+	transform-origin: bottom center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.背景:hover .一{
+	transform: rotatez(10deg);
+}
+.背景:hover .二{
+	transform: rotateZ(20deg);
+}
+.背景:hover .三{
+	transform: rotateZ(30deg);
+}
+.背景:hover .四{
+	transform: rotateZ(40deg);
+}
+.背景:hover .五{
+	transform: rotateZ(50deg);
+}
+.背景:hover .六{
+	transform: rotateZ(60deg);
+}
+.背景:hover .七{
+	transform: rotateZ(70deg);
+}
+.背景:hover .八{
+	transform: rotateZ(80deg);
+}
+.背景:hover .-一{
+	transform: rotatez(-10deg);
+}
+.背景:hover .-二{
+	transform: rotateZ(-20deg);
+}
+.背景:hover .-三{
+	transform: rotateZ(-30deg);
+}
+.背景:hover .-四{
+	transform: rotateZ(-40deg);
+}
+.背景:hover .-五{
+	transform: rotateZ(-50deg);
+}
+.背景:hover .-六{
+	transform: rotateZ(-60deg);
+}
+.背景:hover .-七{
+	transform: rotateZ(-70deg);
+}
+.背景:hover .-八{
+	transform: rotateZ(-80deg);
+}
