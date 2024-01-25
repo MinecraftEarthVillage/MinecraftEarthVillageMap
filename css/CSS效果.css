@@ -92,7 +92,7 @@ animation: 飞入 2s ease-in-out forwards;
 	      filter: brightness(70%);
   }
 
-
+<!--
   .田字排序 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -103,6 +103,18 @@ animation: 飞入 2s ease-in-out forwards;
 	position: absolute;
 	top:14%;
   }
+-->
+.竖向排序 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 将列数改为1 */
+    grid-template-rows: repeat(3, 1fr); /* 将行数改为3 */
+    gap: 20px;
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    top: 14%;
+}
+
 
   .一个单元格 {
     position: relative;
