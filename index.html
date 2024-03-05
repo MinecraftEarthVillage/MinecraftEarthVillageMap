@@ -39,13 +39,12 @@
 	</div>
 	-->
 </div>
-
     <div class="音乐按钮">
       <img src="play.png" alt="Play" id="play-pause">
     </div>
     
-    <audio id="music" autoplay loop>
-      <source src="./1_1_4_国旗入场音乐.wav" type="audio/mpeg">
+  <audio id="music" autoplay>
+      <source src="./Minecraft经验升级_爱给网_aigei_com.mp3" type="audio/mpeg">
     </audio>
 	
 <div class="按钮中队">
@@ -70,28 +69,45 @@
   
 	
 	<!--音乐脚本-->
-var music = document.getElementById("music");
-      var playPause = document.getElementById("play-pause");
-      var 大背景 = document.querySelector(".大背景");
-      
-      // 自动播放音乐
-      大背景.addEventListener("mouseover", function() {
-        if (music.paused) {
-          music.play();
-          playPause.src = "pause.png";
-        }
-      });
-      
-      // 点击按钮切换播放/暂停状态
-      playPause.addEventListener("click", function() {
-        if (music.paused) {
-          music.play();
-          playPause.src = "pause.png";
-        } else {
-          music.pause();
-          playPause.src = "play.png";
-        }
-      });
+  // 列表
+  var musicList = [
+	"./BGM/hea2t - 盛夏与蝉鸣.flac",
+    "./BGM/1_1_4_国旗入场音乐.wav",
+    // 在这里添加其他音乐文件的路径
+    "./BGM/太阳照常升起.mp3",
+	"./BGM/稻香纯音乐.m4a",
+	"./BGM/云村的告别.mp3",
+  ];
+  
+  var music = document.getElementById("music");
+  var playPause = document.getElementById("play-pause");
+  var 大背景 = document.querySelector(".大背景");
+
+  // 随机选择一首音乐
+  function getRandomMusic() {
+    var index = Math.floor(Math.random() * musicList.length);
+    return musicList[index];
+  }
+  
+  window.addEventListener("load", function() {
+    // 进来时随机选择一首音乐
+    var randomMusic = getRandomMusic();
+    music.src = randomMusic;
+    music.play();
+	playPause.src = "pause.png";
+  });
+
+  // 点击按钮切换播放/暂停状态
+  playPause.addEventListener("click", function() {
+    if (music.paused) {
+      music.play();
+      playPause.src = "pause.png";
+    } else {
+      music.pause();
+      playPause.src = "play.png";
+    }
+  });
+  
 </script>
 	</body>
 </html>
