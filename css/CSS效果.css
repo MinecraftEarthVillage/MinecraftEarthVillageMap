@@ -93,15 +93,15 @@ animation: 飞入 2s ease-in-out forwards;
   }
 
 
-  .田字排序 {
+  .同一行的排序 {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     gap: 20px;
-    width: 800px;
-    height: 600px;
+    width: 1610px;
+    height: 400px;
 	position: absolute;
-	top:14%;
+	top:20%;
   }
 <!--
 .竖向排序 {
