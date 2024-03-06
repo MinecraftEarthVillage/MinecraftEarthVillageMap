@@ -139,7 +139,9 @@ animation: 飞入 2s ease-in-out forwards;
   }
 
   .按钮小队 button {
-    margin: 0 10px;
+    	margin: 0 10px;
+	width: 200px;
+	height: 80px;
   }
   
    .按钮中队 {
