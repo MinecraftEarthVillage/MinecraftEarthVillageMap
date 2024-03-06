@@ -99,7 +99,7 @@ animation: 飞入 2s ease-in-out forwards;
     grid-template-rows: repeat(3, 1fr); /* 将行数改为3 */
     gap: 20px;
     width: 800px;
-    height: 1250px;
+    height: 1610px;
     position: absolute;
     top: 20%;
 }
