@@ -1,9 +1,16 @@
+/*全局去除默认样式*/ 
+*{
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+	font-size: 14px;
+}
 
 	.大背景 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150vh;
+    height: 99vh;
 	position: relative;
   }
 .页面顶部 {
@@ -135,13 +142,14 @@ animation: 飞入 2s ease-in-out forwards;
   .按钮小队 {
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
+    
   }
 
   .按钮小队 button {
     	margin: 0 10px;
-	width: 200px;
-	height: 80px;
+	width: 150px;
+	height: 60px;
+	margin-bottom: 60px;
   }
   
    .按钮中队 {
@@ -151,6 +159,7 @@ animation: 飞入 2s ease-in-out forwards;
       align-items: center;
       height: 0vh;
       position: relative;
+	  
     }
 	
       .音乐按钮 {
