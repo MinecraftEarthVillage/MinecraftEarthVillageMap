@@ -2,15 +2,13 @@
 *{
 	padding:0;
 	margin:0;
-	box-sizing: border-box;
-	font-size: 14px;
 }
 
 	.大背景 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 99vh;
+    height: 97vh;
 	position: relative;
   }
 .页面顶部 {
@@ -105,8 +103,8 @@ animation: 飞入 2s ease-in-out forwards;
     grid-template-columns: repeat(1, 1fr); /* 将列数改为1 */
     grid-template-rows: repeat(3, 1fr); /* 将行数改为3 */
     gap: 20px;
-    width: 800px;
-    height: 1800px;
+    width: 700px;
+    height: 1600px;
     position: absolute;
     top: 10%;
 }
