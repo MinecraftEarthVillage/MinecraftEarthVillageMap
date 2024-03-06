@@ -98,10 +98,10 @@ animation: 飞入 2s ease-in-out forwards;
     grid-template-columns: repeat(1, 1fr); /* 将列数改为1 */
     grid-template-rows: repeat(3, 1fr); /* 将行数改为3 */
     gap: 20px;
-    width: 600px;
-    height: 1220px;
+    width: 800px;
+    height: 1800px;
     position: absolute;
-    top: 15%;
+    top: 10%;
 }
 
 
@@ -155,8 +155,8 @@ animation: 飞入 2s ease-in-out forwards;
         position: fixed;
         bottom: 20px;
         right: 20px;
-        width: 50px;
-        height: 50px;
+        width: 64px;
+        height: 64px;
         background-color: #fff;
         border-radius: 50%;
         overflow: hidden;
