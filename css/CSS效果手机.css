@@ -98,10 +98,10 @@ animation: 飞入 2s ease-in-out forwards;
   }
 
 
-  .同一行的排序 {
+  .排序 {
     display: grid;
     grid-template-columns: repeat(1, 1fr); /* 将列数改为1 */
-    grid-template-rows: repeat(3, 1fr); /* 将行数改为3 */
+    grid-template-rows: repeat(4, 1fr); /* 将行数改为4 */
     gap: 20px;
     width: 700px;
     height: 1600px;
