@@ -93,7 +93,7 @@ animation: 飞入 2s ease-in-out forwards;
   }
 
 
-  .田字排序 {
+  .排序 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
