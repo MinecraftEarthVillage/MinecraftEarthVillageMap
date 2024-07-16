@@ -1,2 +1,3 @@
 ### 插个框架
-<iframe src="http://218.93.208.178:10323"></iframe>
+地球村的地图集
+长期网址 map.earthvillage.top
