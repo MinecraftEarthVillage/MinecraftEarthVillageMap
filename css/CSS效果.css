@@ -1,19 +1,25 @@
-
+/*全局去除默认样式*/ 
+*{
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+	font-size: 14px;
+}
 	.大背景 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 98vh;
+    height: 100vh;
 	position: relative;
   }
 .页面顶部 {
 position: absolute;
-top: 5%;
+top: 6%;
 left: 50%;
 transform: translate(-50%,-50%);
 text-align: center;
 color: white;
-font-size: 13px;
+font-size: 35px;
 animation: 放大 2s ease-in-out forwards;
 }
 
@@ -48,20 +54,6 @@ animation: 放大 2s ease-in-out forwards;
           transform: translate(-50%, -50%) scale(1);
         }
       }
-	
-	
-	
-#页面底部 {
-position: absolute;
-bottom: 5%;
-left: 50%;
-transform: translate(-50%, -50%);
-text-align: center;
-color: lightblue;
-font-family: 楷体;
-font-size: 24px;
-animation: 飞入 2s ease-in-out forwards;
-}
 
 @keyframes 飞入 {
         0% {
@@ -98,23 +90,13 @@ animation: 飞入 2s ease-in-out forwards;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 20px;
-    width: 1101px;
-    height: 751px;
+	  /*这个地方一直不刷新我也不知道为什么*/
+    width: 120vh;
+	  /*👆我这边永远停留在100vh的效果*/
+    height: 80vh;
 	position: absolute;
 	top:10%;
   }
-<!--
-.竖向排序 {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr); /* 将列数改为1 */
-    grid-template-rows: repeat(3, 1fr); /* 将行数改为3 */
-    gap: 20px;
-    width: 800px;
-    height: 1145px;
-    position: absolute;
-    top: 14%;
-}
--->
 
   .一个单元格 {
     position: relative;

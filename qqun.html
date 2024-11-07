@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎加入QQ交流群</title>
+    <style>
+    /*全局去除默认样式*/ 
+*{
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+	.大背景 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+	position: relative;
+  }
+   .大背景::before{
+		content: "";
+	      position: absolute;
+	      top: 0;
+	      left: 0;
+	      width: 100%;
+	      height: 100%;
+	      background-image: url(./莫斯科站.png);
+	      background-size: cover;
+	      background-repeat: no-repeat;
+	      filter: brightness(70%);
+  }
+  
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #modal {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 10%;
+            width: 100%;
+            height: 80vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        #modalContent {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            height: 100%; /* 固定高度 */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: auto; /* 隐藏溢出的内容 */
+        }
+                    button {
+                margin-top: 20px;
+                padding: 10px 20px;
+                font-size: 18px;
+                background-color: gray;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+                        #拒绝按钮 {
+                margin-top: 20px;
+                padding: 10px 20px;
+                font-size: 18px;
+                background-color: gray;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+    </style>
+</head>
+<body>
+
+<div class="大背景">
+<div id="modal">
+    <div id="modalContent">
+        <!--网站协议记得改！！！-->
+        <div class="标题">
+        <h1>协议</h1>
+        <h2>请翻到底</h2>
+        </div>
+        <p>欢迎加入地球村服务器讨论群，加入交流群后您可以与一同热爱MTR模组和生存的用户进行讨论。入群后请文明用语，尊重他人及遵守以下群规：<br>
+0.首先，管理员永远都是对的(doge)，其次，如果你觉得管理员犯错了，请参照第一条(doge)<br>
+1. 禁止破坏讨论环境，例如：广告引流、倒垃圾、宣泄负面情绪、辱骂引战造谣以及发送引起不适的图片、视频或聊天记录等行为，若被盗号可联系管理员<br>
+2.禁止谈论违法犯罪、敏感政治、色情及与宗教信仰等相关内容<br>
+3. 请不要在群里讨论心理健康或身体疾病有关的内容，这有可能会导致您获得错误的建议并造成严重伤害。<br>
+4. 禁止发送各种非法网站<br>
+5. 禁止恶意刷屏，恶意刷屏禁言2H起步<br>
+6.禁止政治反动言论，不利于复兴之路的言论禁言一天起步<br>
+7. 本群有QQ自带机器人和群主自己运营的机器人，恶意刷屏（每分钟发消息达到15条）将会被机器人自动禁言10分钟<br>
+8. 不会进服务器的欢迎询问Q群管家以及直接进官网查询<br>
+8.5-不要随意DDOS管理员！非必要情况不要@管理员发无意义信息（如专门@之后接一个标点符号或者仅表情）<br>
+9. 不要进群秒退，这样很可能会引起管理们的厌恶（多次进退将被拉入黑名单，无法进群，请珍惜账号机会)<br>
+10.服务器内请不要破坏任何建筑（尤其是花了很大精力来建的），被查证后将会被封禁24小时不等<br>
+11.由于网络安全法、国家安全法等规定，为维持祖国领土完整。禁止在使用王国功能占用地图内的“保留区块“。目前已有：<strong>中国区域、火车站</strong>，个人领地不受影响<br><br>
+        若不同意以上条款则无法加入群聊<br>
+        若违反条款可能会被移出群聊，严重的会向有关部门报告<br>
+	加入群聊后将视为同意此协议，在群内因个人产生的法律原因群主及其管理员，其他群成员将概不负责<br><br>
+
+        <!--额外的文本-->
+        </p>
+        
+        <button id="拒绝按钮">不同意</button>
+        <button id="button2" disabled>同意<span id="countdown"></button>
+    </div>
+</div>
+</div>
+<script>
+    window.onload = function() {
+        document.getElementById('modal').style.display = 'flex';
+
+        let countdown = 10;
+        const countdownElement = document.getElementById('countdown');
+        const button2 = document.getElementById('button2');
+
+        const timer = setInterval(function() {
+            countdown--;
+            countdownElement.textContent = countdown;
+            if (countdown <= 0) {
+                clearInterval(timer);
+                button2.disabled = false;
+                button2.textContent = "同意"; 
+                button2.style.backgroundColor = "#007bff"; // 变成蓝色
+                button2.onclick = function() {
+                    window.location.href = 'https://qm.qq.com/q/VMe5h5yvia';
+                };
+            }
+        }, 1000);
+    };
+
+    document.getElementById('拒绝按钮').onclick = function() {
+        alert('你因为不同意此协议，所以无法加入群聊，将跳转回主页');
+         window.location.href = './index.html'; 
+    };
+</script>
+
+</body>
+</html>
