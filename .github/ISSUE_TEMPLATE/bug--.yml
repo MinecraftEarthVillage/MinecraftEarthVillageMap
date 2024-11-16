@@ -1,0 +1,31 @@
+name: 新功能反馈
+description: 如果你想对服务器有什么新建议的话，在这里提出来
+labels: ["新功能提案"]
+body:
+- type: checkboxes
+  id: "yml-1"
+  attributes:
+    label: "选择项"
+    description: "请选择的反馈新功能的地方"
+    options:
+    - label: "网页地图"
+    - label: "服务器本体"
+- type: textarea
+  id: "yml-2"
+  attributes:
+    label: 想要新加的建议
+    placeholder: "-（请在这里回答）-"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-3"
+  attributes:
+    label: 我们该如何实现
+    placeholder: "例如：添加模组XXX"
+   validations:
+    required: true
+   type: textarea
+   id: "yml-4"
+   attributes:
+    label: 附注
+    placeholder: "还有什么想说的吗？"

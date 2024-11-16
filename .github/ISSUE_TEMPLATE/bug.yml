@@ -1,0 +1,73 @@
+name: BUG提交
+description: 如果你觉得这个东西好像不对劲，就提交给我们
+labels: ["BUG"]
+body:
+- type: checkboxes
+  id: "yml-1"
+  attributes:
+    label: "检查项"
+    description: "请逐个检查下列项目，并勾选确认。"
+    options:
+    - label: "我确认在发布此issuse当天这个bug还存在"
+      required: true
+    - label: "我确认在Issues列表中并无其他人已经提出过与此问题相同或相似的问题"
+      required: true
+- type: textarea
+  id: "yml-2"
+  attributes:
+    label: 遇到的问题
+    placeholder: "-（请在这里回答）-"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-3"
+  attributes:
+    label: 期望的结果
+    placeholder: "-（请在这里回答）-"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-4"
+  attributes:
+    label: 如何重现此问题？
+    placeholder: "-（请在这里回答）-"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-5"
+  attributes:
+    label: 可能造成问题的原因
+    placeholder: "-（若不知道，请填写 “不知道”）-"
+- type: textarea
+  id: "yml-6"
+  attributes:
+    label: 系统环境 
+    placeholder: "例如：Windows 7 64位 SP1、Windows 10 专业版 64位 1909、Windows 10 家庭版 32位 2002"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-7"
+  attributes:
+    label: 启动器版本
+    placeholder: "例如:PCL2 Snapshot 2.X.X"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-8"
+  attributes:
+    label: Minecraft核心版本
+    placeholder: "例如Minecraft 1.20.X"
+  validations:
+   required: true
+  type: textarea
+  id: "yml-9"
+  attributes:
+    label: 模组以及版本
+    placeholder: "例如:MTR：3.2.2，Xareo的小地图XXX"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-10"
+  attributes:
+    label: 附注
+    placeholder: "-（请在这里回答）-"
