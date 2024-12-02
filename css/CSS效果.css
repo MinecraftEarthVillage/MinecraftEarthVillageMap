@@ -127,7 +127,7 @@ animation: 放大 2s ease-in-out forwards;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 10vh; /* 修正为100vh，以便内容可见 */
+    height: 5vh; /* 修正为10vh，以便内容可见 */
     position: relative;
 }
 
