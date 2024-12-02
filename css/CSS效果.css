@@ -96,11 +96,10 @@ min-height: 100px; /* 确保标题区域至少占据一定空间 */
 
 
 .排序 {
-padding-top: 10vh;
     display: grid;
     width: 100%; /* 确保使用父容器的宽度 */
     max-width: 1200px; /* 防止过宽 */
-    height: 50px;
+    height: 50%;
     grid-template-columns: repeat(2, 1fr); /* 两列布局 */
     grid-template-rows: repeat(2, 1fr); /* 两行布局 */
     gap: 20px; /* 网格间距 */
