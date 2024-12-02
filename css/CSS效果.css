@@ -85,26 +85,37 @@ animation: 放大 2s ease-in-out forwards;
   }
 
 
-  .排序 {
+.排序 {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 动态调整列宽 */
     gap: 20px;
-    width: 120vh;
-    height: 80vh;
-	position: absolute;
-	top:10%;
+    width: 100%; /* 占满父容器宽度 */
+    max-width: 1200px; /* 限制最大宽度，避免过度拉伸 */
+    height: auto; /* 高度自动调整 */
+    margin: 0 auto; /* 居中显示 */
+    padding: 10px; /* 增加容器内边距 */
+}
+@media (max-width: 768px) {
+  .排序 {
+      grid-template-columns: repeat(1, 1fr); /* 单列布局 */
+      gap: 10px; /* 减小间距 */
   }
+}
 
-  .一个单元格 {
+
+.一个单元格 {
     position: relative;
     overflow: hidden;
-  }
+    aspect-ratio: 16/9; /* 保持宽高比 */
+    max-width: 100%; /* 限制单元格最大宽度 */
+}
 
-  .一个单元格 iframe {
+.一个单元格 iframe {
     width: 100%;
     height: 100%;
-  }
+    object-fit: cover; /* 防止内容失真 */
+}
+
 
   .一个单元格 .标题 {
     position: absolute;
