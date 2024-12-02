@@ -133,13 +133,13 @@ animation: 放大 2s ease-in-out forwards;
     .一个单元格 .标题:hover {
       color: skyblue;
     }
-	.按钮中队 {
+.按钮中队 {
+    position: absolute;
+    bottom: 5%; /* 固定在容器底部 */
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 5vh; /* 修正为10vh，以便内容可见 */
-    position: relative;
+    gap: 10px; /* 按钮之间的间距 */
 }
 
 .按钮小队 {
