@@ -129,6 +129,7 @@ animation: 放大 2s ease-in-out forwards;
     align-items: center;
     height: 100vh; /* 修正为100vh，以便内容可见 */
     position: relative;
+    transform: translateY(-50px);
 }
 
 .按钮小队 {
