@@ -110,12 +110,7 @@ padding-top: 10vh;
 
 }
 
-@media (max-width: 768px) {
-  .排序 {
-      grid-template-columns: repeat(1, 1fr); /* 单列布局 */
-      gap: 10px; /* 减小间距 */
-  }
-}
+
 
 
 .一个单元格 {
