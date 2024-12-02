@@ -96,6 +96,7 @@ min-height: 100px; /* 确保标题区域至少占据一定空间 */
 
 
 .排序 {
+padding-top: 10vh;
     display: grid;
     width: 100%; /* 确保使用父容器的宽度 */
     max-width: 1200px; /* 防止过宽 */
