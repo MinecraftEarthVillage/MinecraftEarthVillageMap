@@ -150,7 +150,7 @@ animation: 放大 2s ease-in-out forwards;
     justify-content: center;
     gap: 10px; /* 按钮之间的间距 */
     position: absolute; /* 绝对定位到底部 */
-    bottom: 5%; /* 固定在容器底部 */
+    bottom: 0%; /* 固定在容器底部 */
     width: 100%; /* 按钮组宽度占满父容器 */
 }
 
