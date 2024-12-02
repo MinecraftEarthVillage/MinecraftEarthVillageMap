@@ -105,7 +105,7 @@ min-height: 100px; /* 确保标题区域至少占据一定空间 */
     gap: 20px; /* 网格间距 */
     padding: 20px; /* 避免内容贴边 */
     overflow: auto; /* 防止超出屏幕时溢出 */
-
+top: 10%;
 }
 
 
