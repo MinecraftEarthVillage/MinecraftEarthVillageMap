@@ -5,13 +5,15 @@
 	box-sizing: border-box;
 	font-size: 14px;
 }
-	.大背景 {
+.大背景 {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    align-items: center; /* 水平居中所有子元素 */
     height: 100vh;
-	position: relative;
-  }
+    position: relative;
+    padding: 10px; /* 给容器增加内边距 */
+}
+
 .页面顶部 {
 position: absolute;
 top: 6%;
@@ -87,14 +89,14 @@ animation: 放大 2s ease-in-out forwards;
 
 .排序 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 动态调整列宽 */
+    grid-template-columns: repeat(2, 1fr); /* 保持两列布局 */
+    grid-template-rows: repeat(2, 1fr);
     gap: 20px;
-    width: 100%; /* 占满父容器宽度 */
-    max-width: 1200px; /* 限制最大宽度，避免过度拉伸 */
-    height: auto; /* 高度自动调整 */
-    margin: 0 auto; /* 居中显示 */
-    padding: 10px; /* 增加容器内边距 */
+    width: 100%; /* 确保使用父容器的宽度 */
+    max-width: 1200px; /* 防止过宽 */
+    flex-grow: 1; /* 自动扩展以填充垂直空间 */
 }
+
 @media (max-width: 768px) {
   .排序 {
       grid-template-columns: repeat(1, 1fr); /* 单列布局 */
@@ -134,13 +136,14 @@ animation: 放大 2s ease-in-out forwards;
       color: skyblue;
     }
 .按钮中队 {
-    position: absolute;
-    bottom: 5%; /* 固定在容器底部 */
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
+    justify-content: center;
     gap: 10px; /* 按钮之间的间距 */
+    position: absolute; /* 绝对定位到底部 */
+    bottom: 5%; /* 固定在容器底部 */
+    width: 100%; /* 按钮组宽度占满父容器 */
 }
+
 
 .按钮小队 {
     display: flex; /* 设置为水平排列 */
