@@ -132,7 +132,7 @@ animation: 放大 2s ease-in-out forwards;
   }
 
   .按钮小队 button {
-    margin: 0 40px;
+    margin: 0 1px;<!--按钮间左右1像素间距，上下无间距-->
   }
   
    .按钮中队 {
