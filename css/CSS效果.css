@@ -24,12 +24,9 @@ text-align: center;
 color: white;
 font-size: 35px;
 animation: 放大 2s ease-in-out forwards;
-	flex-shrink: 0; /* 保持固定高度，不被压缩 */
-    background-color: #f5f5f5; /* 可选：给背景颜色方便调试 */
-    padding: 20px; /* 内边距避免文字贴边 */
+/*    padding: 20px; /* 内边距避免文字贴边 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 可选：增加标题区域的分隔感 */
-    z-index: 10; /* 确保标题始终在上方 */
-min-height: 100px; /* 确保标题区域至少占据一定空间 */
+
 
 }
 
