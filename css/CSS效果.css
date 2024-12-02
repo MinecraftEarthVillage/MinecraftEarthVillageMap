@@ -90,9 +90,7 @@ animation: 放大 2s ease-in-out forwards;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 20px;
-	  /*这个地方一直不刷新我也不知道为什么*/
     width: 120vh;
-	  /*👆我这边永远停留在100vh的效果*/
     height: 80vh;
 	position: absolute;
 	top:10%;
@@ -124,25 +122,38 @@ animation: 放大 2s ease-in-out forwards;
     .一个单元格 .标题:hover {
       color: skyblue;
     }
-	
-  .按钮小队 {
+	.按钮中队 {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin-bottom: 50px;
-  }
+    align-items: center;
+    height: 100vh; /* 修正为100vh，以便内容可见 */
+    position: relative;
+}
 
-  .按钮小队 button {
-    margin: 0 1px;<!--按钮间左右1像素间距，上下无间距-->
-  }
-  
-   .按钮中队 {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 0vh;
-      position: relative;
-    }
+.按钮小队 {
+    display: flex; /* 设置为水平排列 */
+    flex-wrap: wrap; /* 允许按钮超出容器宽度时换行 */
+    justify-content: center; /* 水平居中对齐 */
+}
+
+.按钮小队 button {
+    margin: 10px; /* 每个按钮周围的外边距，增强分隔感 */
+    padding: 10px 20px; /* 内边距，增大点击区域 */
+    font-size: 14px; /* 字体大小 */
+    cursor: pointer; /* 鼠标悬停时显示手形图标 */
+    background-color: #007bff; /* 按钮背景色 */
+    color: #fff; /* 按钮文字颜色 */
+    border: none; /* 移除默认边框 */
+    border-radius: 5px; /* 按钮圆角 */
+    transition: all 0.3s ease; /* 动态效果 */
+}
+
+.按钮小队 button:hover {
+    background-color: #0056b3; /* 悬停时的背景色 */
+    transform: scale(1.05); /* 悬停时放大按钮 */
+}
+
 	
       .音乐按钮 {
         position: fixed;
