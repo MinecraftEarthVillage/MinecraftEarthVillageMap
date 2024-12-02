@@ -102,7 +102,7 @@ animation: 放大 2s ease-in-out forwards;
     gap: 20px; /* 网格间距 */
     padding: 20px; /* 避免内容贴边 */
     overflow: auto; /* 防止超出屏幕时溢出 */
-transform: translateY(-500px);
+top:10%;
 }
 
 
