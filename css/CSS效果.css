@@ -136,6 +136,7 @@ animation: 放大 2s ease-in-out forwards;
       color: skyblue;
     }
 .按钮中队 {
+    padding-top: 10vh; 
     display: flex;
     justify-content: center;
     gap: 10px; /* 按钮之间的间距 */
