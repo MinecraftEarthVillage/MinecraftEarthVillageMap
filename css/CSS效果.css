@@ -114,7 +114,7 @@ min-height: 100px; /* 确保标题区域至少占据一定空间 */
 .一个单元格 {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 16/9; /* 保持宽高比 */
+   /* aspect-ratio: 16/9; /* 保持宽高比 */
     max-width: 100%; /* 限制单元格最大宽度 */
 }
 
