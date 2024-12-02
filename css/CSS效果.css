@@ -98,7 +98,7 @@ animation: 放大 2s ease-in-out forwards;
     width: 100%; /* 确保使用父容器的宽度 */
     max-width: 1200px; /* 防止过宽 */
     height: 90%;
-    max-height: 600px; /* 防止过高 */
+    max-height: 800px; /* 防止过高 */
     grid-template-columns: repeat(2, 1fr); /* 两列布局 */
     grid-template-rows: repeat(2, 1fr); /* 两行布局 */
     gap: 20px; /* 网格间距 */
@@ -146,6 +146,7 @@ animation: 放大 2s ease-in-out forwards;
       color: skyblue;
     }
 .按钮中队 {
+  display: flex;
     padding-top: 0vh; 
     display: flex;
     justify-content: center;
