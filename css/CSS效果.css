@@ -100,13 +100,12 @@ padding-top: 10vh;
     display: grid;
     width: 100%; /* 确保使用父容器的宽度 */
     max-width: 1200px; /* 防止过宽 */
-    height: 50%;
+    height: 50px;
     grid-template-columns: repeat(2, 1fr); /* 两列布局 */
     grid-template-rows: repeat(2, 1fr); /* 两行布局 */
     gap: 20px; /* 网格间距 */
     padding: 20px; /* 避免内容贴边 */
     overflow: auto; /* 防止超出屏幕时溢出 */
-    z-index: 1; /* 确保其在 `.页面顶部` 下方 */
 
 }
 
