@@ -60,6 +60,14 @@
             border-radius: 4px;
             text-align: center;
         }
+        #quick-locate-button {
+            display: none;
+            margin-top: 15px;
+            background-color: #007BFF;
+        }
+        #quick-locate-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -75,9 +83,12 @@
         </div>
         <button onclick="calculateCoordinates()">计算Minecraft坐标</button>
         <div class="result" id="result"></div>
+        <button id="quick-locate-button" onclick="quickLocate()">快速定位</button>
     </div>
 
     <script>
+        let computedX, computedZ;
+
         function calculateCoordinates() {
             // 获取输入值
             const latitude = parseFloat(document.getElementById('latitude').value);
@@ -90,18 +101,29 @@
             }
 
             // 计算X坐标（经度）
-            const x = ((longitude + 180) / 360) * 43008 - 21504;
+            computedX = ((longitude + 180) / 360) * 43008 - 21504;
 
             // 计算Z坐标（纬度）
-            const z = ((-latitude + 90) / 180) * 21504 - 10752;
+            computedZ = ((-latitude + 90) / 180) * 21504 - 10752;
 
             // 显示结果
             const resultElement = document.getElementById('result');
             resultElement.innerHTML = `
                 <h3>计算结果</h3>
-                <p><strong>X坐标：</strong>${Math.round(x)}</p>
-                <p><strong>Z坐标：</strong>${Math.round(z)}</p>
+                <p><strong>X坐标：</strong>${Math.round(computedX)}</p>
+                <p><strong>Z坐标：</strong>${Math.round(computedZ)}</p>
             `;
+
+            // 显示“快速定位”按钮
+            document.getElementById('quick-locate-button').style.display = 'block';
+        }
+
+        function quickLocate() {
+            // 构建URL并跳转
+            const x = Math.round(computedX);
+            const z = Math.round(computedZ);
+            const url = `http://earthvillage.top:33020/#world;flat;${x},64,${z};5`;
+            window.location.href = url;
         }
     </script>
 </body>
