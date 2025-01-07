@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地球村（1：1000）坐标计算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>坐标计算器</h1>
+        <div class="form-group">
+            <label for="latitude">纬度 (°N):</label>
+            <input type="number" id="latitude" placeholder="请输入现实地点纬度，例如：64.1835（南纬为负数）" step="any">
+        </div>
+        <div class="form-group">
+            <label for="longitude">经度 (°W):</label>
+            <input type="number" id="longitude" placeholder="请输入现实地点经度，例如：51.7216（西经为负数）" step="any">
+        </div>
+        <button onclick="calculateCoordinates()">计算Minecraft坐标</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateCoordinates() {
+            // 获取输入值
+            const latitude = parseFloat(document.getElementById('latitude').value);
+            const longitude = parseFloat(document.getElementById('longitude').value);
+
+            // 检查输入是否有效
+            if (isNaN(latitude) || isNaN(longitude)) {
+                alert("请输入有效的纬度和经度！");
+                return;
+            }
+
+            // 计算X坐标（经度）
+            const x = ((longitude + 180) / 360) * 43008 - 21504;
+
+            // 计算Z坐标（纬度）
+            const z = ((-latitude + 90) / 180) * 21504 - 10752;
+
+            // 显示结果
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = `
+                <h3>计算结果</h3>
+                <p><strong>X坐标：</strong>${Math.round(x)}</p>
+                <p><strong>Z坐标：</strong>${Math.round(z)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
