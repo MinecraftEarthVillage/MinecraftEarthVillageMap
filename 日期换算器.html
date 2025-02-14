@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft 时间换算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Minecraft 时间换算器</h1>
+        <h4>小贴士：将MC日期转为现实日期前请先清除现实日期栏</h4>
+        <label for="realDate">现实日期：</label>
+        <input type="date" id="realDate" value="2009-05-16">
+        <label for="minecraftDate">Minecraft 日期：</label>
+        <input type="date" id="minecraftDate">
+        <button onclick="calculate()">换算</button>
+        <div class="result" id="result"></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p>计算公式：现实时间流速是MC的72分之一，为了简化逻辑，每年按365.5天计算</p>
+        <p>现实→MC：将现实日期转为天数，然后乘上72倍，再转为年月日格式</p>
+        <p>MC→现实：将MC日期转为天数，然后除以72倍，再转为年月日格式</p>
+        <h3>MC世界元年：2009-5-16</h3>
+    </div>
+
+    <script>
+        // Minecraft 时间流速：现实 1 天 = 游戏 72 天
+        const TIME_RATIO = 72;
+
+        // Minecraft 起始日期：2009年5月16日
+        const START_DATE = new Date("2009-05-16");
+
+        // 将 Minecraft 日期转换为天数
+        function minecraftDateToDays(minecraftDate) {
+            const minecraftYear = minecraftDate.getFullYear();
+            const minecraftMonth = minecraftDate.getMonth();
+            const minecraftDay = minecraftDate.getDate();
+
+            // 按每年 365.5 天计算
+            const daysPerYear = 365.5;
+            const daysPerMonth = daysPerYear / 12;
+
+            const totalDays = (minecraftYear * daysPerYear) + (minecraftMonth * daysPerMonth) + minecraftDay;
+            return totalDays;
+        }
+
+        // 将天数转换为 Minecraft 日期
+        function daysToMinecraftDate(totalDays) {
+            const daysPerYear = 365.5;
+            const daysPerMonth = daysPerYear / 12;
+
+            const years = Math.floor(totalDays / daysPerYear);
+            const remainingDays = totalDays % daysPerYear;
+
+            const months = Math.floor(remainingDays / daysPerMonth);
+            const days = Math.floor(remainingDays % daysPerMonth);
+
+            return `${years} 年 ${months} 月 ${days} 日`;
+        }
+
+        // 计算函数
+        function calculate() {
+            const realDateInput = document.getElementById("realDate").value;
+            const minecraftDateInput = document.getElementById("minecraftDate").value;
+
+            let resultText = "";
+
+            if (realDateInput) {
+                // 现实日期 -> Minecraft 日期
+                const realDate = new Date(realDateInput);
+                const timeDiff = realDate - START_DATE; // 时间差（毫秒）
+                const daysDiff = timeDiff / (1000 * 60 * 60 * 24); // 转换为天数
+                const minecraftDays = daysDiff * TIME_RATIO; // 转换为 Minecraft 天数
+                const minecraftDate = daysToMinecraftDate(minecraftDays); // 转换为 Minecraft 日期
+
+                resultText = `现实日期 ${realDateInput} 对应的 Minecraft 时间为：<br>
+                    ${minecraftDate}`;
+            } else if (minecraftDateInput) {
+                // Minecraft 日期 -> 现实日期
+                const minecraftDate = new Date(minecraftDateInput);
+                const minecraftDays = minecraftDateToDays(minecraftDate); // 转换为 Minecraft 天数
+                const realDays = minecraftDays / TIME_RATIO; // 转换为现实天数
+                const realDate = new Date(START_DATE.getTime() + realDays * 24 * 60 * 60 * 1000); // 计算现实日期
+
+                resultText = `Minecraft 日期 ${minecraftDateInput} 对应的现实时间为：<br>
+                    ${realDate.toISOString().split("T")[0]}`;
+            } else {
+                resultText = "请输入有效的现实日期或 Minecraft 日期！";
+            }
+
+            document.getElementById("result").innerHTML = resultText;
+        }
+    </script>
+</body>
+</html>
