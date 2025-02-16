@@ -78,42 +78,66 @@
         const TIME_RATIO = 72;
         const START_DATE = new Date("2009-05-16");
 
-        // 手动解析 Minecraft 日期（解决大年份问题）
+        // 解析 Minecraft 日期（无需修改）
         function parseMinecraftDate(dateStr) {
             const [year, month, day] = dateStr.split("-").map(Number);
-            return { year, month: month - 1, day }; // 月份转为 0-11
+            if (isNaN(year) || isNaN(month) || isNaN(day)) throw "格式错误";
+            if (year < 1 || month < 1 || day < 1) throw "日期必须从1年1月1日开始";
+            return { year, month: month - 1, day };
         }
 
-        // Minecraft 日期转天数（修正计算）
+        // Minecraft 日期转天数（无需修改）
         function minecraftDateToDays(dateStr) {
             const { year, month, day } = parseMinecraftDate(dateStr);
             const daysPerYear = 365.5;
             const daysPerMonth = daysPerYear / 12;
-            return (year * daysPerYear) + (month * daysPerMonth) + day;
+            return ((year - 1) * daysPerYear) + (month * daysPerMonth) + (day - 1);
         }
 
-        // 天数转 Minecraft 日期（修正月份计算）
+        // 天数转 Minecraft 日期（支持公元前）
         function daysToMinecraftDate(totalDays) {
-            const daysPerYear = 365.5;
+            const daysPerYear = 365.5;//假设MC一年是365.5（365和366平均数）
             const daysPerMonth = daysPerYear / 12;
-
-            let years = Math.floor(totalDays / daysPerYear);
-            let remainingDays = totalDays % daysPerYear;
-
-            let months = Math.floor(remainingDays / daysPerMonth);
-            remainingDays = remainingDays % daysPerMonth;
+            let isBC = false;
             
-            // 处理小数精度问题
-            let days = Math.round(remainingDays * 100) / 100;
-
-            // 确保月份从1开始
-            months = months + 1; // 修正关键点：月份从1开始
-            if (months >= 12) {
-                years += 1;
-                months -= 12;
+            if (totalDays < 0) {
+                isBC = true;
+                totalDays = Math.abs(totalDays);
             }
 
-            return `${years} 年 ${Math.floor(months)} 月 ${Math.floor(days)} 日`;
+            let years, months, remainingDays;
+            if (isBC) {
+                // 处理公元前日期
+                years = Math.floor(totalDays / daysPerYear) + 1;
+                remainingDays = totalDays % daysPerYear;
+                months = Math.floor(remainingDays / daysPerMonth);
+                remainingDays = remainingDays % daysPerMonth;
+                
+                if (months >= 12) {
+                    years += 1;
+                    months -= 12;
+                }
+                months += 1; // 月份从1开始
+            } else {
+                // 处理公元后日期（原逻辑）
+                years = Math.floor(totalDays / daysPerYear) + 1;
+                remainingDays = totalDays % daysPerYear;
+                months = Math.floor(remainingDays / daysPerMonth) + 1;
+                remainingDays = remainingDays % daysPerMonth;
+                
+                if (months > 12) {
+                    years += 1;
+                    months -= 12;
+                }
+            }
+
+            // 处理天数和精度
+            remainingDays = Math.round(remainingDays * 10) / 10;
+            const days = Math.floor(remainingDays) + 1;
+
+            return isBC 
+                ? `公元前 ${years} 年 ${months} 月 ${days} 日`
+                : `${years} 年 ${months} 月 ${days} 日`;
         }
 
         function calculate() {
@@ -121,28 +145,27 @@
             const minecraftDateInput = document.getElementById("minecraftDate").value;
 
             let resultText = "";
-
             try {
                 if (realDateInput) {
                     // 现实 -> Minecraft
                     const realDate = new Date(realDateInput);
                     const timeDiff = realDate - START_DATE;
-                    const daysDiff = timeDiff / 86400000;
+                    const daysDiff = timeDiff / 86400000; // 允许负数
                     const minecraftDays = daysDiff * TIME_RATIO;
                     resultText = `现实 ${realDateInput} → Minecraft ${daysToMinecraftDate(minecraftDays)}`;
                 } else if (minecraftDateInput) {
-                    // Minecraft -> 现实
+                    // Minecraft -> 现实（逻辑不变）
                     const minecraftDays = minecraftDateToDays(minecraftDateInput);
                     const realDays = minecraftDays / TIME_RATIO;
                     const realDate = new Date(START_DATE.getTime() + realDays * 86400000);
                     resultText = `Minecraft ${minecraftDateInput} → 现实 ${realDate.toISOString().split("T")[0]}`;
                 }
             } catch (e) {
-                resultText = "输入格式错误！正确格式：YYYY-MM-DD";
+                resultText = `错误：${e}`;
             }
-
             document.getElementById("result").innerHTML = resultText || "请输入有效日期";
         }
-    </script>
+    </script>   
+    
 </body>
 </html>
