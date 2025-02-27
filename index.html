@@ -8,7 +8,7 @@
 	<!--
 		<link rel="stylesheet" href="./css/CSS效果手机.css"  media="screen and (max-width:1024px)"/>
 		-->
-	<link rel="icon" href="earth.png" type="">
+	<link rel="icon" href="图片/earth.png" type="">
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><!--无色我是不负责CSS的哈-->
 </head>
 
@@ -22,19 +22,19 @@
 
 		<div class="排序">
 			<div class="一个单元格">
-				<img src="./rail.png"></img>
+				<img src="./图片/rail.png"></img>
 				<div class="标题" onclick="openWebsite('http://earthvillage.top:33006/index.html')">地球村·交通线路图</div>
 			</div>
 			<div class="一个单元格">
-				<img src="world.png"></img>
-				<div class="标题" onclick="openWebsite('http://earthvillage.top:33020/')">地球村（1：1000）</div>
+				<img src="图片/world.png"></img>
+				<div class="标题" onclick="openWebsite('world.html')">地球村（1：1000）</div>
 			</div>
 			<div class="一个单元格">
-				<img src="yvan.png"></img>
-				<div class="标题" onclick="openWebsite('http://earthvillage.top:33024/')">元宇宙</div>
+				<img src="图片/yuan.png"></img>
+				<div class="标题" onclick="openWebsite('yuan.html">元宇宙</div>
 			</div>
 			<div class="一个单元格">
-				<img src="./企鹅.png"></img>
+				<img src="./图片/企鹅.png"></img>
 				<div class="标题" onclick="openWebsite('./qqun.html')">戳我加Q群</div>
 			</div>
 		</div>
@@ -54,12 +54,12 @@
 		</div>
 	</div>
 	<div class="音乐按钮">
-		<img src="play.png" alt="Play" id="play-pause">
+		<img src="图片/play.png" alt="Play" id="play-pause">
 	</div>
 
 
 	<audio id="music" autoplay>
-		<source src="./Minecraft经验升级_爱给网_aigei_com.mp3" type="audio/mpeg">
+		<source src="./BGM/Minecraft经验升级_爱给网_aigei_com.mp3" type="audio/mpeg">
 	</audio>
 
 
@@ -115,10 +115,10 @@
 		playPause.addEventListener("click", function () {
 			if (music.paused) {
 				music.play();
-				playPause.src = "pause.png";
+				playPause.src = "图片/pause.png";
 			} else {
 				music.pause();
-				playPause.src = "play.png";
+				playPause.src = "图片/play.png";
 			}
 		});
 		// 当音频播放结束时，随机选择下一首音乐并播放

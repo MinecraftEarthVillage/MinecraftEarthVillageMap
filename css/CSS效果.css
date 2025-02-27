@@ -86,7 +86,7 @@ animation: 放大 2s ease-in-out forwards;
 	      width: 100%;
 	      height: 100%;
         display: flex; /* 启用 Flexbox */
-	      background-image: url(../地球背景.jpg);
+	      background-image: url(/图片/地球背景.jpg);
 	      background-size: cover;
 	      background-repeat: no-repeat;
 	      filter: brightness(70%);
