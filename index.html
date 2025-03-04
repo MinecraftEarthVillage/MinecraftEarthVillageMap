@@ -102,15 +102,11 @@
 			var index = Math.floor(Math.random() * musicList.length);
 			return musicList[index];
 		}
-		/*
+	
 		window.addEventListener("load", function() {
-		// 进来时随机选择一首音乐
-		var randomMusic = getRandomMusic();
-		music.src = randomMusic;
-		music.play();
-		playPause.src = "pause.png";
-		});
-		*/
+		// 进来时强制HTTP
+            window.location.href="http://map.earthvillage.top"
+	
 		// 点击按钮切换播放/暂停状态
 		playPause.addEventListener("click", function () {
 			if (music.paused) {
