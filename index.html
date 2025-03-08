@@ -1,19 +1,19 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<title>MC地球系列网页地图导航</title>
 	<link rel="stylesheet" href="./css/CSS效果.css" />
-	<!--
-		<link rel="stylesheet" href="./css/CSS效果手机.css"  media="screen and (max-width:1024px)"/>
-		-->
 	<link rel="icon" href="图片/earth.png" type="">
-<!--无色我是不负责CSS的哈-->
+	<script>
+		// 确保 openWebsite 函数在全局作用域中定义
+		function openWebsite(url) {
+			window.open(url, "_blank");
+		}
+	</script>
 </head>
 
 <body>
-
 	<div class="大背景">
 		<div class="页面顶部">
 			<h1>每个单元格都是预览窗口，可以单独操作</h1>
@@ -40,7 +40,6 @@
 		</div>
 
 		<div class="按钮中队">
-			<!-- 按钮组代码 -->
 			<div class="按钮小队">
 				<button onclick="openWebsite('https://in.fanbook.cn/RI3mBFAX')">戳我访问Fanbook频道（没人来，废弃了）(悲)</button>
 				<button onclick="openWebsite('http://wiki.earthvillage.top')">服务器wiki</button>
@@ -49,7 +48,6 @@
 				<button onclick="openWebsite('https://www.bilibili.com/video/BV1GJ411x7h7/')">美女大全</button>
 				<button onclick="openWebsite('http://lezi.earthvillage.top')">乐子文档</button>
 				<button onclick="openWebsite('/日期换算器.html')">日期换算器</button>
-				<!--这边的网站更新了记得改-->
 			</div>
 		</div>
 	</div>
@@ -57,25 +55,12 @@
 		<img src="图片/play.png" alt="Play" id="play-pause">
 	</div>
 
-
 	<audio id="music" autoplay>
 		<source src="./BGM/Minecraft经验升级_爱给网_aigei_com.mp3" type="audio/mpeg">
 	</audio>
 
-
-
-
-	<!--脚本区-->
 	<script>
-
-		//控制跳转用的脚本 
-		function openWebsite(url) {
-			window.open(url, "_blank");
-		}
-
-
-	//音乐脚本
-		// 列表
+		// 音乐脚本
 		var musicList = [
 			"./BGM/hea2t - 盛夏与蝉鸣.flac",
 			"./BGM/1_1_4_国旗入场音乐.wav",
@@ -89,42 +74,35 @@
 			"BGM/云村的告别.mp3",
 			"BGM/太阳照常升起.mp3",
 			"BGM/稻香纯音乐.m4a",
-			// 在这里添加其他音乐文件的路径
-
 		];
 
 		var music = document.getElementById("music");
 		var playPause = document.getElementById("play-pause");
-		var 大背景 = document.querySelector(".大背景");
 
-		// 随机选择一首音乐
 		function getRandomMusic() {
 			var index = Math.floor(Math.random() * musicList.length);
 			return musicList[index];
 		}
-	
-		window.addEventListener("load", function() {
-		// 进来时强制HTTP
-            window.location.href="http://map.earthvillage.top"
-	
-		// 点击按钮切换播放/暂停状态
-		playPause.addEventListener("click", function () {
-			if (music.paused) {
-				music.play();
-				playPause.src = "图片/pause.png";
-			} else {
-				music.pause();
-				playPause.src = "图片/play.png";
-			}
-		});
-		// 当音频播放结束时，随机选择下一首音乐并播放
-		music.addEventListener("ended", function () {
-			var randomMusic = getRandomMusic();
-			music.src = randomMusic;
-			music.play();
-		});
 
+		window.addEventListener("load", function() {
+			window.location.href = "http://map.earthvillage.top";
+
+			playPause.addEventListener("click", function () {
+				if (music.paused) {
+					music.play();
+					playPause.src = "图片/pause.png";
+				} else {
+					music.pause();
+					playPause.src = "图片/play.png";
+				}
+			});
+
+			music.addEventListener("ended", function () {
+				var randomMusic = getRandomMusic();
+				music.src = randomMusic;
+				music.play();
+			});
+		});
 	</script>
 </body>
-
 </html>
