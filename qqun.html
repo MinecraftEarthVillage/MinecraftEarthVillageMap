@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>欢迎加入QQ交流群</title>
     <style>
-    /*全局去除默认样式*/ 
-*{
-	padding:0;
-	margin:0;
-	box-sizing: border-box;
-	font-size: 14px;
-}
+        /*全局去除默认样式*/
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
 
-	.大背景 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-	position: relative;
-  }
-   .大背景::before{
-		content: "";
-	      position: absolute;
-	      top: 0;
-	      left: 0;
-	      width: 100%;
-	      height: 100%;
-	      background-image: url(https://user-assets.sxlcdn.com/images/590080/lu_UfrPzBkSXFDgqUF2C2YA1i2eX.png?imageMogr2/strip/auto-orient/thumbnail/1920x9000%3E/quality/90!/format/png);
-	      background-size: cover;
-	      background-repeat: no-repeat;
-	      filter: brightness(70%);
-  }
-  
+        .大背景 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .大背景::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(https://user-assets.sxlcdn.com/images/590080/lu_UfrPzBkSXFDgqUF2C2YA1i2eX.png?imageMogr2/strip/auto-orient/thumbnail/1920x9000%3E/quality/90!/format/png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: brightness(70%);
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -57,102 +59,117 @@
             text-align: center;
             width: 90%;
             max-width: 400px;
-            height: 100%; /* 固定高度 */
+            height: 100%;
+            /* 固定高度 */
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            overflow: auto; /* 隐藏溢出的内容 */
+            overflow: auto;
+            /* 隐藏溢出的内容 */
         }
-                    button {
-                margin-top: 20px;
-                padding: 10px 20px;
-                font-size: 18px;
-                background-color: gray;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-                        #拒绝按钮 {
-                margin-top: 20px;
-                padding: 10px 20px;
-                font-size: 18px;
-                background-color: gray;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
 
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #拒绝按钮 {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #居左显示的条例 {
+            text-align: left;
+        }
     </style>
 </head>
+
 <body>
 
-<div class="大背景">
-<div id="modal">
-    <div id="modalContent">
-        <!--网站协议记得改！！！-->
-        <div class="标题">
-        <h1>协议</h1>
-        <h2>请翻到底</h2>
-	<h3>本群仅为地球村服务器的交流群，初衷是让玩家自由交流，所以请遵守一下规定</h3>
+    <div class="大背景">
+        <div id="modal">
+            <div id="modalContent">
+                <!--网站协议记得改！！！-->
+                <div class="标题">
+                    <h1 style="font-size: 50px;font-family: 华文行楷;">协议</h1>
+                    <h2 style="font-size: 20px;font-family: 楷体;">请翻到底</h2>
+                    <h3><em>本群仅为地球村服务器的交流群，初衷是让玩家自由交流，所以请遵守一下规定</em></h3>
+                </div>
+                <p id="居中显示的头">
+                    欢迎加入地球村服务器讨论群，加入交流群后您可以与一同热爱MTR模组和生存的用户进行讨论。入群后请文明用语，尊重他人及遵守以下群规：<br><br><hr><br>
+                </p>
+                <p id="居左显示的条例">
+                    0.首先，管理员永远都是对的(doge)，其次，如果你觉得管理员犯错了，请参照第一条(doge)<br><br>
+                    1. 禁止破坏讨论环境，例如：广告引流、发送未知群聊链接、倒垃圾、宣泄负面情绪、辱骂引战造谣以及发送引起不适的图片、视频或聊天记录等行为，若被盗号可联系管理员<br><br>
+
+                    2.禁止谈论违法犯罪、敏感政治、色情及与宗教信仰等相关内容、引导他人添加好友（当然，纯友谊不算）、宣传除本服务器以外的其他服务器（本群仅为地球村服务器的交流群，初衷是让玩家自由交流）、倒垃圾、宣泄负面情绪、辱骂引战造谣以及发送引起不适的图片、视频或聊天记录等行为，若被盗号可联系管理员<br><br>
+                    2.禁止谈论违法犯罪、敏感政治、色情及与宗教信仰等相关内容<br><br>
+                    3. 请不要在群里讨论心理健康或身体疾病有关的内容，这有可能会导致您获得错误的建议并造成严重伤害。<br><br>
+                    4. 禁止发送各种非法网站<br><br>
+                    5. 禁止恶意刷屏，恶意刷屏禁言2H起步<br><br>
+                    6.禁止政治反动言论，不利于复兴之路的言论禁言一天起步<br><br>
+                    7. 本群有QQ自带机器人和管你员们自己运营的机器人，恶意刷屏（每分钟发消息达到15条）将会被机器人自动禁言10分钟<br><br>
+                    8. 不会进服务器的欢迎询问Q群管家以及直接进官网查询<br><br>
+                    8.5-不要随意DDOS管理员！非必要情况不要@管理员发无意义信息（如专门@之后接一个标点符号或者仅表情）<br><br>
+                    9. 不要进群秒退，这样很可能会引起管理们的厌恶（多次进退将被拉入黑名单，无法进群，请珍惜账号机会）<br><br>
+                    10.服务器内请不要破坏任何建筑（尤其是花了很大精力来建的），被查证后将会被封禁24小时不等<br><br>
+                    11.由于网络安全法、国家安全法等规定，为维持祖国领土完整。禁止在使用王国功能占用地图内的“保留区块“。目前已有：<strong>中国区域、铁路设施、国道、高速公路、出生点（驱逐舰）附近</strong>，个人领地不受影响<br><br>
+                    12.对于第三方平台，本服务器仅在MC找服网、MC百科发布内容（其中视频发布在bilibili）。KLPBBS、MCBBS为本服务器敌对论坛，本服务器自2024年初陆续退出KLPBBS、MineBBS平台，如有发现在<strong>MC找服网、MC百科</strong>以外平台再次出现地球村服务器宣传帖子均不是本人，善用举报哦。同时请不要在本服务器内过度宣传这些论坛（你可能会遭到随机处罚）<!--虽然不知道为什么是敌对，但还是提一嘴-->
+                    <!--额外的文本-->
+                </p>
+                <br><br><hr><br>
+                <h6>
+                    若不同意以上条款则无法加入群聊<br>
+                    若违反条款可能会被移出群聊，严重的会向有关部门报告<br>
+                    无论你是通过任何渠道进入群聊都将视为同意此协议，在群内因个人产生的法律原因群主及其管理员，其他群成员将概不负责<br><br>
+                </h6>
+
+                <button id="拒绝按钮">不同意</button>
+                <button id="button2" disabled>同意<span id="countdown"></button>
+            </div>
         </div>
-        <p>欢迎加入地球村服务器讨论群，加入交流群后您可以与一同热爱MTR模组和生存的用户进行讨论。入群后请文明用语，尊重他人及遵守以下群规：<br>
-0.首先，管理员永远都是对的(doge)，其次，如果你觉得管理员犯错了，请参照第一条(doge)<br>
-1. 禁止破坏讨论环境，例如：广告引流、发送未知群聊链接、倒垃圾、宣泄负面情绪、辱骂引战造谣以及发送引起不适的图片、视频或聊天记录等行为，若被盗号可联系管理员<br>
-2.禁止谈论违法犯罪、敏感政治、色情及与宗教信仰等相关内容<br>、引导他人添加好友（当然，纯友谊不算）、宣传除本服务器以外的其他服务器（本群仅为地球村服务器的交流群，初衷是让玩家自由交流）、倒垃圾、宣泄负面情绪、辱骂引战造谣以及发送引起不适的图片、视频或聊天记录等行为，若被盗号可联系管理员<br>
-2.禁止谈论违法犯罪、敏感政治、色情及与宗教信仰等相关内容<br>
-3. 请不要在群里讨论心理健康或身体疾病有关的内容，这有可能会导致您获得错误的建议并造成严重伤害。<br>
-4. 禁止发送各种非法网站<br>
-5. 禁止恶意刷屏，恶意刷屏禁言2H起步<br>
-6.禁止政治反动言论，不利于复兴之路的言论禁言一天起步<br>
-7. 本群有QQ自带机器人和管你员们自己运营的机器人，恶意刷屏（每分钟发消息达到15条）将会被机器人自动禁言10分钟<br>
-8. 不会进服务器的欢迎询问Q群管家以及直接进官网查询<br>
-8.5-不要随意DDOS管理员！非必要情况不要@管理员发无意义信息（如专门@之后接一个标点符号或者仅表情）<br>
-9. 不要进群秒退，这样很可能会引起管理们的厌恶（多次进退将被拉入黑名单，无法进群，请珍惜账号机会)<br>
-10.服务器内请不要破坏任何建筑（尤其是花了很大精力来建的），被查证后将会被封禁24小时不等<br>
-11.由于网络安全法、国家安全法等规定，为维持祖国领土完整。禁止在使用王国功能占用地图内的“保留区块“。目前已有：<strong>中国区域、铁路设施、国道、高速公路、出生点（驱逐舰）附近</strong>，个人领地不受影响<br><br>
-12.对于第三方平台，本服务器仅在MC找服网、MC百科发布内容（其中视频发布在bilibili）。KLPBBS、MCBBS为本服务器敌对论坛，本服务器自2024年初陆续退出KLPBBS、MineBBS平台，如有发现在<strong>MC找服网、MC百科</strong>以外平台再次出现地球村服务器宣传帖子均不是本人，善用举报哦。同时请不要在本服务器内过度宣传这些论坛（你可能会遭到随机处罚）
-        若不同意以上条款则无法加入群聊<br>
-        若违反条款可能会被移出群聊，严重的会向有关部门报告<br>
-	无论你是通过任何渠道进入群聊都将视为同意此协议，在群内因个人产生的法律原因群主及其管理员，其他群成员将概不负责<br><br>
-
-        <!--额外的文本-->
-        </p>
-        
-        <button id="拒绝按钮">不同意</button>
-        <button id="button2" disabled>同意<span id="countdown"></button>
     </div>
-</div>
-</div>
-<script>
-    window.onload = function() {
-        document.getElementById('modal').style.display = 'flex';
+    <script>
+        window.onload = function () {
+            document.getElementById('modal').style.display = 'flex';
 
-        let countdown = 10;
-        const countdownElement = document.getElementById('countdown');
-        const button2 = document.getElementById('button2');
+            let countdown = 10;
+            const countdownElement = document.getElementById('countdown');
+            const button2 = document.getElementById('button2');
 
-        const timer = setInterval(function() {
-            countdown--;
-            countdownElement.textContent = countdown;
-            if (countdown <= 0) {
-                clearInterval(timer);
-                button2.disabled = false;
-                button2.textContent = "同意"; 
-                button2.style.backgroundColor = "#0000ff"; // 变成蓝色
-                button2.onclick = function() {
-                    window.location.href = 'https://qm.qq.com/q/VMe5h5yvia';
-                };
-            }
-        }, 1000);
-    };
+            const timer = setInterval(function () {
+                countdown--;
+                countdownElement.textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(timer);
+                    button2.disabled = false;
+                    button2.textContent = "同意";
+                    button2.style.backgroundColor = "#0000ff"; // 变成蓝色
+                    button2.onclick = function () {
+                        window.location.href = 'https://qm.qq.com/q/VMe5h5yvia';
+                    };
+                }
+            }, 1000);
+        };
 
-    document.getElementById('拒绝按钮').onclick = function() {
-        alert('你因为不同意此协议，所以无法加入群聊，将跳转回主页');
-         window.location.href = './index.html'; 
-    };
-</script>
+        document.getElementById('拒绝按钮').onclick = function () {
+            alert('你因为不同意此协议，所以无法加入群聊，将跳转回主页');
+            window.location.href = './index.html';
+        };
+    </script>
 
 </body>
+
 </html>
