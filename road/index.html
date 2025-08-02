@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地球村-公路地图</title>
+    <!-- 外部CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>MC地球村公路地图 - 为Ashen而作的网页地图（施工中）</h1>
+    </div>
+
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <h3>缩放控制</h3>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomOut">-</button>
+                    <button class="zoom-btn" id="zoomIn">+</button>
+                    <button class="zoom-btn reset-btn" id="resetView">重置</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>线路分组</h3>
+                <div id="groupsContainer"></div>
+            </div>
+
+            <div class="control-group">
+                <h3>图例</h3>
+                <div class="group-control">
+                    <div style="display: flex; align-items: center; padding: 5px;">
+                        <div style="width: 20px; height: 6px; background: #3498db; margin-right: 8px;"></div>
+                        <span>冰高速</span>
+                    </div>
+                </div>
+                <div class="group-control">
+                    <div style="display: flex; align-items: center; padding: 5px;">
+                        <div style="width: 20px; height: 6px; background: #e74c3c; margin-right: 8px;"></div>
+                        <span>国道</span>
+                    </div>
+                </div>
+
+                <div class="group-control">
+                    <div style="display: flex; align-items: center; padding: 5px;">
+                        <div
+                            style="width: 20px; height: 6px; background: #f1c40f; margin-right: 8px; box-shadow: 0 0 8px white;">
+                        </div>
+                        <span>高亮路线</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-area">
+            <canvas id="mapCanvas"></canvas>
+            <!-- 固定信息窗口 -->
+            <div id="infoPanel" class="info-panel">
+                <h3>公路信息</h3>
+                <div id="highwayInfo"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <div>当前缩放: <span id="zoomLevel">100%</span></div>
+        <div id="highlightInfo">未选择任何路线</div>
+        <div>鼠标坐标: <span id="mouseCoords">(0, 0)</span></div>
+        <button id="shareView" class="share-btn">分享当前视图</button>
+    </div>
+
+    <!-- Tooltip容器 -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <!-- 外部JS -->
+    <script src="landmarks.js"></script>
+    <script src="config.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
