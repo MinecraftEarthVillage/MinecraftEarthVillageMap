@@ -8,7 +8,7 @@ const config = {
     },
     //路线组，你可以按格式创建更多分类
     groups: [
-        { id: '冰高速', name: '冰高速', color: '#3498db', visible: true },
+        { id: '冰高速', name: '冰高速', color: '#3498db', visible: true,},
         { id: '国道', name: '国道', color: '#e74c3c', visible: true },
         // { id: '唯一识别码，这个不可以重名', name: '实际显示的名字', color: '#2ecc71颜色代码呃你随便怎么写', visible: true或者false，是否在网页端显示这条线 }
     ],

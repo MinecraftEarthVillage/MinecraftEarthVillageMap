@@ -315,6 +315,15 @@ function initGroupControls() {
             group.visible = this.checked;
             render();
         });
+        // 线路组的地标计数(可选功能)
+        // const landmarkCount = landmarks.filter(l => l.group === group.id).length;
+        // if (landmarkCount > 0) {
+        //     const countSpan = document.createElement('span');
+        //     countSpan.className = 'landmark-count';
+        //     countSpan.textContent = ` (${landmarkCount}个地标)`;
+        //     label.appendChild(countSpan);
+        // }
+
     });
 }
 
@@ -664,7 +673,13 @@ function loadLandmarkImages() {
 
 // 绘制地标（支持多个位置）
 function drawLandmarks() {
+        // 获取所有可见分组
+    const visibleGroups = config.groups.filter(g => g.visible).map(g => g.id);
     landmarks.forEach(landmark => {
+                // 检查地标分组是否可见
+        if (landmark.group && !visibleGroups.includes(landmark.group)) {
+            return; // 分组不可见，跳过绘制
+        }
         const isHighlighted = appState.highlightedLandmark === landmark.id;
 
         // 遍历所有位置
@@ -791,6 +806,8 @@ function drawLandmarks() {
 }
 // 检测点击位置是否在地标上（支持多个位置）
 function getLandmarkAtPoint(clientX, clientY) {
+        // 获取所有可见分组
+    const visibleGroups = config.groups.filter(g => g.visible).map(g => g.id);
     appState.canvasRect = canvas.getBoundingClientRect();
 
     const x = clientX - appState.canvasRect.left;
@@ -802,6 +819,11 @@ function getLandmarkAtPoint(clientX, clientY) {
     // 从后向前检查（最后绘制的在最上层）
     for (let i = landmarks.length - 1; i >= 0; i--) {
         const landmark = landmarks[i];
+
+                // 检查地标分组是否可见
+        if (landmark.group && !visibleGroups.includes(landmark.group)) {
+            continue; // 分组不可见，跳过检测
+        }
 
         // 检查该地标的每个位置
         for (let j = 0; j < landmark.positions.length; j++) {
