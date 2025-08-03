@@ -826,6 +826,7 @@ function init() {
     render();
 }
 
+
 function loadBackgroundImage(src) {
     const img = new Image();
     img.onload = function () {
