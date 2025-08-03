@@ -11,11 +11,12 @@
 
 <body>
     <div class="header">
+        <button id="mobileToggle" class="mobile-toggle">☰</button>
         <h4>MC地球村公路地图 - 为Ashen而作的网页地图（施工中）</h4>
     </div>
 
     <div class="container">
-        <div class="controls">
+        <div class="controls" id="controlsPanel">
             <div class="control-group">
                 <h3>缩放控制</h3>
                 <div class="zoom-controls">
@@ -67,10 +68,10 @@
     </div>
 
     <div class="status-bar">
-        <div>当前缩放: <span id="zoomLevel">100%</span></div>
-        <div id="highlightInfo">未选择任何路线</div>
-        <div>鼠标坐标: <span id="mouseCoords">(未知, 未知)</span></div>
-        <button id="shareView" class="share-btn">分享当前视图</button>
+        <div class="status-item">缩放: <span id="zoomLevel">100%</span></div>
+        <div class="status-item" id="highlightInfo">未选择任何路线</div>
+        <div class="status-item">坐标: <span id="mouseCoords">(未知, 未知)</span></div>
+        <button id="shareView" class="share-btn">分享</button>
     </div>
 
     <!-- Tooltip容器 -->

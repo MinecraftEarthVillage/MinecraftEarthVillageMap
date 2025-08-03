@@ -42,6 +42,9 @@ const appState = {
     bgImageLoaded: false,
     landmarkImages: {}, // 存储加载的地标图片
     highlightedLandmark: null, // 当前高亮的地标
+    touchStartTime: 0, // 触摸开始时间
+    touchStartX: 0,    // 触摸开始X坐标
+    touchStartY: 0     // 触摸开始Y坐标
 };
 
 // 获取DOM元素
@@ -56,6 +59,8 @@ const tooltip = document.getElementById('tooltip');
 const infoPanel = document.getElementById('infoPanel');
 const highwayInfo = document.getElementById('highwayInfo');
 const mouseCoords = document.getElementById('mouseCoords');//鼠标坐标
+const mobileToggle = document.getElementById('mobileToggle');
+const controlsPanel = document.getElementById('controlsPanel');
 
 // 设置Canvas大小
 function resizeCanvas() {
@@ -212,7 +217,9 @@ function getHighwayAtPoint(clientX, clientY) {
         if (!group || !group.visible) continue;
 
         const baseTolerance = 10;
-        const tolerance = Math.max(highway.width * 1.5, baseTolerance) / appState.scale;
+        // 移动设备增加容差
+        const toleranceMultiplier = isMobile() ? 1.8 : 1;
+        const tolerance = Math.max(highway.width * 1.5 * toleranceMultiplier, baseTolerance) / appState.scale;
 
         for (let j = 0; j < highway.path.length - 1; j++) {
             const p1 = highway.path[j];
@@ -310,9 +317,19 @@ function initGroupControls() {
     });
 }
 
+// 检测移动设备
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 // 设置事件监听器
 function setupEventListeners() {
     window.addEventListener('resize', resizeCanvas);
+
+    // 移动端控制面板切换
+    mobileToggle.addEventListener('click', function() {
+        controlsPanel.classList.toggle('visible');
+    });
 
     zoomInBtn.addEventListener('click', () => {
         appState.canvasRect = canvas.getBoundingClientRect();
@@ -379,6 +396,11 @@ function setupEventListeners() {
     });
 
     canvas.addEventListener('touchstart', e => {
+        // 记录触摸开始时间和位置
+        appState.touchStartTime = Date.now();
+        appState.touchStartX = e.touches[0].clientX;
+        appState.touchStartY = e.touches[0].clientY;
+        
         if (e.touches.length === 1) {
             appState.isDragging = true;
             appState.lastX = e.touches[0].clientX;
@@ -434,42 +456,24 @@ function setupEventListeners() {
 
     canvas.addEventListener('touchend', e => {
         appState.isDragging = false;
+        
+        // 处理点击（轻击）
+        if (e.changedTouches.length === 1) {
+            const touch = e.changedTouches[0];
+            const touchDuration = Date.now() - appState.touchStartTime;
+            const touchDistance = Math.sqrt(
+                Math.pow(touch.clientX - appState.touchStartX, 2) +
+                Math.pow(touch.clientY - appState.touchStartY, 2)
+            );
+            
+            // 判定为点击的条件：时间短且移动距离小
+            if (touchDuration < 300 && touchDistance < 15) {
+                handleMapClick(touch.clientX, touch.clientY);
+            }
+        }
+        
         e.preventDefault();
     }, { passive: false });
-
-    canvas.addEventListener('click', e => {
-        if (appState.isDragging) return;
-
-        // 检测地标
-        const landmark = getLandmarkAtPoint(e.clientX, e.clientY);
-        if (landmark) {
-            appState.highlightedLandmark = landmark.id; // 设置地标高亮
-            appState.highlightedHighway = null; // 取消公路高亮
-
-            highlightInfo.innerHTML = `已选择: <span class="highlight-info">${landmark.name}</span>`;
-            showLandmarkInfo(landmark);
-            render();
-            return;
-        }
-
-        // 检测公路
-        const highway = getHighwayAtPoint(e.clientX, e.clientY);
-        if (highway) {
-            appState.highlightedHighway = highway.id; // 设置公路高亮
-            appState.highlightedLandmark = null; // 取消地标高亮
-
-            highlightInfo.innerHTML = `已选择: <span class="highlight-info">${highway.name}</span>`;
-            showHighwayInfo(highway);
-        } else {
-            // 点击空白处
-            appState.highlightedHighway = null;
-            appState.highlightedLandmark = null;
-            highlightInfo.innerHTML = "未选择任何路线或地标";
-            infoPanel.style.display = 'none';
-        }
-
-        render();
-    });
 
     // 重置按钮事件
     document.getElementById('resetView').addEventListener('click', () => {
@@ -522,11 +526,49 @@ function setupEventListeners() {
 
 }
 
+// 处理地图点击事件（统一处理点击和触摸）
+function handleMapClick(clientX, clientY) {
+    // 检测地标
+    const landmark = getLandmarkAtPoint(clientX, clientY);
+    if (landmark) {
+        appState.highlightedLandmark = landmark.id; // 设置地标高亮
+        appState.highlightedHighway = null; // 取消公路高亮
+
+        highlightInfo.innerHTML = `已选择: <span class="highlight-info">${landmark.name}</span>`;
+        showLandmarkInfo(landmark);
+        render();
+        return;
+    }
+
+    // 检测公路
+    const highway = getHighwayAtPoint(clientX, clientY);
+    if (highway) {
+        appState.highlightedHighway = highway.id; // 设置公路高亮
+        appState.highlightedLandmark = null; // 取消地标高亮
+
+        highlightInfo.innerHTML = `已选择: <span class="highlight-info">${highway.name}</span>`;
+        showHighwayInfo(highway);
+    } else {
+        // 点击空白处
+        appState.highlightedHighway = null;
+        appState.highlightedLandmark = null;
+        highlightInfo.innerHTML = "未选择任何路线或地标";
+        infoPanel.style.display = 'none';
+    }
+
+    render();
+}
+
 // 初始化应用
 function init() {
     resizeCanvas();
     initGroupControls();
     setupEventListeners();
+
+    // 移动设备初始化
+    if (isMobile()) {
+        controlsPanel.classList.remove('visible');
+    }
 
     // 尝试从URL恢复状态
     const restored = restoreFromURLState();
@@ -746,8 +788,8 @@ function getLandmarkAtPoint(clientX, clientY) {
                 height = 20; // 文本高度估算
             }
 
-            // 扩大点击区域
-            const tolerance = 10 / appState.scale;
+            // 扩大点击区域（移动设备增加容差）
+            const tolerance = (isMobile() ? 25 : 10) / appState.scale;
 
             if (contentX > lx - width / 2 - tolerance &&
                 contentX < lx + width / 2 + tolerance &&
