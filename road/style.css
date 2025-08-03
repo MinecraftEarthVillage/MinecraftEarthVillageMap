@@ -13,16 +13,23 @@ body {
     display: flex;
     flex-direction: column;
     height: 100dvh;
-/* 安全区域处理 */
+    /* 安全区域处理 */
     padding-top: env(safe-area-inset-top, 0);
     padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
 .header {
     background: linear-gradient(to right, #3498db, #2980b9);
-    padding: 5px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* 添加相对定位 */
+    justify-content: center;
+    /* 水平居中 */
+    padding: 5px 40px;
+    /* 添加左右内边距给按钮留空间 */
 }
 
 .container {
@@ -156,7 +163,8 @@ body {
     font-size: 14px;
     pointer-events: none;
     display: none;
-    z-index: 1002 !important; /* 高于菜单 */
+    z-index: 1002 !important;
+    /* 高于菜单 */
 }
 
 /* 信息面板样式 */
@@ -169,7 +177,8 @@ body {
     border: 2px solid #3498db;
     border-radius: 8px;
     padding: 15px;
-    z-index: 1000 !important; /* 低于菜单 */
+    z-index: 1000 !important;
+    /* 低于菜单 */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     color: #ecf0f1;
     display: none;
@@ -206,6 +215,7 @@ body {
 .highlighted-landmark {
     filter: drop-shadow(0 0 8px yellow);
 }
+
 /* 分享按钮样式 */
 .share-btn {
     background: #3498db;
@@ -225,36 +235,46 @@ body {
 /* 移动设备样式 */
 @media (max-width: 768px) {
 
-        body {
+    body {
         /* 添加安全区域填充 */
         padding-bottom: env(safe-area-inset-bottom, 0);
     }
 
     .mobile-toggle {
         display: block;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        /* 按钮绝对定位 */
+        left: 10px;
+        /* 固定在左侧 */
+        top: 50%;
+        /* 垂直居中 */
+        transform: translateY(-50%);
+        /* 精确垂直居中 */
     }
-    
+
     .controls {
         position: absolute;
         left: -220px;
         top: 0;
         height: 100%;
         z-index: 100;
-        box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
         transition: transform 0.3s ease;
     }
-    
+
     .controls.visible {
         transform: translateX(220px);
     }
-    
+
     /* 显示关闭按钮 */
     .close-panel {
         display: block;
         position: absolute;
         top: 10px;
         right: 10px;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         color: white;
         border: none;
         width: 30px;
@@ -263,31 +283,31 @@ body {
         font-size: 20px;
         z-index: 150;
     }
-    
+
     .container {
         /* 为状态栏和安全区域留出空间 使用dvh单位确保高度计算包含安全区域 */
         height: calc(100dvh - 50px - env(safe-area-inset-bottom, 0));
     }
-    
+
     .map-area {
         /* 为状态栏和安全区域留出空间 */
         height: calc(100% - env(safe-area-inset-bottom, 0));
     }
-    
+
     .status-bar {
         /* 在移动设备上更紧凑 */
         padding: 5px 10px calc(5px + env(safe-area-inset-bottom, 0));
     }
-    
+
     .status-item {
         font-size: 11px;
         margin: 2px;
     }
-    
+
     .share-btn {
         padding: 3px 6px;
     }
-    
+
     .info-panel {
         width: 90%;
         max-width: 300px;
@@ -295,10 +315,13 @@ body {
         right: 10px;
         font-size: 14px;
     }
-     .highway-menu {
-    z-index: 1001 !important; /* 高于信息面板的50 */
-    background: rgba(44, 62, 80, 0.98) !important; /* 更不透明 */
-    border: 2px solid #3498db !important;
+
+    .highway-menu {
+        z-index: 1001 !important;
+        /* 高于信息面板的50 */
+        background: rgba(44, 62, 80, 0.98) !important;
+        /* 更不透明 */
+        border: 2px solid #3498db !important;
     }
 }
 
@@ -307,12 +330,13 @@ body {
     .header h4 {
         font-size: 14px;
         padding-left: 40px;
+        text-align: center;
     }
-    
+
     .status-item:nth-child(2) {
         display: none;
     }
-    
+
     .status-bar {
         padding: 3px 5px;
     }
@@ -320,10 +344,13 @@ body {
 
 /* 电脑端隐藏移动端按钮 */
 @media (min-width: 769px) {
-    .mobile-toggle, .close-panel {
+
+    .mobile-toggle,
+    .close-panel {
         display: none !important;
     }
 }
+
 /* 添加重叠选择菜单样式 */
 
 .highway-menu h4 {
@@ -331,45 +358,48 @@ body {
     color: #3498db;
     text-align: center;
 }
+
 /* 确保菜单可见 */
 /* 确保菜单显示在最顶层 */
 .highway-menu {
-  z-index: 10000 !important;
-  position: fixed !important;
-  background: rgba(44, 62, 80, 0.95) !important;
-  border: 2px solid #3498db !important;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5) !important;
-  max-height: 60vh;
-  overflow-y: auto;
+    z-index: 10000 !important;
+    position: fixed !important;
+    background: rgba(44, 62, 80, 0.95) !important;
+    border: 2px solid #3498db !important;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5) !important;
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 /* 菜单项样式 */
 .highway-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  max-height: 50vh;
-  overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 50vh;
+    overflow-y: auto;
 }
 
 .highway-menu li {
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-bottom: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  transition: all 0.2s;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.2s;
 }
 
 .highway-menu li:hover {
-  background: rgba(52, 152, 219, 0.3);
-  transform: translateX(5px);
+    background: rgba(52, 152, 219, 0.3);
+    transform: translateX(5px);
 }
- /* 确保悬停提示总是显示在最前面 */
+
+/* 确保悬停提示总是显示在最前面 */
 #tooltip {
-    z-index: 1002; /* 高于菜单和信息面板 */
+    z-index: 1002;
+    /* 高于菜单和信息面板 */
 }
 
 /* 确保重叠列表菜单显示在最前 */
