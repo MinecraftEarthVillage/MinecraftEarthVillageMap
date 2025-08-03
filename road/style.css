@@ -132,6 +132,8 @@ body {
     font-size: 14px;
     display: flex;
     justify-content: space-between;
+        /* 使用安全区域填充，防止被浏览器控制栏遮挡 */
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0));
 }
 
 .highlight-info {
@@ -217,6 +219,12 @@ body {
 
 /* 移动设备样式 */
 @media (max-width: 768px) {
+
+        body {
+        /* 添加安全区域填充 */
+        padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+
     .mobile-toggle {
         display: block;
     }
@@ -242,13 +250,24 @@ body {
         left: 100%;
     }
     
+    .container {
+        /* 为状态栏和安全区域留出空间 */
+        height: calc(100dvh - 50px - env(safe-area-inset-bottom, 0));
+    }
+    
+    .map-area {
+        /* 为状态栏和安全区域留出空间 */
+        height: calc(100% - env(safe-area-inset-bottom, 0));
+    }
+    
     .status-bar {
-        padding: 5px;
-        font-size: 12px;
+        /* 在移动设备上更紧凑 */
+        padding: 5px 10px calc(5px + env(safe-area-inset-bottom, 0));
     }
     
     .status-item {
         font-size: 11px;
+        margin: 2px;
     }
     
     .share-btn {
@@ -273,5 +292,9 @@ body {
     
     .status-item:nth-child(2) {
         display: none;
+    }
+    
+    .status-bar {
+        padding: 3px 5px;
     }
 }
