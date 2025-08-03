@@ -28,6 +28,7 @@ const landmarks = [
         imageUrl: 'icon/G0711.svg', // 图标路径
         width: 8,
         height: 8,
+        group: '冰高速',
         info: `
                     <h3>G0711喀什支线</h3>
                    <p><strong>类别：</strong>支线</p>
@@ -46,6 +47,7 @@ const landmarks = [
         imageUrl: 'icon/G0701.svg', // 图标路径
         width: 8,
         height: 8,
+        group: '冰高速',
         info: `
                    <h3>G0701乌市环线</h3>
                    <p><strong>类别：</strong>环城高速</p>
@@ -63,6 +65,7 @@ const landmarks = [
         positions: [[335, 270], [386, 319],[542,337],[773,379],[690,362]], // 地图坐标 [x, y]
         imageUrl: 'icon/G7.svg', // 图标路径
         width: 8,
+        group: '冰高速',
         height: 8,
         info: `
                    <h3>G7京新高速</h3>
@@ -72,6 +75,101 @@ const landmarks = [
                    <p><strong>途径城市：</strong>北京、张家口、呼和浩特、乌海市、乌鲁木齐</p>
                    <p><strong>途径路段被共线高速：</strong>G6京藏高速</p>
                    <p><strong>简介：</strong>中国第一条跨沙漠高速公路</p>
+        `
+    },
+    {
+        id: 'G7',
+        name: 'G1京哈高速',
+        type: '仅图标',
+        positions: [[911, 395], [956, 294],[1021,267],], // 地图坐标 [x, y]
+        imageUrl: 'icon/G1.svg', // 图标路径
+        width: 8,
+        group: '冰高速',
+        height: 8,
+        info: `
+                   <h3>G7京哈高速</h3>
+                   <p><strong>类别：</strong>主线</p>
+                   <p><strong>起点：</strong>北京市</p>
+                   <p><strong>终点：</strong>哈尔滨</p>
+                   <p><strong>途径城市：</strong>哈尔滨、大庆、北京</p>
+                   <p><strong>途径路段被共线高速：</strong>G13哈海高速、G45大广高速、G4京港澳高速</p>
+                   <p><strong>简介：</strong>包含渤海湾跨海大桥的主线高速</p>
+        `
+    },
+    {
+        id: 'G45',
+        name: 'G45大广高速',
+        type: '仅图标',
+        positions: [[955, 253], [842,467],[836,551],[784,635]], // 地图坐标 [x, y]
+        imageUrl: 'icon/G45.svg', // 图标路径
+        width: 8,
+        group: '冰高速',
+        height: 8,
+        info: `
+                   <h3>G45大广高速</h3>
+                   <p><strong>类别：</strong>主线</p>
+                   <p><strong>起点：</strong>黑龙江省大庆市</p>
+                   <p><strong>终点：</strong>广州</p>
+                   <p><strong>途径城市：</strong>大庆、郑州、深圳、广州</p>
+                   <p><strong>途径路段被共线高速：</strong>G1京哈高速、G13哈海高速、G55二广高速、G4京港澳高速</p>
+                   <p><strong>简介：</strong>中国南北走向冰高速路中全线被共线（仅次于京港澳高速）</p>
+        `
+    },
+    {
+        id: 'G4',
+        name: 'G4京港澳高速',
+        type: '仅图标',
+        positions: [[809,730],[808,626],[829,466]], // 地图坐标 [x, y]
+        imageUrl: 'icon/G4.svg', // 图标路径
+        width: 8,
+        group: '冰高速',
+        height: 8,
+        info: `
+                   <h3>G4京港澳高速</h3>
+                   <p><strong>类别：</strong>主线</p>
+                   <p><strong>起点：</strong>北京</p>
+                   <p><strong>终点：</strong>深圳</p>
+                   <p><strong>途径城市：</strong>北京、郑州、深圳</p>
+                   <p><strong>途径路段被共线高速：</strong>G1京哈高速、G2京沪高速、G3京台高速、G5京昆高速、G14沪拉高速、G45大广高速、G13哈海高速</p>
+                   <p><strong>简介：</strong>中国第一条高速公路（开山鼻祖）</p>
+        `
+    },
+    {
+        id: 'G3',
+        name: 'G3京台高速',
+        type: '仅图标',
+        positions: [[873,704],[805,634],[822,545]], // 地图坐标 [x, y]
+        imageUrl: 'icon/G3.svg', // 图标路径
+        width: 8,
+        group: '冰高速',
+        height: 8,
+        info: `
+                   <h3>G3京台高速</h3>
+                   <p><strong>类别：</strong>主线</p>
+                   <p><strong>起点：</strong>北京</p>
+                   <p><strong>终点：</strong>台北</p>
+                   <p><strong>途径城市：</strong>北京、郑州、台北</p>
+                   <p><strong>途径路段被共线高速：</strong>G4京港澳高速</p>
+                   <p><strong>简介：</strong>与G0迪台国际高速共用一个起点，也是唯一一条通向台湾的冰高速</p>
+        `
+    },
+    {
+        id: 'G13',
+        name: 'G13哈海高速',
+        type: '仅图标',
+        positions: [[712,777]], // 地图坐标 [x, y]
+        imageUrl: 'icon/G13.svg', // 图标路径
+        width: 8,
+        group: '冰高速',
+        height: 8,
+        info: `
+                   <h3>G3京台高速</h3>
+                   <p><strong>类别：</strong>主线</p>
+                   <p><strong>起点：</strong>哈尔滨</p>
+                   <p><strong>终点：</strong>海口市</p>
+                   <p><strong>途径城市：</strong>哈尔滨、大庆、北京、郑州、深圳、广州、海口</p>
+                   <p><strong>途径路段被共线高速：</strong>G4京港澳高速、G1京哈高速、G45大广高速</p>
+                   <p><strong>简介：</strong>第一条到海南的高速公路</p>
         `
     },
     // //文本地标
@@ -103,6 +201,7 @@ const landmarks = [
         width: 20,
         height: 20,
         text: '乌鲁木齐',
+        group: '主要城市',
         textOffset: [0, 5], // 文本相对于图标的偏移 [dx, dy]
         textStyle: {
             color: '#ffffff',
@@ -113,7 +212,26 @@ const landmarks = [
         },
         info: `一座城市`
     },
-
+    {
+        id: '郑州市',
+        name: '郑州市市',
+        type: '图文组合',
+        positions: [[828, 493]],
+        imageUrl: 'icon/城市.png',
+        width: 6.5,
+        height: 4,
+        text: '郑州',
+        group: '主要城市',
+        textOffset: [2, 1], // 文本相对于图标的偏移 [dx, dy]
+        textStyle: {
+            color: '#ffffff',
+            fontSize: '2px',
+            fontWeight: 'bold',
+            strokeStyle: 'black',
+            strokeWidth: 0.2,
+        },
+        info: `一座半废弃的城市`
+    },
     // 更多地标...
     // {
     //     id: 'lm4',
