@@ -228,10 +228,18 @@ body {
         height: 100%;
         z-index: 100;
         box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
     }
     
     .controls.visible {
         transform: translateX(220px);
+    }
+    
+    /* 显示关闭按钮 */
+    .close-panel {
+        display: block;
+        position: relative;
+        left: 100%;
     }
     
     .status-bar {

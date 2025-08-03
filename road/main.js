@@ -475,6 +475,31 @@ function setupEventListeners() {
         e.preventDefault();
     }, { passive: false });
 
+        // 电脑端点击事件
+    canvas.addEventListener('click', function(e) {
+        if (appState.isDragging) return;
+        handleMapClick(e.clientX, e.clientY);
+    });
+    
+    // 移动端控制面板切换
+    mobileToggle.addEventListener('click', function() {
+        controlsPanel.classList.add('visible');
+    });
+    
+    // 关闭面板按钮
+    document.getElementById('closePanel').addEventListener('click', function() {
+        controlsPanel.classList.remove('visible');
+    });
+    
+    // 点击外部关闭面板
+    document.addEventListener('click', function(e) {
+        if (!controlsPanel.contains(e.target) && 
+            e.target !== mobileToggle &&
+            controlsPanel.classList.contains('visible')) {
+            controlsPanel.classList.remove('visible');
+        }
+    });
+
     // 重置按钮事件
     document.getElementById('resetView').addEventListener('click', () => {
         // 清除URL参数
