@@ -61,6 +61,50 @@ const appState = {
     }
 };
 
+//设置高亮的方法
+function setHighwayHighlight(highway) {
+    // 设置直接高亮
+    appState.directHighlight = {
+        type: 'highway',
+        id: highway.id
+    };
+    
+    // 设置关联高亮
+    appState.relatedHighlights.highways = [highway.id];
+    
+    // 如果有绑定地标，添加关联高亮
+    if (highway.landmarkIds && highway.landmarkIds.length > 0) {
+        appState.relatedHighlights.landmarks = highway.landmarkIds;
+    }
+    
+    // 显示信息
+    showHighwayInfo(highway);
+    highlightInfo.textContent = `已选择: ${highway.name}`;
+    hideTooltip();
+}
+
+function setLandmarkHighlight(landmark) {
+    // 设置直接高亮
+    appState.directHighlight = {
+        type: 'landmark',
+        id: landmark.id
+    };
+    
+    // 设置关联高亮
+    appState.relatedHighlights.landmarks = [landmark.id];
+    
+    // 如果有绑定公路，添加关联高亮
+    if (landmark.highwayId) {
+        const highwayIds = Array.isArray(landmark.highwayId) 
+            ? landmark.highwayId 
+            : [landmark.highwayId];
+            
+        appState.relatedHighlights.highways = highwayIds;
+    }
+    
+    showHighwayInfo(landmark);
+    highlightInfo.textContent = `已选择: ${landmark.name}`;
+}
 // 获取DOM元素
 const canvas = document.getElementById('mapCanvas');
 const ctx = canvas.getContext('2d');
@@ -553,23 +597,19 @@ function setupEventListeners() {
     // 电脑端点击事件
     // 处理Canvas点击事件
 canvas.addEventListener('click', (e) => {
-    // 重置所有高亮状态
     resetAllHighlights();
     
-    // 先检查是否点击到地标
     const clickedLandmark = getLandmarkAtPoint(e.clientX, e.clientY);
     if (clickedLandmark) {
-        handleLandmarkClick(clickedLandmark);
+        setLandmarkHighlight(clickedLandmark);
         render();
         return;
     }
     
-    // 再检查是否点击到公路
     const hitHighways = getHighwayAtPoint(e.clientX, e.clientY);
     if (hitHighways.length > 0) {
-        handleHighwayClick(hitHighways,e);
+        handleHighwayClick(hitHighways, e);
     } else {
-        // 点击空白区域
         infoPanel.style.display = 'none';
         highlightInfo.textContent = '未选择任何路线或地标';
     }
@@ -602,9 +642,8 @@ function handleLandmarkClick(landmark) {
 }
 
 // 处理公路点击
-function handleHighwayClick(highways,e) {
+function handleHighwayClick(highways, e) {
     if (highways.length > 1) {
-        // 显示选择菜单
         appState.overlappingHighways = highways;
         appState.showHighwayMenu = true;
         appState.menuPosition = { x: e.clientX, y: e.clientY };
@@ -612,25 +651,7 @@ function handleHighwayClick(highways,e) {
         return;
     }
     
-    const highway = highways[0];
-    
-    // 设置直接高亮
-    appState.directHighlight = {
-        type: 'highway',
-        id: highway.id
-    };
-    
-    // 设置关联高亮
-    appState.relatedHighlights.highways = [highway.id];
-    
-    // 如果有绑定地标，添加关联高亮
-    if (highway.landmarkIds && highway.landmarkIds.length > 0) {
-        appState.relatedHighlights.landmarks = highway.landmarkIds;
-    }
-    
-    showHighwayInfo(highway);
-    highlightInfo.textContent = `已选择: ${highway.name}`;
-    hideTooltip();
+    setHighwayHighlight(highways[0]);
 }
 
 // 重置所有高亮状态
@@ -1086,19 +1107,13 @@ function showHighwayMenu() {
     const menu = document.getElementById('highwayMenu');
     const menuList = document.getElementById('highwayMenuList');
 
-    // 清空现有菜单
     menuList.innerHTML = '';
-
-    // 添加所有重叠公路到菜单
+    
     appState.overlappingHighways.forEach(highway => {
         const li = document.createElement('li');
         li.textContent = highway.name;
         li.addEventListener('click', () => {
-            // 选择该公路
-            appState.highlightedHighway = highway.id;
-            showHighwayInfo(highway);
-            highlightInfo.textContent = `已选择: ${highway.name}`;
-            // 隐藏菜单
+            setHighwayHighlight(highway);
             appState.showHighwayMenu = false;
             menu.style.display = 'none';
             render();
@@ -1106,7 +1121,6 @@ function showHighwayMenu() {
         menuList.appendChild(li);
     });
 
-    // 定位菜单并显示
     menu.style.left = `${appState.menuPosition.x}px`;
     menu.style.top = `${appState.menuPosition.y}px`;
     menu.style.display = 'block';

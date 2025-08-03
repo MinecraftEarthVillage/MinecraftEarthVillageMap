@@ -167,12 +167,12 @@ const landmarks = [
         type: '仅图标',
         positions: [[712,777]], // 地图坐标 [x, y]
         imageUrl: 'icon/G13.svg', // 图标路径
-        highwayId: ['G13'],
+        // highwayId: ['G13'],
         width: 8,
         group: '冰高速',
         height: 8,
         info: `
-                   <h3>G3京台高速</h3>
+                   <h3>G13哈海高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>哈尔滨</p>
                    <p><strong>终点：</strong>海口市</p>
