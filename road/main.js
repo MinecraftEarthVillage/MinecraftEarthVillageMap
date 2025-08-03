@@ -659,15 +659,26 @@ function handleLandmarkClick(landmark) {
 
 // 处理公路点击
 function handleHighwayClick(highways, e) {
-    if (highways.length > 1) {
-        appState.overlappingHighways = highways;
+    // 使用 Set 来去重
+    const uniqueHighways = [];
+    const seen = new Set();
+    
+    for (const highway of highways) {
+        if (!seen.has(highway.id)) {
+            seen.add(highway.id);
+            uniqueHighways.push(highway);
+        }
+    }
+    
+    if (uniqueHighways.length > 1) {
+        appState.overlappingHighways = uniqueHighways;
         appState.showHighwayMenu = true;
         appState.menuPosition = { x: e.clientX, y: e.clientY };
         showHighwayMenu();
         return;
     }
     
-    setHighwayHighlight(highways[0]);
+    setHighwayHighlight(uniqueHighways[0]);
 }
 
 // 重置所有高亮状态
