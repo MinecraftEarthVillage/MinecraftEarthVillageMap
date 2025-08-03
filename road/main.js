@@ -602,15 +602,16 @@ function init() {
 
     // 移动设备初始化
     if (isMobile()) {
+        // 添加安全区域顶部填充
+        const header = document.querySelector('.header');
+        header.style.paddingTop = `env(safe-area-inset-top, 0)`;
+
         controlsPanel.classList.remove('visible');
         // 添加安全区域底部填充
         const statusBar = document.querySelector('.status-bar');
         statusBar.style.paddingBottom = `calc(8px + env(safe-area-inset-bottom, 0))`;
     }
-        // 添加视口高度变化监听
-    window.addEventListener('resize', handleViewportChange);
-    // 初始调整
-    handleViewportChange();
+
 
     // 尝试从URL恢复状态
     const restored = restoreFromURLState();
@@ -911,22 +912,6 @@ function updateMouseCoords(clientX, clientY) {
     }
 }
 
-// 处理视口高度变化
-function handleViewportChange() {
-    const statusBar = document.querySelector('.status-bar');
-    const mapArea = document.querySelector('.map-area');
-    
-    if (isMobile()) {
-        // 在移动设备上，为地图区域添加底部内边距
-        const statusBarHeight = statusBar.offsetHeight;
-        mapArea.style.paddingBottom = `${statusBarHeight}px`;
-        
-        // 确保Canvas正确调整大小
-        resizeCanvas();
-    } else {
-        // 在桌面设备上重置
-        mapArea.style.paddingBottom = '0';
-    }
-}
+
 // 页面加载完成后初始化
 window.addEventListener('DOMContentLoaded', init);

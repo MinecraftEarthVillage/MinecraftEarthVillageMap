@@ -12,7 +12,10 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100dvh;
+/* 安全区域处理 */
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
 .header {
@@ -132,7 +135,9 @@ body {
     font-size: 14px;
     display: flex;
     justify-content: space-between;
-        /* 使用安全区域填充，防止被浏览器控制栏遮挡 */
+    position: sticky;
+    bottom: 0;
+    z-index: 200;
     padding-bottom: calc(8px + env(safe-area-inset-bottom, 0));
 }
 
@@ -246,12 +251,21 @@ body {
     /* 显示关闭按钮 */
     .close-panel {
         display: block;
-        position: relative;
-        left: 100%;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-size: 20px;
+        z-index: 150;
     }
     
     .container {
-        /* 为状态栏和安全区域留出空间 */
+        /* 为状态栏和安全区域留出空间 使用dvh单位确保高度计算包含安全区域 */
         height: calc(100dvh - 50px - env(safe-area-inset-bottom, 0));
     }
     
@@ -296,5 +310,12 @@ body {
     
     .status-bar {
         padding: 3px 5px;
+    }
+}
+
+/* 电脑端隐藏移动端按钮 */
+@media (min-width: 769px) {
+    .mobile-toggle, .close-panel {
+        display: none !important;
     }
 }
