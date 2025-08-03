@@ -791,14 +791,44 @@ function init() {
         menu.style.display = 'none';
         menu.style.position = 'fixed';
         menu.style.zIndex = '1000';
+        menu.style.backgroundColor = 'white';
+        menu.style.border = '1px solid #ccc';
+        menu.style.borderRadius = '5px';
+        menu.style.padding = '10px';
+        menu.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
 
+        // 标题栏（带关闭按钮）
+        const header = document.createElement('div');
+        header.style.display = 'flex';
+        header.style.justifyContent = 'space-between';
+        header.style.alignItems = 'center';
+        header.style.marginBottom = '10px';
+        
         const title = document.createElement('h4');
         title.textContent = '选择道路：';
-
+        title.style.margin = '0';
+        
+        const closeButton = document.createElement('button');
+        closeButton.textContent = '×';
+        closeButton.style.background = 'none';
+        closeButton.style.border = 'none';
+        closeButton.style.fontSize = '20px';
+        closeButton.style.cursor = 'pointer';
+        closeButton.addEventListener('click', () => {
+            menu.style.display = 'none';
+            appState.showHighwayMenu = false;
+        });
+        
+        header.appendChild(title);
+        header.appendChild(closeButton);
+        
         const list = document.createElement('ul');
-        list.id = 'highwayMenuList'; // 添加列表ID
-
-        menu.appendChild(title);
+        list.id = 'highwayMenuList';
+        list.style.listStyleType = 'none';
+        list.style.padding = '0';
+        list.style.margin = '0';
+        
+        menu.appendChild(header);
         menu.appendChild(list);
         document.body.appendChild(menu);
     }
