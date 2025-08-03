@@ -5,6 +5,7 @@ const landmarks = [
         id: 'G30',
         name: '沪霍高速',
         type: '仅图标',
+        highwayId: ['G30'],
         positions: [[172, 263], [210, 287], [386, 345], [504, 372], [597, 404], [706, 408], [790, 460], [790, 557], [270, 315]], // 地图坐标 [x, y]
         imageUrl: 'icon/G30.svg', // 图标路径
         width: 8,
@@ -29,6 +30,7 @@ const landmarks = [
         width: 8,
         height: 8,
         group: '冰高速',
+        highwayId: ['喀什支线'], // 绑定公路ID
         info: `
                     <h3>G0711喀什支线</h3>
                    <p><strong>类别：</strong>支线</p>
@@ -48,6 +50,7 @@ const landmarks = [
         width: 8,
         height: 8,
         group: '冰高速',
+        highwayId: ['G0701'],
         info: `
                    <h3>G0701乌市环线</h3>
                    <p><strong>类别：</strong>环城高速</p>
@@ -66,6 +69,7 @@ const landmarks = [
         imageUrl: 'icon/G7.svg', // 图标路径
         width: 8,
         group: '冰高速',
+        highwayId: ['G7'],
         height: 8,
         info: `
                    <h3>G7京新高速</h3>
@@ -78,9 +82,10 @@ const landmarks = [
         `
     },
     {
-        id: 'G7',
+        id: 'G1',
         name: 'G1京哈高速',
         type: '仅图标',
+        highwayId: ['G1'],
         positions: [[911, 395], [956, 294],[1021,267],], // 地图坐标 [x, y]
         imageUrl: 'icon/G1.svg', // 图标路径
         width: 8,
@@ -100,10 +105,11 @@ const landmarks = [
         id: 'G45',
         name: 'G45大广高速',
         type: '仅图标',
-        positions: [[955, 253], [842,467],[836,551],[784,635]], // 地图坐标 [x, y]
+        positions: [[955, 253], [842,467],[836,551],[784,635],[822,278]], // 地图坐标 [x, y]
         imageUrl: 'icon/G45.svg', // 图标路径
         width: 8,
         group: '冰高速',
+        highwayId: ['G45'],
         height: 8,
         info: `
                    <h3>G45大广高速</h3>
@@ -122,6 +128,7 @@ const landmarks = [
         positions: [[809,730],[808,626],[829,466]], // 地图坐标 [x, y]
         imageUrl: 'icon/G4.svg', // 图标路径
         width: 8,
+        highwayId: ['G4'],
         group: '冰高速',
         height: 8,
         info: `
@@ -142,6 +149,7 @@ const landmarks = [
         imageUrl: 'icon/G3.svg', // 图标路径
         width: 8,
         group: '冰高速',
+        highwayId: ['G3'],
         height: 8,
         info: `
                    <h3>G3京台高速</h3>
@@ -159,6 +167,7 @@ const landmarks = [
         type: '仅图标',
         positions: [[712,777]], // 地图坐标 [x, y]
         imageUrl: 'icon/G13.svg', // 图标路径
+        highwayId: ['G13'],
         width: 8,
         group: '冰高速',
         height: 8,
@@ -214,7 +223,7 @@ const landmarks = [
     },
     {
         id: '郑州市',
-        name: '郑州市市',
+        name: '郑州市',
         type: '图文组合',
         positions: [[828, 493]],
         imageUrl: 'icon/城市.png',

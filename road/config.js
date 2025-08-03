@@ -44,7 +44,8 @@ const config = {
                    <p><strong>途径城市：</strong>（暂无可发展城市）</p>
                    <p><strong>途径路段被共线高速：</strong>G30沪霍高速</p>
                    <p><strong>简介：</strong>有望成为连通欧洲、非洲的中国支线高速公路</p>
-                `
+                `,
+            landmarkIds: ['G0711'], // 绑定地标ID
         },
         {
             id: '沪霍',
@@ -63,7 +64,7 @@ const config = {
                    <p><strong>简介：</strong>中国最长高速公路</p>`
         },
         {
-            id: '乌鲁木齐绕城路牌',
+            id: '乌鲁木齐绕城',
             name: 'G0701乌市环线',
             group: '冰高速',
             path: [
@@ -97,7 +98,7 @@ const config = {
                    <p><strong>简介：</strong>中国第一条跨沙漠高速公路</p>`
         },
         {
-            id: 'G1的路牌',
+            id: 'G1',
             name: 'G1京哈高速',
             group: '冰高速',
             path: [
@@ -115,7 +116,7 @@ const config = {
                    `
         },
         {
-            id: 'G45的路牌',
+            id: 'G45',
             name: 'G45大广高速',
             group: '冰高速',
             path: [
@@ -123,6 +124,7 @@ const config = {
             [862,395],[941,394],[941,384],[954,382],[956,243],
             ],
             width: 3,
+            landmarkIds: ['G45'],
             info: `                    
                    <h3>G45大广高速</h3>
                    <p><strong>类别：</strong>主线</p>
@@ -134,7 +136,7 @@ const config = {
                    `
         },
         {
-            id: 'G4路牌',
+            id: 'G4',
             name: 'G4京港澳高速',
             group: '冰高速',
             path: [
@@ -152,7 +154,7 @@ const config = {
                    `
         },
         {
-            id: 'G3的路牌',
+            id: 'G3',
             name: 'G3京台高速',
             group: '冰高速',
             path: [
@@ -170,7 +172,7 @@ const config = {
                    `
         },
         {
-            id: 'G13的路牌',
+            id: 'G13',
             name: 'G13哈海高速',
             group: '冰高速',
             path: [
@@ -179,7 +181,7 @@ const config = {
             ],
             width: 3,
             info: `                    
-                   <h3>G3京台高速</h3>
+                   <h3>G13哈海高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>哈尔滨</p>
                    <p><strong>终点：</strong>海口市</p>

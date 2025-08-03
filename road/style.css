@@ -156,7 +156,7 @@ body {
     font-size: 14px;
     pointer-events: none;
     display: none;
-    z-index: 100;
+    z-index: 1002 !important; /* 高于菜单 */
 }
 
 /* 信息面板样式 */
@@ -169,7 +169,7 @@ body {
     border: 2px solid #3498db;
     border-radius: 8px;
     padding: 15px;
-    z-index: 50;
+    z-index: 1000 !important; /* 低于菜单 */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     color: #ecf0f1;
     display: none;
@@ -295,6 +295,11 @@ body {
         right: 10px;
         font-size: 14px;
     }
+     .highway-menu {
+    z-index: 1001 !important; /* 高于信息面板的50 */
+    background: rgba(44, 62, 80, 0.98) !important; /* 更不透明 */
+    border: 2px solid #3498db !important;
+    }
 }
 
 /* 小屏幕设备 */
@@ -318,4 +323,56 @@ body {
     .mobile-toggle, .close-panel {
         display: none !important;
     }
+}
+/* 添加重叠选择菜单样式 */
+
+.highway-menu h4 {
+    margin-bottom: 8px;
+    color: #3498db;
+    text-align: center;
+}
+/* 确保菜单可见 */
+/* 确保菜单显示在最顶层 */
+.highway-menu {
+  z-index: 10000 !important;
+  position: fixed !important;
+  background: rgba(44, 62, 80, 0.95) !important;
+  border: 2px solid #3498db !important;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5) !important;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* 菜单项样式 */
+.highway-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.highway-menu li {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s;
+}
+
+.highway-menu li:hover {
+  background: rgba(52, 152, 219, 0.3);
+  transform: translateX(5px);
+}
+ /* 确保悬停提示总是显示在最前面 */
+#tooltip {
+    z-index: 1002; /* 高于菜单和信息面板 */
+}
+
+/* 确保重叠列表菜单显示在最前 */
+#highwayMenu {
+    z-index: 10000 !important;
 }

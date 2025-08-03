@@ -44,7 +44,21 @@ const appState = {
     highlightedLandmark: null, // 当前高亮的地标
     touchStartTime: 0, // 触摸开始时间
     touchStartX: 0,    // 触摸开始X坐标
-    touchStartY: 0     // 触摸开始Y坐标
+    touchStartY: 0,   // 触摸开始Y坐标
+    bindings: {}, // 存储绑定关系 {highwayId: [landmarkIds], landmarkId: highwayId}
+    //共线重叠情况下
+    overlappingHighways: [], // 当前重叠的公路
+    showHighwayMenu: false,  // 是否显示菜单
+    menuPosition: { x: 0, y: 0 }, // 菜单位置
+
+    directHighlight: { // 直接点击的高亮对象
+        type: null, // 'highway' 或 'landmark'
+        id: null    // 直接点击的ID
+    },
+    relatedHighlights: { // 关联高亮对象
+        highways: [],   // 关联高亮的公路ID列表
+        landmarks: []   // 关联高亮的地标ID列表
+    }
 };
 
 // 获取DOM元素
@@ -68,7 +82,7 @@ function resizeCanvas() {
     canvas.width = parent.clientWidth;
     canvas.height = parent.clientHeight;
     appState.canvasRect = canvas.getBoundingClientRect();
-    
+
     render();
 }
 
@@ -153,18 +167,21 @@ function drawHighway(highway, isHighlighted = false) {
     const group = config.groups.find(g => g.id === highway.group);
     if (!group) return;
 
-    const lineWidth = highway.width;
+    // 检查是否应该高亮
+    const shouldHighlight = 
+        appState.directHighlight.id === highway.id || 
+        appState.relatedHighlights.highways.includes(highway.id);
 
-    if (isHighlighted) {
-        ctx.shadowColor = 'white';//边缘白光
+    if (shouldHighlight) {
+        ctx.shadowColor = '#f1c40f';
         ctx.shadowBlur = 15;
-        ctx.strokeStyle = '#f1c40f'; // 橙色线条
-        ctx.lineWidth = lineWidth * 1.2;
+        ctx.strokeStyle = '#f1c40f';
+        ctx.lineWidth = highway.width * 1.5;
     } else {
         ctx.shadowColor = 'transparent';
         ctx.shadowBlur = 0;
-        ctx.lineWidth = lineWidth;
-        ctx.strokeStyle = group.color; // 分组颜色
+        ctx.strokeStyle = group.color;
+        ctx.lineWidth = highway.width;
     }
 
     ctx.beginPath();
@@ -179,7 +196,44 @@ function drawHighway(highway, isHighlighted = false) {
     ctx.lineJoin = 'round';
     ctx.stroke();
 }
+//绘制多条
+function drawHighways() {
+    config.highways.forEach(highway => {
+        // 检查分组可见性
+        const group = config.groups.find(g => g.id === highway.group);
+        if (!group || !group.visible) return;
 
+        ctx.beginPath();
+        const [firstX, firstY] = highway.path[0];
+        ctx.moveTo(
+            firstX * appState.scale + appState.offsetX,
+            firstY * appState.scale + appState.offsetY
+        );
+
+        // 绘制路径
+        highway.path.slice(1).forEach(([x, y]) => {
+            ctx.lineTo(
+                x * appState.scale + appState.offsetX,
+                y * appState.scale + appState.offsetY
+            );
+        });
+
+        // 应用样式：高亮状态使用特殊颜色
+        if (appState.highlightedHighway === highway.id) {
+            ctx.strokeStyle = '#f1c40f'; // 高亮色（黄色）
+            ctx.lineWidth = highway.width * 1.5 * appState.scale; // 高亮时线宽增加
+            ctx.shadowColor = '#f1c40f';
+            ctx.shadowBlur = 10;
+        } else {
+            ctx.strokeStyle = group.color;
+            ctx.lineWidth = highway.width * appState.scale;
+            ctx.shadowBlur = 0; // 清除阴影
+        }
+
+        ctx.stroke();
+        ctx.closePath();
+    });
+}
 // 缩放到指定的点
 function zoomAtPoint(scaleFactor, clientX, clientY) {
     appState.canvasRect = canvas.getBoundingClientRect();
@@ -211,6 +265,8 @@ function getHighwayAtPoint(clientX, clientY) {
     const contentX = (x - appState.offsetX) / appState.scale;
     const contentY = (y - appState.offsetY) / appState.scale;
 
+    const hitHighways = [];
+
     for (let i = config.highways.length - 1; i >= 0; i--) {
         const highway = config.highways[i];
         const group = config.groups.find(g => g.id === highway.group);
@@ -225,26 +281,27 @@ function getHighwayAtPoint(clientX, clientY) {
         for (let j = 0; j < highway.path.length - 1; j++) {
             const p1 = highway.path[j];
             const p2 = highway.path[j + 1];
-
+            // 计算点到线段的距离
             const dx = p2[0] - p1[0];
             const dy = p2[1] - p1[1];
             const segmentLengthSquared = dx * dx + dy * dy;
-
             if (segmentLengthSquared === 0) continue;
 
-            const t = Math.max(0, Math.min(1, ((contentX - p1[0]) * dx + (contentY - p1[1]) * dy) / segmentLengthSquared));
-            const projX = p1[0] + t * dx;
-            const projY = p1[1] + t * dy;
+            const t = ((contentX - p1[0]) * dx + (contentY - p1[1]) * dy) / segmentLengthSquared;
+            const tClamped = Math.max(0, Math.min(1, t));
+            const projX = p1[0] + tClamped * dx;
+            const projY = p1[1] + tClamped * dy;
 
-            const distSquared = (contentX - projX) * (contentX - projX) + (contentY - projY) * (contentY - projY);
+            const dist = Math.sqrt((contentX - projX) ** 2 + (contentY - projY) ** 2);
 
-            if (distSquared < tolerance * tolerance) {
-                return highway;
+            if (dist < tolerance) {
+                hitHighways.push(highway);
+                // break; // 一条公路只需要匹配一次
             }
         }
     }
 
-    return null;
+    return hitHighways;
 }
 
 // 显示悬停提示
@@ -262,15 +319,16 @@ function hideTooltip() {
     tooltip.style.display = 'none';
 }
 
-// 在信息面板显示公路详情
-function showHighwayInfo(highway) {
-    if (!highway) return;
 
-    // 使用配置中的HTML格式显示信息
-    highwayInfo.innerHTML = highway.info ? highway.info :
-        `<h2>${highway.name}</h2>
-         <p><strong>类别:</strong> ${getGroupName(highway.group)}</p>
-         <p><strong>路段数:</strong> ${highway.path.length}段</p>`;
+// 在信息面板显示详情（同时支持道路和地标）
+function showHighwayInfo(item) {
+    if (!item) return;
+
+    // 支持地标和道路两种类型
+    highwayInfo.innerHTML = item.info ? item.info :
+        `<h2>${item.name}</h2>
+         <p><strong>类型:</strong> ${item.type || '未知'}</p>
+         ${item.group ? `<p><strong>分组:</strong> ${item.group}</p>` : ''}`;
 
     // 显示信息面板
     infoPanel.style.display = 'block';
@@ -337,7 +395,7 @@ function setupEventListeners() {
     window.addEventListener('resize', resizeCanvas);
 
     // 移动端控制面板切换
-    mobileToggle.addEventListener('click', function() {
+    mobileToggle.addEventListener('click', function () {
         controlsPanel.classList.toggle('visible');
     });
 
@@ -370,6 +428,8 @@ function setupEventListeners() {
 
     canvas.addEventListener('mousemove', e => {
         updateMouseCoords(e.clientX, e.clientY);
+        // 先隐藏之前的提示
+        hideTooltip();
         if (appState.isDragging) {
             const dx = e.clientX - appState.lastX;
             const dy = e.clientY - appState.lastY;
@@ -383,13 +443,13 @@ function setupEventListeners() {
             render();
             updateURLState();
         } else {
-            const highway = getHighwayAtPoint(e.clientX, e.clientY);
-            if (highway) {
+            const highways = getHighwayAtPoint(e.clientX, e.clientY);
+            if (highways.length > 0) {
                 canvas.style.cursor = 'pointer';
-                showTooltip(highway, e.clientX, e.clientY);
+                // 显示第一条公路的名称作为提示
+                showTooltip(highways[0], e.clientX, e.clientY);
             } else {
                 canvas.style.cursor = 'default';
-                hideTooltip();
             }
         }
     });
@@ -403,6 +463,9 @@ function setupEventListeners() {
         appState.isDragging = false;
         canvas.style.cursor = 'default';
         hideTooltip();
+        // 重置悬停状态
+        appState.highlightedHighway = null;
+        highlightInfo.innerHTML = "未选择任何路线或地标";
     });
 
     canvas.addEventListener('touchstart', e => {
@@ -410,7 +473,7 @@ function setupEventListeners() {
         appState.touchStartTime = Date.now();
         appState.touchStartX = e.touches[0].clientX;
         appState.touchStartY = e.touches[0].clientY;
-        
+
         if (e.touches.length === 1) {
             appState.isDragging = true;
             appState.lastX = e.touches[0].clientX;
@@ -466,7 +529,7 @@ function setupEventListeners() {
 
     canvas.addEventListener('touchend', e => {
         appState.isDragging = false;
-        
+
         // 处理点击（轻击）
         if (e.changedTouches.length === 1) {
             const touch = e.changedTouches[0];
@@ -475,35 +538,122 @@ function setupEventListeners() {
                 Math.pow(touch.clientX - appState.touchStartX, 2) +
                 Math.pow(touch.clientY - appState.touchStartY, 2)
             );
-            
+
             // 判定为点击的条件：时间短且移动距离小
             if (touchDuration < 300 && touchDistance < 15) {
+                // 阻止事件冒泡 - 关键修复
+                e.stopPropagation();
                 handleMapClick(touch.clientX, touch.clientY);
             }
         }
-        
+
         e.preventDefault();
     }, { passive: false });
 
-        // 电脑端点击事件
-    canvas.addEventListener('click', function(e) {
-        if (appState.isDragging) return;
-        handleMapClick(e.clientX, e.clientY);
-    });
+    // 电脑端点击事件
+    // 处理Canvas点击事件
+canvas.addEventListener('click', (e) => {
+    // 重置所有高亮状态
+    resetAllHighlights();
     
+    // 先检查是否点击到地标
+    const clickedLandmark = getLandmarkAtPoint(e.clientX, e.clientY);
+    if (clickedLandmark) {
+        handleLandmarkClick(clickedLandmark);
+        render();
+        return;
+    }
+    
+    // 再检查是否点击到公路
+    const hitHighways = getHighwayAtPoint(e.clientX, e.clientY);
+    if (hitHighways.length > 0) {
+        handleHighwayClick(hitHighways,e);
+    } else {
+        // 点击空白区域
+        infoPanel.style.display = 'none';
+        highlightInfo.textContent = '未选择任何路线或地标';
+    }
+    
+    render();
+});
+
+// 处理地标点击
+function handleLandmarkClick(landmark) {
+    // 设置直接高亮
+    appState.directHighlight = {
+        type: 'landmark',
+        id: landmark.id
+    };
+    
+    // 设置关联高亮
+    appState.relatedHighlights.landmarks = [landmark.id];
+    
+    // 如果有绑定公路，添加关联高亮
+    if (landmark.highwayId) {
+        const highwayIds = Array.isArray(landmark.highwayId) 
+            ? landmark.highwayId 
+            : [landmark.highwayId];
+            
+        appState.relatedHighlights.highways = highwayIds;
+    }
+    
+    showHighwayInfo(landmark);
+    highlightInfo.textContent = `已选择: ${landmark.name}`;
+}
+
+// 处理公路点击
+function handleHighwayClick(highways,e) {
+    if (highways.length > 1) {
+        // 显示选择菜单
+        appState.overlappingHighways = highways;
+        appState.showHighwayMenu = true;
+        appState.menuPosition = { x: e.clientX, y: e.clientY };
+        showHighwayMenu();
+        return;
+    }
+    
+    const highway = highways[0];
+    
+    // 设置直接高亮
+    appState.directHighlight = {
+        type: 'highway',
+        id: highway.id
+    };
+    
+    // 设置关联高亮
+    appState.relatedHighlights.highways = [highway.id];
+    
+    // 如果有绑定地标，添加关联高亮
+    if (highway.landmarkIds && highway.landmarkIds.length > 0) {
+        appState.relatedHighlights.landmarks = highway.landmarkIds;
+    }
+    
+    showHighwayInfo(highway);
+    highlightInfo.textContent = `已选择: ${highway.name}`;
+    hideTooltip();
+}
+
+// 重置所有高亮状态
+function resetAllHighlights() {
+    appState.directHighlight = { type: null, id: null };
+    appState.relatedHighlights = { highways: [], landmarks: [] };
+    appState.highlightedLandmark = null;
+    appState.highlightedHighway = null;
+}
+
     // 移动端控制面板切换
-    mobileToggle.addEventListener('click', function() {
+    mobileToggle.addEventListener('click', function () {
         controlsPanel.classList.add('visible');
     });
-    
+
     // 关闭面板按钮
-    document.getElementById('closePanel').addEventListener('click', function() {
+    document.getElementById('closePanel').addEventListener('click', function () {
         controlsPanel.classList.remove('visible');
     });
-    
+
     // 点击外部关闭面板
-    document.addEventListener('click', function(e) {
-        if (!controlsPanel.contains(e.target) && 
+    document.addEventListener('click', function (e) {
+        if (!controlsPanel.contains(e.target) &&
             e.target !== mobileToggle &&
             controlsPanel.classList.contains('visible')) {
             controlsPanel.classList.remove('visible');
@@ -563,12 +713,19 @@ function setupEventListeners() {
 
 // 处理地图点击事件（统一处理点击和触摸）
 function handleMapClick(clientX, clientY) {
+    // 关闭信息面板
+    infoPanel.style.display = 'none';
     // 检测地标
+    console.log("Handling map click at", clientX, clientY);
+
     const landmark = getLandmarkAtPoint(clientX, clientY);
     if (landmark) {
         appState.highlightedLandmark = landmark.id; // 设置地标高亮
         appState.highlightedHighway = null; // 取消公路高亮
-
+        // 如果有绑定公路，则高亮公路
+        if (appState.bindings[landmark.id]) {
+            appState.highlightedHighway = appState.bindings[landmark.id];
+        }
         highlightInfo.innerHTML = `已选择: <span class="highlight-info">${landmark.name}</span>`;
         showLandmarkInfo(landmark);
         render();
@@ -576,13 +733,27 @@ function handleMapClick(clientX, clientY) {
     }
 
     // 检测公路
-    const highway = getHighwayAtPoint(clientX, clientY);
-    if (highway) {
-        appState.highlightedHighway = highway.id; // 设置公路高亮
-        appState.highlightedLandmark = null; // 取消地标高亮
+    const highways = getHighwayAtPoint(clientX, clientY);
+    console.log("Found highways:", highways);
+    if (highways.length > 0) {
+        if (highways.length === 1) {
+            // 只有一条公路，直接选择
+            selectHighway(highways[0]);
+        } else {
+            // 阻止事件冒泡 - 关键修复
+            e.stopPropagation();
+            // 多条公路重叠，显示选择菜单
+            console.log("多条公路重叠，显示选择菜单");
 
-        highlightInfo.innerHTML = `已选择: <span class="highlight-info">${highway.name}</span>`;
-        showHighwayInfo(highway);
+            appState.overlappingHighways = highways;
+            appState.showHighwayMenu = true;
+            appState.menuPosition = {
+                x: clientX,
+                y: clientY
+            };
+            // 确保菜单渲染
+            setTimeout(() => renderMenu(), 0);
+        }
     } else {
         // 点击空白处
         appState.highlightedHighway = null;
@@ -599,7 +770,7 @@ function init() {
     resizeCanvas();
     initGroupControls();
     setupEventListeners();
-
+    loadLandmarkImages();// 加载地标图片
     // 移动设备初始化
     if (isMobile()) {
         // 添加安全区域顶部填充
@@ -610,6 +781,26 @@ function init() {
         // 添加安全区域底部填充
         const statusBar = document.querySelector('.status-bar');
         statusBar.style.paddingBottom = `calc(8px + env(safe-area-inset-bottom, 0))`;
+    }
+
+    // 确保菜单元素存在
+    if (!document.getElementById('highwayMenu')) {
+        const menu = document.createElement('div');
+        menu.id = 'highwayMenu';
+        menu.className = 'highway-menu';
+        menu.style.display = 'none';
+        menu.style.position = 'fixed';
+        menu.style.zIndex = '1000';
+
+        const title = document.createElement('h4');
+        title.textContent = '选择道路：';
+
+        const list = document.createElement('ul');
+        list.id = 'highwayMenuList'; // 添加列表ID
+
+        menu.appendChild(title);
+        menu.appendChild(list);
+        document.body.appendChild(menu);
     }
 
 
@@ -630,9 +821,6 @@ function init() {
     if (config.background.url) {
         loadBackgroundImage(config.background.url);
     }
-
-    // 加载地标图片
-    loadLandmarkImages();
 
     // 初始渲染
     render();
@@ -660,202 +848,133 @@ function loadBackgroundImage(src) {
 // 加载地标图片
 function loadLandmarkImages() {
     landmarks.forEach(landmark => {
-        if (landmark.type === '仅图标' || landmark.type === '图文组合') {
+        if (landmark.imageUrl && !appState.landmarkImages[landmark.imageUrl]) {
             const img = new Image();
-            img.onload = function () {
-                appState.landmarkImages[landmark.id] = img;
+            img.src = landmark.imageUrl;
+            img.onload = () => {
+                appState.landmarkImages[landmark.imageUrl] = img;
                 render();
             };
-            img.src = landmark.imageUrl;
+            img.onerror = () => {
+                console.error(`无法加载地标图片: ${landmark.imageUrl}`);
+                // 加载失败时使用默认图标
+                appState.landmarkImages[landmark.imageUrl] = createDefaultLandmarkImage();
+                render();
+            };
         }
     });
+}
+// 创建默认地标图片
+function createDefaultLandmarkImage() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 16;
+    canvas.height = 16;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#3498db';
+    ctx.beginPath();
+    ctx.arc(8, 8, 8, 0, Math.PI * 2);
+    ctx.fill();
+    return canvas;
 }
 
 
 // 绘制地标（支持多个位置）
 function drawLandmarks() {
-        // 获取所有可见分组
-    const visibleGroups = config.groups.filter(g => g.visible).map(g => g.id);
     landmarks.forEach(landmark => {
-                // 检查地标分组是否可见
-        if (landmark.group && !visibleGroups.includes(landmark.group)) {
-            return; // 分组不可见，跳过绘制
+        // 检查地标是否属于可见分组
+        if (landmark.group && !config.groups.find(g => g.id === landmark.group && g.visible)) {
+            return;
         }
-        const isHighlighted = appState.highlightedLandmark === landmark.id;
 
-        // 遍历所有位置
-        landmark.positions.forEach(position => {
-            const x = position[0];
-            const y = position[1];
-
-            // 保存当前上下文状态
+          // 检查是否应该高亮
+        const shouldHighlight = 
+            appState.directHighlight.id === landmark.id || 
+            appState.relatedHighlights.landmarks.includes(landmark.id);
+        
+        if (shouldHighlight) {
             ctx.save();
+            ctx.shadowColor = '#f1c40f';
+            ctx.shadowBlur = 15;
+        }
 
-            // 高亮效果
-            if (isHighlighted) {
-                ctx.shadowColor = '#ffefa1ff';
-                ctx.shadowBlur = 15;
-            } else {
-                ctx.shadowColor = 'transparent';
-                ctx.shadowBlur = 0;
-            }
+        // 绘制图标
+        if (landmark.type === '仅图标' || landmark.type === '图文组合') {
+            landmark.positions.forEach(pos => {
+                const [x, y] = pos;
 
-            // 绘制图片部分
-            if ((landmark.type === '仅图标' || landmark.type === '图文组合') &&
-                appState.landmarkImages[landmark.id]) {
-
-                const img = appState.landmarkImages[landmark.id];
-                const width = landmark.width || img.width;
-                const height = landmark.height || img.height;
-
-                ctx.drawImage(
-                    img,
-                    x - width / 2,
-                    y - height / 2,
-                    width,
-                    height
-                );
-            }
-
-            // 绘制文本部分
-            if (landmark.type === '仅文本' ||
-                (landmark.type === '图文组合' && landmark.text)) {
-
-                const style = landmark.textStyle || {};
-                const text = landmark.text;
-
-                // 设置基本文本属性
-                ctx.font = style.font ||
-                    `${style.fontStyle || 'normal'} ${style.fontWeight || 'normal'} ${style.fontSize || '12px'} ${style.fontFamily || 'Arial, sans-serif'}`;
-
-                ctx.textAlign = style.textAlign || 'center';
-                ctx.textBaseline = style.textBaseline || 'middle';
-
-                // 设置阴影
-                if (style.textShadow || style.shadowBlur) {
-                    ctx.shadowColor = style.shadowColor || 'rgba(0,0,0,0.7)';
-                    ctx.shadowBlur = style.shadowBlur || 5;
-                    ctx.shadowOffsetX = style.shadowOffsetX || 2;
-                    ctx.shadowOffsetY = style.shadowOffsetY || 2;
-                } else {
-                    ctx.shadowColor = 'transparent';
-                    ctx.shadowBlur = 0;
-                }
-
-                // 设置文本位置偏移
-                const offset = landmark.textOffset || [0, 0];
-                const textX = x + offset[0];
-                const textY = y + offset[1];
-
-                // 绘制背景框
-                if (style.backgroundColor) {
-                    const textWidth = ctx.measureText(text).width;
-                    const padding = Array.isArray(style.backgroundPadding) ?
-                        style.backgroundPadding :
-                        [style.backgroundPadding || 4, style.backgroundPadding || 8];
-
-                    ctx.fillStyle = style.backgroundColor;
-
-                    // 绘制圆角矩形背景
-                    ctx.beginPath();
-                    ctx.roundRect(
-                        textX - textWidth / 2 - padding[1],
-                        textY - parseInt(style.fontSize || 12) / 2 - padding[0],
-                        textWidth + padding[1] * 2,
-                        parseInt(style.fontSize || 12) + padding[0] * 2,
-                        style.borderRadius || 0
+                // 绘制图标（假设已加载）
+                if (appState.landmarkImages[landmark.imageUrl]) {
+                    ctx.drawImage(
+                        appState.landmarkImages[landmark.imageUrl],
+                        x - landmark.width / 2,
+                        y - landmark.height / 2,
+                        landmark.width,
+                        landmark.height
                     );
-                    ctx.fill();
+                } else {
+                    // 图标未加载时绘制占位符
+                    ctx.fillStyle = '#3498db';
+                    ctx.fillRect(x - landmark.width / 2, y - landmark.height / 2, landmark.width, landmark.height);
+                }
 
-                    // 绘制边框
-                    if (style.borderColor && style.borderWidth) {
-                        ctx.strokeStyle = style.borderColor;
-                        ctx.lineWidth = style.borderWidth;
-                        ctx.stroke();
+                // 绘制文本（图文组合类型）
+                if (landmark.type === '图文组合' && landmark.text) {
+                    ctx.save();
+                    const textX = x + (landmark.textOffset?.[0] || 0);
+                    const textY = y + (landmark.textOffset?.[1] || 0) + landmark.height / 2;
+
+                    ctx.fillStyle = landmark.textStyle?.color || '#fff';
+                    ctx.font = `${landmark.textStyle?.fontWeight || 'normal'} ${landmark.textStyle?.fontSize || '12px'} sans-serif`;
+
+                    if (landmark.textStyle?.strokeStyle) {
+                        ctx.strokeStyle = landmark.textStyle.strokeStyle;
+                        ctx.lineWidth = landmark.textStyle.strokeWidth || 1;
+                        ctx.strokeText(landmark.text, textX, textY);
                     }
+
+                    ctx.fillText(landmark.text, textX, textY);
+                    ctx.restore();
                 }
+            });
+        }
 
-                // 保存当前状态（用于旋转）
-                ctx.save();
-
-                // 应用旋转
-                if (style.rotation) {
-                    ctx.translate(textX, textY);
-                    ctx.rotate(style.rotation * Math.PI / 180);
-                    ctx.translate(-textX, -textY);
-                }
-
-                // 绘制文本描边（如果有）
-                if (style.strokeStyle && style.strokeWidth) {
-                    ctx.strokeStyle = style.strokeStyle;
-                    ctx.lineWidth = style.strokeWidth;
-                    ctx.strokeText(text, textX, textY);
-                }
-
-                // 绘制文本填充
-                ctx.fillStyle = style.color || '#ffffff';
-                ctx.fillText(text, textX, textY);
-
-                // 恢复状态（取消旋转）
-                ctx.restore();
-            }
-
-            // 恢复上下文状态
+        // 恢复状态
+        if (shouldHighlight) {
             ctx.restore();
-        });
+        }
     });
 }
-// 检测点击位置是否在地标上（支持多个位置）
-function getLandmarkAtPoint(clientX, clientY) {
-        // 获取所有可见分组
-    const visibleGroups = config.groups.filter(g => g.visible).map(g => g.id);
-    appState.canvasRect = canvas.getBoundingClientRect();
 
+// 检测是否点击到地标
+function getLandmarkAtPoint(clientX, clientY) {
+    appState.canvasRect = canvas.getBoundingClientRect();
     const x = clientX - appState.canvasRect.left;
     const y = clientY - appState.canvasRect.top;
-
     const contentX = (x - appState.offsetX) / appState.scale;
     const contentY = (y - appState.offsetY) / appState.scale;
 
-    // 从后向前检查（最后绘制的在最上层）
     for (let i = landmarks.length - 1; i >= 0; i--) {
         const landmark = landmarks[i];
-
-                // 检查地标分组是否可见
-        if (landmark.group && !visibleGroups.includes(landmark.group)) {
-            continue; // 分组不可见，跳过检测
+        // 检查地标是否属于可见分组
+        if (landmark.group && !config.groups.find(g => g.id === landmark.group && g.visible)) {
+            continue;
         }
 
-        // 检查该地标的每个位置
-        for (let j = 0; j < landmark.positions.length; j++) {
-            const position = landmark.positions[j];
-            const lx = position[0];
-            const ly = position[1];
+        // 检查每个位置点
+        for (const pos of landmark.positions) {
+            const [landmarkX, landmarkY] = pos;
+            // 计算点击区域（图标大小的矩形区域）
+            const halfWidth = (landmark.width || 8) / 2;
+            const halfHeight = (landmark.height || 8) / 2;
 
-            // 简单矩形碰撞检测
-            let width = 0, height = 0;
-
-            if (landmark.type === '仅图标' || landmark.type === '图文组合') {
-                width = landmark.width || 32;
-                height = landmark.height || 32;
-            } else if (landmark.type === '仅文本') {
-                ctx.font = landmark.textStyle?.fontSize || '12px Arial';
-                width = ctx.measureText(landmark.text).width;
-                height = 20; // 文本高度估算
-            }
-
-            // 扩大点击区域（移动设备增加容差）
-            const tolerance = (isMobile() ? 25 : 10) / appState.scale;
-
-            if (contentX > lx - width / 2 - tolerance &&
-                contentX < lx + width / 2 + tolerance &&
-                contentY > ly - height / 2 - tolerance &&
-                contentY < ly + height / 2 + tolerance) {
+            if (contentX >= landmarkX - halfWidth &&
+                contentX <= landmarkX + halfWidth &&
+                contentY >= landmarkY - halfHeight &&
+                contentY <= landmarkY + halfHeight) {
                 return landmark;
             }
         }
     }
-
     return null;
 }
 // 显示地标信息（显示所有位置）
@@ -912,6 +1031,67 @@ function updateMouseCoords(clientX, clientY) {
     }
 }
 
+
+
+
+// 重叠时选择公路函数
+function selectHighway(highway) {
+    appState.highlightedHighway = highway.id;
+    appState.highlightedLandmark = null;
+
+    // 如果有绑定地标，则高亮地标
+    if (appState.bindings[highway.id]) {
+        appState.highlightedLandmarks = appState.bindings[highway.id];
+    }
+
+    highlightInfo.innerHTML = `已选择: <span class="highlight-info">${highway.name}</span>`;
+    showHighwayInfo(highway);
+    appState.showHighwayMenu = false;
+}
+
+// 渲染重叠列表菜单
+// 显示公路选择菜单
+function showHighwayMenu() {
+    const menu = document.getElementById('highwayMenu');
+    const menuList = document.getElementById('highwayMenuList');
+
+    // 清空现有菜单
+    menuList.innerHTML = '';
+
+    // 添加所有重叠公路到菜单
+    appState.overlappingHighways.forEach(highway => {
+        const li = document.createElement('li');
+        li.textContent = highway.name;
+        li.addEventListener('click', () => {
+            // 选择该公路
+            appState.highlightedHighway = highway.id;
+            showHighwayInfo(highway);
+            highlightInfo.textContent = `已选择: ${highway.name}`;
+            // 隐藏菜单
+            appState.showHighwayMenu = false;
+            menu.style.display = 'none';
+            render();
+        });
+        menuList.appendChild(li);
+    });
+
+    // 定位菜单并显示
+    menu.style.left = `${appState.menuPosition.x}px`;
+    menu.style.top = `${appState.menuPosition.y}px`;
+    menu.style.display = 'block';
+}
+
+// 点击页面其他地方关闭菜单
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('highwayMenu');
+    const canvas = document.getElementById('mapCanvas');
+
+    // 如果点击不在菜单内且不在canvas上，则关闭菜单
+    if (!menu.contains(e.target) && e.target !== canvas) {
+        appState.showHighwayMenu = false;
+        menu.style.display = 'none';
+    }
+});
 
 // 页面加载完成后初始化
 window.addEventListener('DOMContentLoaded', init);
