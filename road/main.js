@@ -63,6 +63,7 @@ const appState = {
 
 //设置高亮的方法
 function setHighwayHighlight(highway) {
+
     // 设置直接高亮
     appState.directHighlight = {
         type: 'highway',
@@ -81,6 +82,7 @@ function setHighwayHighlight(highway) {
     showHighwayInfo(highway);
     highlightInfo.textContent = `已选择: ${highway.name}`;
     hideTooltip();
+    render(); // 触发重新渲染
 }
 
 function setLandmarkHighlight(landmark) {
@@ -134,11 +136,7 @@ function resizeCanvas() {
 function render() {
     // 清除画布
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // 保存原始状态
     ctx.save();
-
-    // 应用变换（平移+缩放）
     ctx.translate(appState.offsetX, appState.offsetY);
     ctx.scale(appState.scale, appState.scale);
 
@@ -153,31 +151,49 @@ function render() {
 
     // 获取所有可见分组
     const visibleGroups = config.groups.filter(g => g.visible).map(g => g.id);
-
-    // 分离普通路线和选中路线
+    
+    // 分离普通元素和高亮元素
     const normalHighways = [];
-    let highlightedHighway = null;
-
+    const normalLandmarks = [];
+    const highlightedHighways = [];
+    const highlightedLandmarks = [];
+    
+    // 1. 分类公路
     config.highways.forEach(highway => {
         if (!visibleGroups.includes(highway.group)) return;
-
-        if (appState.highlightedHighway === highway.id) {
-            highlightedHighway = highway; // 单独保存选中路线
+        
+        const shouldHighlight = 
+            appState.directHighlight.id === highway.id || 
+            appState.relatedHighlights.highways.includes(highway.id);
+            
+        if (shouldHighlight) {
+            highlightedHighways.push(highway);
         } else {
-            normalHighways.push(highway); // 普通路线
+            normalHighways.push(highway);
         }
     });
-
-    // 先绘制所有普通路线
-    normalHighways.forEach(highway => {
-        drawHighway(highway, false);
+    
+    // 2. 分类地标
+    landmarks.forEach(landmark => {
+        if (landmark.group && !visibleGroups.includes(landmark.group)) return;
+        
+        const shouldHighlight = 
+            appState.directHighlight.id === landmark.id || 
+            appState.relatedHighlights.landmarks.includes(landmark.id);
+            
+        if (shouldHighlight) {
+            highlightedLandmarks.push(landmark);
+        } else {
+            normalLandmarks.push(landmark);
+        }
     });
-
-    // 最后绘制选中路线（置于顶层）
-    if (highlightedHighway) {
-        drawHighway(highlightedHighway, true);
-    }
-    drawLandmarks();// 最后绘制地标（在顶层）
+    
+    // 3. 绘制顺序：普通公路 -> 普通地标 -> 高亮公路 -> 高亮地标
+    normalHighways.forEach(highway => drawHighway(highway, false));
+    normalLandmarks.forEach(landmark => drawLandmark(landmark, false));
+    highlightedHighways.forEach(highway => drawHighway(highway, true));
+    highlightedLandmarks.forEach(landmark => drawLandmark(landmark, true));
+    
     ctx.restore();
 }
 
@@ -930,71 +946,63 @@ function createDefaultLandmarkImage() {
 }
 
 
-// 绘制地标（支持多个位置）
-function drawLandmarks() {
-    landmarks.forEach(landmark => {
-        // 检查地标是否属于可见分组
-        if (landmark.group && !config.groups.find(g => g.id === landmark.group && g.visible)) {
-            return;
-        }
-
-          // 检查是否应该高亮
-        const shouldHighlight = 
-            appState.directHighlight.id === landmark.id || 
-            appState.relatedHighlights.landmarks.includes(landmark.id);
+// 重写绘制单个地标函数
+function drawLandmark(landmark, isHighlighted = false) {
+    // 检查分组可见性
+    const group = config.groups.find(g => g.id === landmark.group);
+    if (group && !group.visible) return;
+    
+    if (isHighlighted) {
+        ctx.save();
+        ctx.shadowColor = '#f1c40f';
+        ctx.shadowBlur = 15;
+    }
+    
+    // 绘制图标
+    landmark.positions.forEach(pos => {
+        const [x, y] = pos;
         
-        if (shouldHighlight) {
+        if (appState.landmarkImages[landmark.imageUrl]) {
+            ctx.drawImage(
+                appState.landmarkImages[landmark.imageUrl],
+                x - landmark.width / 2,
+                y - landmark.height / 2,
+                landmark.width,
+                landmark.height
+            );
+        } else {
+            ctx.fillStyle = '#3498db';
+            ctx.fillRect(
+                x - landmark.width / 2,
+                y - landmark.height / 2,
+                landmark.width,
+                landmark.height
+            );
+        }
+        
+        // 绘制文本（图文组合类型）
+        if (landmark.type === '图文组合' && landmark.text) {
             ctx.save();
-            ctx.shadowColor = '#f1c40f';
-            ctx.shadowBlur = 15;
-        }
-
-        // 绘制图标
-        if (landmark.type === '仅图标' || landmark.type === '图文组合') {
-            landmark.positions.forEach(pos => {
-                const [x, y] = pos;
-
-                // 绘制图标（假设已加载）
-                if (appState.landmarkImages[landmark.imageUrl]) {
-                    ctx.drawImage(
-                        appState.landmarkImages[landmark.imageUrl],
-                        x - landmark.width / 2,
-                        y - landmark.height / 2,
-                        landmark.width,
-                        landmark.height
-                    );
-                } else {
-                    // 图标未加载时绘制占位符
-                    ctx.fillStyle = '#3498db';
-                    ctx.fillRect(x - landmark.width / 2, y - landmark.height / 2, landmark.width, landmark.height);
-                }
-
-                // 绘制文本（图文组合类型）
-                if (landmark.type === '图文组合' && landmark.text) {
-                    ctx.save();
-                    const textX = x + (landmark.textOffset?.[0] || 0);
-                    const textY = y + (landmark.textOffset?.[1] || 0) + landmark.height / 2;
-
-                    ctx.fillStyle = landmark.textStyle?.color || '#fff';
-                    ctx.font = `${landmark.textStyle?.fontWeight || 'normal'} ${landmark.textStyle?.fontSize || '12px'} sans-serif`;
-
-                    if (landmark.textStyle?.strokeStyle) {
-                        ctx.strokeStyle = landmark.textStyle.strokeStyle;
-                        ctx.lineWidth = landmark.textStyle.strokeWidth || 1;
-                        ctx.strokeText(landmark.text, textX, textY);
-                    }
-
-                    ctx.fillText(landmark.text, textX, textY);
-                    ctx.restore();
-                }
-            });
-        }
-
-        // 恢复状态
-        if (shouldHighlight) {
+            const textX = x + (landmark.textOffset?.[0] || 0);
+            const textY = y + (landmark.textOffset?.[1] || 0) + landmark.height / 2;
+            
+            ctx.fillStyle = landmark.textStyle?.color || '#fff';
+            ctx.font = `${landmark.textStyle?.fontWeight || 'normal'} ${landmark.textStyle?.fontSize || '12px'} sans-serif`;
+            
+            if (landmark.textStyle?.strokeStyle) {
+                ctx.strokeStyle = landmark.textStyle.strokeStyle;
+                ctx.lineWidth = landmark.textStyle.strokeWidth || 1;
+                ctx.strokeText(landmark.text, textX, textY);
+            }
+            
+            ctx.fillText(landmark.text, textX, textY);
             ctx.restore();
         }
     });
+    
+    if (isHighlighted) {
+        ctx.restore();
+    }
 }
 
 // 检测是否点击到地标
