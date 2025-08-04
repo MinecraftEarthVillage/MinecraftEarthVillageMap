@@ -335,14 +335,52 @@ let config = {
 [353,345],[344,450],[344,574]
             ],
             width: 3,
+            info: `
+                   <h3>G102京哈线</h3>
+                   <p><strong>类别：</strong>国家级干线公路</p>
+                   <p><strong>起点：</strong>北京市</p>
+                   <p><strong>终点：</strong>哈尔滨市</p>
+                   <p><strong>途径城市：</strong>北京</p>
+                   <p><strong>途径城市：</strong>沈阳</p>
+                   <p><strong>途径城市：</strong>哈尔滨</p>
+                   <p><strong>途径路段被共线国道：</strong>G101京沈线</p>
+                   <p><strong>简介：</strong>中国东北重要干线<bold></bold>的国道</p>
+                   `
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //终于到了万众瞩目的混凝土国道部分了
+        {
+            id: 'G102',
+            name: 'G102',
+            group: '混凝土国道',
+            path: [
+[1039,236],[1039,274],[997,274],[992,343]
+            ],
+            width: 3,
             info: `                    
-                   <h3>G17新藏高速</h3>
-                   <p><strong>类别：</strong>主线</p>
-                   <p><strong>起点：</strong>G30连霍高速巴音郭勒立交桥</p>
-                   <p><strong>终点：</strong>拉萨</p>
-                   <p><strong>途径城市：</strong>拉萨</p>
-                   <p><strong>途径路段被共线高速：</strong>G6京藏高速</p>
-                   <p><strong>简介：</strong>中国跨越阶梯爬坡最<bold>陡</bold>的高速</p>
+                   <h3>G102京哈线</h3>
+                   <p><strong>类别：</strong>国家级干线公路</p>
+                   <p><strong>起点：</strong>北京市</p>
+                   <p><strong>终点：</strong>哈尔滨市</p>
+                   <p><strong>途径城市：</strong>北京</p>
+                   <p><strong>途径城市：</strong>沈阳</p>
+                   <p><strong>途径城市：</strong>哈尔滨</p>
+                   <p><strong>途径路段被共线国道：</strong>G101京沈线</p>
+                   <p><strong>简介：</strong>中国东北重要干线的国道</p>
                    `
         },
     ]

@@ -373,7 +373,7 @@ let landmarks = [
         id: '乌鲁木齐',
         name: '乌鲁木齐市贴图',
         type: '仅图标',
-        positions: [[246, 251], [224, 252], [266, 256], [235, 251], [256, 258], [279, 264], [294, 252], [223, 276], [218, 229]],
+        positions: [[250, 281], [228, 282], [270, 286], [239, 281], [260, 288], [283, 294], [298, 282], [227, 306], [222, 259]],
         imageUrl: 'icon/城市.png',
         width: 20,
         height: 20,
@@ -428,7 +428,7 @@ let landmarks = [
         id: '乌鲁木齐',
         name: '乌鲁木齐的城市名称',
         type: '仅文本',
-        positions: [[256, 294]],
+        positions: [[260, 324]],
         text: '乌鲁木齐',
         textStyle: {
             // 字体属性
@@ -448,7 +448,7 @@ let landmarks = [
         id: '郑州市',
         name: '郑州市',
         type: '图文组合',
-        positions: [[828, 493]],
+        positions: [[833, 524]],
         imageUrl: 'icon/城市.png',
         width: 6.5,
         height: 4,
@@ -468,7 +468,7 @@ let landmarks = [
         id: '广州',
         name: '广州',
         type: '图文组合',
-        positions: [[751, 720], [760, 721], [755, 730], [775, 712], [770, 722], [770, 736], [780, 730], [740, 740], [750, 745]],
+        positions: [[751, 750], [760, 751], [755, 760], [775, 742], [770, 752], [770, 766], [780, 760], [740, 770], [750, 775]],
         imageUrl: 'icon/城市.png',
         width: 16,
         height: 16,
@@ -478,7 +478,7 @@ let landmarks = [
         id: '广州',
         name: '广州',
         type: '图文组合',
-        positions: [[790, 716]],
+        positions: [[790, 746]],
         imageUrl: 'icon/城市.png',
         width: 30,
         height: 20,
@@ -500,7 +500,7 @@ let landmarks = [
         id: '拉萨',
         name: '拉萨',
         type: '图文组合',
-        positions: [[339, 581]],
+        positions: [[348, 611]],
         imageUrl: 'icon/城市.png',
         width: 30,
         height: 20,
@@ -522,7 +522,7 @@ let landmarks = [
         id: '成都',
         name: '成都',
         type: '图文组合',
-        positions: [[628, 577]],
+        positions: [[636, 607]],
         imageUrl: 'icon/城市.png',
         width: 50,
         height: 40,
@@ -566,7 +566,7 @@ let landmarks = [
         id: '上海',
         name: '上海',
         type: '图文组合',
-        positions: [[914, 556]],
+        positions: [[910, 580]],
         imageUrl: 'icon/城市.png',
         width: 60,
         height: 60,
@@ -588,7 +588,7 @@ let landmarks = [
         id: '北京',
         name: '北京',
         type: '图文组合',
-        positions: [[821, 392]],
+        positions: [[821, 420]],
         imageUrl: 'icon/城市.png',
         width: 50,
         height: 50,
@@ -609,7 +609,7 @@ let landmarks = [
         id: '乌海市',
         name: '乌海市',
         type: '图文组合',
-        positions: [[631, 365]],
+        positions: [[631, 390]],
         imageUrl: 'icon/城市.png',
         width: 20,
         height: 20,
@@ -631,7 +631,7 @@ let landmarks = [
         id: '台北',
         name: '台北',
         type: '图文组合',
-        positions: [[927, 702]],
+        positions: [[927, 738]],
         imageUrl: 'icon/城市.png',
         width: 20,
         height: 20,
@@ -653,7 +653,7 @@ let landmarks = [
         id: '海口',
         name: '海口',
         type: '图文组合',
-        positions: [[710, 810]],
+        positions: [[716, 844]],
         imageUrl: 'icon/城市.png',
         width: 20,
         height: 20,
@@ -710,7 +710,7 @@ let landmarks = [
         id: '哈尔滨',
         name: '哈尔滨',
         type: '图文组合',
-        positions: [[1041, 212]],
+        positions: [[1045, 242]],
         imageUrl: 'icon/城市.png',
         width: 20,
         height: 20,
@@ -757,7 +757,7 @@ let landmarks = [
         // highwayId: ['G30沪霍'],
         name: 'G30连霍高速巴音郭勒立交桥',
         type: '仅图标',
-        positions: [[353, 345],], // 地图坐标 [x, y]
+        positions: [[358, 374],], // 地图坐标 [x, y]
         imageUrl: 'icon/交通枢纽.png', // 图标路径
         width: 18,
         group: '冰高速',
@@ -770,7 +770,7 @@ let landmarks = [
         id: 'G7的立交桥',
         name: 'G7的立交桥',
         type: '仅图标',
-        positions: [[637, 350],], // 地图坐标 [x, y]
+        positions: [[643, 379],], // 地图坐标 [x, y]
         imageUrl: 'icon/交通枢纽.png', // 图标路径
         width: 18,
         group: '冰高速',
@@ -782,7 +782,7 @@ let landmarks = [
         id: '成都东立交桥',
         name: '成都东立交桥',
         type: '仅图标',
-        positions: [[663, 572],], // 地图坐标 [x, y]
+        positions: [[669, 600],], // 地图坐标 [x, y]
         imageUrl: 'icon/交通枢纽.png', // 图标路径
         width: 18,
         group: '冰高速',
@@ -796,7 +796,7 @@ let landmarks = [
         id: '立交桥',
         name: '立交桥',
         type: '仅图标',
-        positions: [[745, 410],], // 地图坐标 [x, y]
+        positions: [[751, 439],], // 地图坐标 [x, y]
         imageUrl: 'icon/交通枢纽.png', // 图标路径
         width: 18,
         group: '冰高速',
@@ -804,6 +804,27 @@ let landmarks = [
         info: `
     
                    <p>这是一个交通枢纽，公路的分岔口</p>
+        `
+    },
+    {
+        id: 'G102',
+        name: 'G102',
+        type: '仅图标',
+        positions: [[1011, 290],], // 地图坐标 [x, y]
+        imageUrl: 'icon/G102.png', // 图标路径
+        width: 18,
+        group: '混凝土国道',
+        height: 18,
+        info: `
+                   <h3>G102京哈线</h3>
+                   <p><strong>类别：</strong>国家级干线公路</p>
+                   <p><strong>起点：</strong>北京市</p>
+                   <p><strong>终点：</strong>哈尔滨市</p>
+                   <p><strong>途径城市：</strong>北京</p>
+                   <p><strong>途径城市：</strong>沈阳</p>
+                   <p><strong>途径城市：</strong>哈尔滨</p>
+                   <p><strong>途径路段被共线国道：</strong>G101京沈线</p>
+                   <p><strong>简介：</strong>中国东北重要干线的国道</p>
         `
     },
 ];
