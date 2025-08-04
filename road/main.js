@@ -976,63 +976,141 @@ function createDefaultLandmarkImage() {
 }
 
 
-// 重写绘制单个地标函数
+// 绘制单个地标函数
 function drawLandmark(landmark, isHighlighted = false) {
-    // 检查分组可见性
+    // 1. 检查分组可见性和有效类型
     const group = config.groups.find(g => g.id === landmark.group);
     if (group && !group.visible) return;
-
-    if (isHighlighted) {
-        ctx.save();
-        ctx.shadowColor = '#f1c40f';
-        ctx.shadowBlur = 15;
+    
+    const validTypes = ['仅图标', '仅文本', '图文组合'];
+    if (!validTypes.includes(landmark.type)) {
+        console.warn(`未知的地标类型: ${landmark.type}`, landmark);
+        return;
     }
-
-    // 绘制图标
-    landmark.positions.forEach(pos => {
-        const [x, y] = pos;
-
-        if (appState.landmarkImages[landmark.imageUrl]) {
-            ctx.drawImage(
-                appState.landmarkImages[landmark.imageUrl],
-                x - landmark.width / 2,
-                y - landmark.height / 2,
-                landmark.width,
-                landmark.height
-            );
-        } else {
-            ctx.fillStyle = '#3498db';
-            ctx.fillRect(
-                x - landmark.width / 2,
-                y - landmark.height / 2,
-                landmark.width,
-                landmark.height
-            );
-        }
-
-        // 绘制文本（图文组合类型）
-        if (landmark.type === '图文组合' && landmark.text) {
-            ctx.save();
-            const textX = x + (landmark.textOffset?.[0] || 0);
-            const textY = y + (landmark.textOffset?.[1] || 0) + landmark.height / 2;
-
-            ctx.fillStyle = landmark.textStyle?.color || '#fff';
-            ctx.font = `${landmark.textStyle?.fontWeight || 'normal'} ${landmark.textStyle?.fontSize || '12px'} sans-serif`;
-
-            if (landmark.textStyle?.strokeStyle) {
-                ctx.strokeStyle = landmark.textStyle.strokeStyle;
-                ctx.lineWidth = landmark.textStyle.strokeWidth || 1;
-                ctx.strokeText(landmark.text, textX, textY);
+    
+    // 2. 遍历所有位置
+    landmark.positions.forEach(position => {
+        const [x, y] = position;
+        
+        // 3. 保存当前状态
+        ctx.save();
+        
+        try {
+            // 4. 高亮效果
+            if (isHighlighted) {
+                ctx.shadowColor = '#ffefa1ff';
+                ctx.shadowBlur = 15;
+            } else {
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
             }
-
-            ctx.fillText(landmark.text, textX, textY);
+            
+            // 5. 绘制图标部分（仅当类型不是"仅文本"时才绘制）
+            if (landmark.type !== '仅文本') {
+                if (appState.landmarkImages[landmark.imageUrl]) {
+                    ctx.drawImage(
+                        appState.landmarkImages[landmark.imageUrl],
+                        x - landmark.width / 2,
+                        y - landmark.height / 2,
+                        landmark.width,
+                        landmark.height
+                    );
+                } else {
+                    ctx.fillStyle = '#3498db';
+                    ctx.fillRect(
+                        x - landmark.width / 2,
+                        y - landmark.height / 2,
+                        landmark.width,
+                        landmark.height
+                    );
+                }
+            }
+            
+            // 6. 绘制文本部分（处理"图文组合"和"仅文本"两种情况）
+            if ((landmark.type === '图文组合' || landmark.type === '仅文本') && landmark.text) {
+                const style = landmark.textStyle || {};
+                
+                // 设置基本文本属性
+                ctx.font = style.font ||
+                    `${style.fontStyle || 'normal'} ${style.fontWeight || 'normal'} ${style.fontSize || '12px'} ${style.fontFamily || 'Arial, sans-serif'}`;
+                
+                ctx.textAlign = style.textAlign || 'center';
+                ctx.textBaseline = style.textBaseline || 'middle';
+                ctx.fillStyle = style.color || '#ffffff';
+                
+                // 计算文本位置（应用偏移量）
+                const textOffsetX = landmark.textOffset?.[0] || 0;
+                const textOffsetY = landmark.textOffset?.[1] || 0;
+                const textX = x + textOffsetX;
+                const textY = y + textOffsetY;
+                
+                // 保存当前状态（用于旋转）
+                ctx.save();
+                
+                // 应用旋转
+                if (style.rotation) {
+                    ctx.translate(textX, textY);
+                    ctx.rotate(style.rotation * Math.PI / 180);
+                    ctx.translate(-textX, -textY);
+                }
+                
+                // 设置文本阴影
+                if (style.textShadow || style.shadowBlur) {
+                    ctx.shadowColor = style.shadowColor || 'rgba(0,0,0,0.7)';
+                    ctx.shadowBlur = style.shadowBlur || 5;
+                    ctx.shadowOffsetX = style.shadowOffsetX || 2;
+                    ctx.shadowOffsetY = style.shadowOffsetY || 2;
+                }
+                
+                // 绘制背景框
+                if (style.backgroundColor) {
+                    const textWidth = ctx.measureText(landmark.text).width;
+                    const padding = Array.isArray(style.backgroundPadding) ?
+                        style.backgroundPadding :
+                        [style.backgroundPadding || 4, style.backgroundPadding || 8];
+                    
+                    ctx.fillStyle = style.backgroundColor;
+                    
+                    // 绘制圆角矩形背景
+                    ctx.beginPath();
+                    ctx.roundRect(
+                        textX - textWidth / 2 - padding[1],
+                        textY - parseInt(style.fontSize || 12) / 2 - padding[0],
+                        textWidth + padding[1] * 2,
+                        parseInt(style.fontSize || 12) + padding[0] * 2,
+                        style.borderRadius || 0
+                    );
+                    ctx.fill();
+                    
+                    // 绘制边框
+                    if (style.borderColor && style.borderWidth) {
+                        ctx.strokeStyle = style.borderColor;
+                        ctx.lineWidth = style.borderWidth;
+                        ctx.stroke();
+                    }
+                    
+                    // 恢复文本填充颜色
+                    ctx.fillStyle = style.color || '#ffffff';
+                }
+                
+                // 绘制文本描边（如果有）
+                if (style.strokeStyle && style.strokeWidth) {
+                    ctx.strokeStyle = style.strokeStyle;
+                    ctx.lineWidth = style.strokeWidth;
+                    ctx.strokeText(landmark.text, textX, textY);
+                }
+                
+                // 绘制文本填充
+                ctx.fillText(landmark.text, textX, textY);
+                
+                // 恢复状态（取消旋转和阴影）
+                ctx.restore();
+            }
+        } finally {
+            // 7. 无论如何都恢复原始状态
             ctx.restore();
         }
     });
-
-    if (isHighlighted) {
-        ctx.restore();
-    }
 }
 
 // 检测是否点击到地标
@@ -1053,15 +1131,40 @@ function getLandmarkAtPoint(clientX, clientY) {
         // 检查每个位置点
         for (const pos of landmark.positions) {
             const [landmarkX, landmarkY] = pos;
-            // 计算点击区域（图标大小的矩形区域）
-            const halfWidth = (landmark.width || 8) / 2;
-            const halfHeight = (landmark.height || 8) / 2;
+            
+            // 1. 首先检测图标区域
+            if (landmark.type !== '仅文本') {
+                const halfWidth = (landmark.width || 8) / 2;
+                const halfHeight = (landmark.height || 8) / 2;
 
-            if (contentX >= landmarkX - halfWidth &&
-                contentX <= landmarkX + halfWidth &&
-                contentY >= landmarkY - halfHeight &&
-                contentY <= landmarkY + halfHeight) {
-                return landmark;
+                if (contentX >= landmarkX - halfWidth &&
+                    contentX <= landmarkX + halfWidth &&
+                    contentY >= landmarkY - halfHeight &&
+                    contentY <= landmarkY + halfHeight) {
+                    return landmark;
+                }
+            }
+            
+            // 2. 检测文本区域（如果有文本）
+            if ((landmark.type === '图文组合' || landmark.type === '仅文本') && landmark.text) {
+                // 计算文本位置（应用偏移量）
+                const textOffsetX = landmark.textOffset?.[0] || 0;
+                const textOffsetY = landmark.textOffset?.[1] || 0;
+                const textX = landmarkX + textOffsetX;
+                const textY = landmarkY + textOffsetY + (landmark.height || 0)/2;
+                
+                // 估算文本尺寸（简化处理）
+                const fontSize = parseInt(landmark.textStyle?.fontSize) || 12;
+                const textWidth = landmark.text.length * fontSize * 0.6; // 近似宽度
+                const textHeight = fontSize;
+                
+                // 检查点击是否在文本区域内
+                if (contentX >= textX - textWidth/2 &&
+                    contentX <= textX + textWidth/2 &&
+                    contentY >= textY - textHeight/2 &&
+                    contentY <= textY + textHeight/2) {
+                    return landmark;
+                }
             }
         }
     }
