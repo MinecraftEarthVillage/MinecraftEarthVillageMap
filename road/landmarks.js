@@ -773,4 +773,18 @@ let landmarks = [
                    <p>这是一个交通枢纽，公路的分岔口</p>
         `
     },
+     {
+        id: '立交桥',
+        name: '立交桥',
+        type: '仅图标',
+        positions: [[745,410],], // 地图坐标 [x, y]
+        imageUrl: 'icon/交通枢纽.png', // 图标路径
+        width: 18,
+        group: '冰高速',
+        height: 18,
+        info: `
+    
+                   <p>这是一个交通枢纽，公路的分岔口</p>
+        `
+    },
 ];
