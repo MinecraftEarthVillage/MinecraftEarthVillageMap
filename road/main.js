@@ -1,5 +1,5 @@
 // main.js - 主逻辑代码
-
+import { processConfigWithOffset } from './applyOffset.js';
 function updateURLState() {
     const params = new URLSearchParams(window.location.search);
     params.set('scale', appState.scale.toFixed(4));
@@ -791,7 +791,11 @@ function handleMapClick(clientX, clientY) {
 
 // 初始化应用
 function init() {
-
+    // 应用偏移处理
+    const processed = processConfigWithOffset(config, landmarks);
+    config = processed.config;
+    landmarks = processed.landmarks;
+    
     resizeCanvas();
     initGroupControls();
     setupEventListeners();

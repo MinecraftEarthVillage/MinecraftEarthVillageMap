@@ -1,4 +1,4 @@
-import offsetConfig from './offsetConfig.js';// applyOffset.js - 应用偏移的工具函数
+import offsetConfig from './offsetConfig.js';
 
 
 // 应用偏移到坐标点
@@ -16,12 +16,13 @@ function applyOffsetToPath(path, offsets = [0, 0]) {
 
 // 获取特定元素的偏移量
 function getSpecificOffset(id, type) {
+    // 安全访问特定偏移配置
     if (offsetConfig.specificOffsets && 
         offsetConfig.specificOffsets[type] && 
         offsetConfig.specificOffsets[type][id]) {
         return offsetConfig.specificOffsets[type][id];
     }
-    return null;
+    return null; // 未找到特定偏移时返回 null
 }
 
 // 处理配置对象并应用偏移

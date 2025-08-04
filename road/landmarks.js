@@ -1,5 +1,5 @@
 // landmarks.js - 地标数据配置文件
-const landmarks = [
+let landmarks = [
     // 图片地标
     {
         id: 'G30',//如果公路的id也是这个，那么你就可以去掉下面的highwayId了，这里因为ID不一样，所以必须指定公路ID，否则点击路牌图标只会显示沿线图标，线段是不会亮起来的（不会有人喜欢这个吧）
@@ -505,6 +505,28 @@ const landmarks = [
         <h3>还没想好怎么介绍……</h3>
         `
     },
+        {
+        id: '三沙市',
+        name: '三沙市',
+        type: '图文组合',
+        positions: [[770, 916]],
+        imageUrl: 'icon/城市.png',
+        width: 10,
+        height: 10,
+        text: '三沙市',
+        group: '主要城市',
+        textOffset: [0, 3], // 文本相对于图标的偏移 [dx, dy]
+        textStyle: {
+            color: '#ffffff',
+            fontSize: '5px',
+            fontWeight: 'bold',
+            strokeStyle: 'black',
+            strokeWidth: 1,
+        },
+        info: `
+        <h3>还没想好怎么介绍……我只知道这是中国最南边的城市</h3>
+        `
+    },
     {
         id: '哈尔滨',
         name: '哈尔滨',
@@ -527,6 +549,7 @@ const landmarks = [
         <h3>还没想好怎么介绍……</h3>
         `
     },
+
     // 更多地标...
  
         {
