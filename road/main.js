@@ -1,5 +1,5 @@
 // main.js - 主逻辑代码
-// 在文件顶部添加
+
 function updateURLState() {
     const params = new URLSearchParams(window.location.search);
     params.set('scale', appState.scale.toFixed(4));
@@ -62,6 +62,7 @@ const appState = {
 };
 
 //设置高亮的方法
+// 公路高亮
 function setHighwayHighlight(highway) {
 
     // 设置直接高亮
@@ -84,7 +85,7 @@ function setHighwayHighlight(highway) {
     hideTooltip();
     render(); // 触发重新渲染
 }
-
+//图标高亮
 function setLandmarkHighlight(landmark) {
     // 设置直接高亮
     appState.directHighlight = {
@@ -257,43 +258,6 @@ function drawHighway(highway, isHighlighted = false) {
     ctx.stroke();
 }
 //绘制多条
-function drawHighways() {
-    config.highways.forEach(highway => {
-        // 检查分组可见性
-        const group = config.groups.find(g => g.id === highway.group);
-        if (!group || !group.visible) return;
-
-        ctx.beginPath();
-        const [firstX, firstY] = highway.path[0];
-        ctx.moveTo(
-            firstX * appState.scale + appState.offsetX,
-            firstY * appState.scale + appState.offsetY
-        );
-
-        // 绘制路径
-        highway.path.slice(1).forEach(([x, y]) => {
-            ctx.lineTo(
-                x * appState.scale + appState.offsetX,
-                y * appState.scale + appState.offsetY
-            );
-        });
-
-        // 应用样式：高亮状态使用特殊颜色
-        if (appState.highlightedHighway === highway.id) {
-            ctx.strokeStyle = '#f1c40f'; // 高亮色（黄色）
-            ctx.lineWidth = highway.width * 1.5 * appState.scale; // 高亮时线宽增加
-            ctx.shadowColor = '#f1c40f';
-            ctx.shadowBlur = 10;
-        } else {
-            ctx.strokeStyle = group.color;
-            ctx.lineWidth = highway.width * appState.scale;
-            ctx.shadowBlur = 0; // 清除阴影
-        }
-
-        ctx.stroke();
-        ctx.closePath();
-    });
-}
 // 缩放到指定的点
 function zoomAtPoint(scaleFactor, clientX, clientY) {
     appState.canvasRect = canvas.getBoundingClientRect();
@@ -709,13 +673,15 @@ function handleHighwayClick(highways, clientX, clientY) {
     });
 
     // 点击外部关闭面板
-    document.addEventListener('click', function (e) {
-        if (!controlsPanel.contains(e.target) &&
-            e.target !== mobileToggle &&
-            controlsPanel.classList.contains('visible')) {
-            controlsPanel.classList.remove('visible');
-        }
-    });
+document.addEventListener('click', function (e) {
+    // 添加null检查
+    if (controlsPanel && 
+        !controlsPanel.contains(e.target) &&
+        e.target !== mobileToggle &&
+        controlsPanel.classList.contains('visible')) {
+        controlsPanel.classList.remove('visible');
+    }
+});
 
     // 重置按钮事件
     document.getElementById('resetView').addEventListener('click', () => {
@@ -822,8 +788,10 @@ function handleMapClick(clientX, clientY) {
     render();
 }
 
+
 // 初始化应用
 function init() {
+
     resizeCanvas();
     initGroupControls();
     setupEventListeners();
@@ -1155,7 +1123,7 @@ function getLandmarkAtPoint(clientX, clientY) {
                 
                 // 估算文本尺寸（简化处理）
                 const fontSize = parseInt(landmark.textStyle?.fontSize) || 12;
-                const textWidth = landmark.text.length * fontSize * 0.6; // 近似宽度
+                const textWidth = landmark.text.length * fontSize * 1.0; // 近似宽度
                 const textHeight = fontSize;
                 
                 // 检查点击是否在文本区域内

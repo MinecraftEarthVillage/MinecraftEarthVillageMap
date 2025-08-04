@@ -279,8 +279,8 @@ const landmarks = [
 
     // 图文组合地标
     {
-        id: '乌鲁木齐市贴图',
-        name: '乌鲁木齐市',
+        id: '乌鲁木齐',
+        name: '乌鲁木齐市贴图',
         type: '仅图标',
         positions: [[246, 251],[224,252],[266,256],[235,251],[256,258],[279,264],[294,252],[223,276],[218,229]],
         imageUrl: 'icon/城市.png',
@@ -296,42 +296,62 @@ const landmarks = [
         },
         info: `一座城市`
     },
+    // {
+    //     id: '乌鲁木齐的文字',
+    //     name: '装饰文本示例',
+    //     type: '仅文本',
+    //     positions: [[256,294]],
+    //     text: '乌鲁木齐',
+    //     textStyle: {
+    //         // 字体属性
+    //         fontFamily: 'Microsoft YaHei, sans-serif',
+    //         fontSize: '24px',
+    //         fontWeight: 'bold',
+    //         fontStyle: 'italic',
+
+    //         // 颜色与描边
+    //         color: '#673f3fff',
+    //         strokeStyle: '#000000', // 描边颜色
+    //         strokeWidth: 22,         // 描边宽度
+
+    //         // 背景效果
+    //         backgroundColor: 'rgba(52, 152, 219, 0.8)',
+    //         backgroundPadding: [8, 15], // [垂直, 水平]
+    //         borderRadius: 8,
+    //         borderColor: '#f1c40f',
+    //         borderWidth: 2,
+
+    //         // 阴影效果
+    //         textShadow: true,
+    //         shadowBlur: 5,
+    //         shadowColor: 'rgba(219, 198, 198, 0.7)',
+    //         shadowOffsetX: 2,
+    //         shadowOffsetY: 2,
+
+    //         // 旋转
+    //         rotation: -51 // 倾斜角度
+    //     },
+    //     info: '装饰性文本示例'
+    // },
     {
-        id: '乌鲁木齐的文字',
-        name: '装饰文本示例',
+        id: '乌鲁木齐',
+        name: '乌鲁木齐的城市名称',
         type: '仅文本',
         positions: [[256,294]],
         text: '乌鲁木齐',
         textStyle: {
             // 字体属性
             fontFamily: 'Microsoft YaHei, sans-serif',
-            fontSize: '24px',
+            fontSize: '20px',
             fontWeight: 'bold',
             fontStyle: 'italic',
 
             // 颜色与描边
-            color: '#673f3fff',
+            color: '#ffffffff',
             strokeStyle: '#000000', // 描边颜色
-            strokeWidth: 22,         // 描边宽度
-
-            // 背景效果
-            backgroundColor: 'rgba(52, 152, 219, 0.8)',
-            backgroundPadding: [8, 15], // [垂直, 水平]
-            borderRadius: 8,
-            borderColor: '#f1c40f',
-            borderWidth: 2,
-
-            // 阴影效果
-            textShadow: true,
-            shadowBlur: 5,
-            shadowColor: 'rgba(219, 198, 198, 0.7)',
-            shadowOffsetX: 2,
-            shadowOffsetY: 2,
-
-            // 旋转
-            rotation: -51 // 倾斜角度
+            strokeWidth: 1,         // 描边宽度
         },
-        info: '装饰性文本示例'
+        info: '一个id和乌鲁木齐市图标一样的文本，它已经和图标绑定显示了'
     },
     {
         id: '郑州市',
@@ -343,7 +363,7 @@ const landmarks = [
         height: 4,
         text: '郑州',
         group: '主要城市',
-        textOffset: [2, 1], // 文本相对于图标的偏移 [dx, dy]
+        textOffset: [2, 2], // 文本相对于图标的偏移 [dx, dy]
         textStyle: {
             color: '#ffffff',
             fontSize: '2px',
@@ -363,7 +383,7 @@ const landmarks = [
         height: 20,
         text: '广州',
         group: '主要城市',
-        textOffset: [-10, 5], // 文本相对于图标的偏移 [dx, dy]
+        textOffset: [-10, 15], // 文本相对于图标的偏移 [dx, dy]
         textStyle: {
             color: '#ffffff',
             fontSize: '10px',
@@ -385,7 +405,7 @@ const landmarks = [
         height: 20,
         text: '二连浩特',
         group: '主要城市',
-        textOffset: [0, 0], // 文本相对于图标的偏移 [dx, dy]
+        textOffset: [0, 10], // 文本相对于图标的偏移 [dx, dy]
         textStyle: {
             color: '#ffffff',
             fontSize: '5px',
@@ -407,7 +427,7 @@ const landmarks = [
         height: 60,
         text: '上 海',
         group: '主要城市',
-        textOffset: [-10, 0], // 文本相对于图标的偏移 [dx, dy]
+        textOffset: [-10, 30], // 文本相对于图标的偏移 [dx, dy]
         textStyle: {
             color: '#ffffff',
             fontSize: '10px',
@@ -429,7 +449,7 @@ const landmarks = [
         height: 60,
         text: '北 京',
         group: '主要城市',
-        textOffset: [-10, 5], // 文本相对于图标的偏移 [dx, dy]
+        textOffset: [-10, 26], // 文本相对于图标的偏移 [dx, dy]
         textStyle: {
             color: '#ffffff',
             fontSize: '10px',
@@ -451,10 +471,10 @@ const landmarks = [
         height: 20,
         text: '台北',
         group: '主要城市',
-        textOffset: [-10, 5], // 文本相对于图标的偏移 [dx, dy]
+        textOffset: [-10, 10], // 文本相对于图标的偏移 [dx, dy]
         textStyle: {
             color: '#ffffff',
-            fontSize: '10px',
+            fontSize: '8px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 2,
@@ -473,7 +493,7 @@ const landmarks = [
         height: 20,
         text: '海口',
         group: '主要城市',
-        textOffset: [0, 3], // 文本相对于图标的偏移 [dx, dy]
+        textOffset: [0, 10], // 文本相对于图标的偏移 [dx, dy]
         textStyle: {
             color: '#ffffff',
             fontSize: '5px',
@@ -495,68 +515,20 @@ const landmarks = [
         height: 20,
         text: '哈尔滨',
         group: '主要城市',
-        textOffset: [0, 3], // 文本相对于图标的偏移 [dx, dy]
+        textOffset: [0, 13], // 文本相对于图标的偏移 [dx, dy]
         textStyle: {
             color: '#ffffff',
             fontSize: '5px',
             fontWeight: 'bold',
             strokeStyle: 'black',
-            strokeWidth: 0,
+            strokeWidth: 1,
         },
         info: `
         <h3>还没想好怎么介绍……</h3>
         `
     },
     // 更多地标...
-    // {
-    //     id: 'lm4',
-    //     name: '边境检查站',
-    //     type: '仅图标',
-    //     position: [910, 564],
-    //     imageUrl: 'icons/border.png',
-    //     width: 28,
-    //     height: 28,
-    //     info: `<h3>霍尔果斯边境检查站</h3>
-    //            <p>连接哈萨克斯坦</p>
-    //            <p>通关时间：8:00-22:00</p>`
-    // }
-    // {
-    //     id: 'fancy-text',
-    //     name: '装饰文本示例',
-    //     type: 'text',
-    //     positions: [[500, 300]],
-    //     text: '高速公路',
-    //     textStyle: {
-    //         // 字体属性
-    //         fontFamily: 'Microsoft YaHei, sans-serif',
-    //         fontSize: '24px',
-    //         fontWeight: 'bold',
-    //         fontStyle: 'italic',
-
-    //         // 颜色与描边
-    //         color: '#ffffff',
-    //         strokeStyle: '#000000', // 描边颜色
-    //         strokeWidth: 2,         // 描边宽度
-
-    //         // 背景效果
-    //         backgroundColor: 'rgba(52, 152, 219, 0.8)',
-    //         backgroundPadding: [8, 15], // [垂直, 水平]
-    //         borderRadius: 8,
-    //         borderColor: '#f1c40f',
-    //         borderWidth: 2,
-
-    //         // 阴影效果
-    //         textShadow: true,
-    //         shadowBlur: 5,
-    //         shadowColor: 'rgba(0,0,0,0.7)',
-    //         shadowOffsetX: 2,
-    //         shadowOffsetY: 2,
-
-    //         // 旋转
-    //         rotation: -5 // 倾斜角度
-    //     },
-    //     info: '装饰性文本示例'
-    // }
+ 
         {
         id: 'G30的立交桥',
         highwayId: ['G30沪霍'],
