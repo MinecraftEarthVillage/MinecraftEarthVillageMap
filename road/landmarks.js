@@ -66,11 +66,11 @@ let landmarks = [
         highwayId: ['G7'],//需要在此处指定config.js里的ID
         name: 'G7京新高速',
         type: '仅图标',
-        positions: [[335, 270], [386, 319],[542,337],[773,379],[690,362]], // 地图坐标 [x, y]
+        positions: [[335, 270], [386, 319], [542, 337], [773, 379], [690, 362]], // 地图坐标 [x, y]
         imageUrl: 'icon/G7.svg', // 图标路径
         width: 8,
         group: '冰高速',
-        
+
         height: 8,
         info: `
                    <h3>G7京新高速</h3>
@@ -87,7 +87,7 @@ let landmarks = [
         name: 'G1京哈高速',
         type: '仅图标',
         highwayId: ['G1'],
-        positions: [[900, 392], [956, 294],[1021,267],], // 地图坐标 [x, y]
+        positions: [[900, 392], [956, 294], [1021, 267],], // 地图坐标 [x, y]
         imageUrl: 'icon/G1.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -103,10 +103,29 @@ let landmarks = [
         `
     },
     {
+        id: 'G17',
+        name: 'G17新藏高速',
+        type: '仅图标',
+        positions: [[344, 484],], // 地图坐标 [x, y]
+        imageUrl: 'icon/G17.svg', // 图标路径
+        width: 8,
+        group: '冰高速',
+        height: 8,
+        info: `
+                            <h3>G17新藏高速</h3>
+                   <p><strong>类别：</strong>主线</p>
+                   <p><strong>起点：</strong>G30连霍高速巴音郭勒立交桥</p>
+                   <p><strong>终点：</strong>拉萨</p>
+                   <p><strong>途径城市：</strong>拉萨</p>
+                   <p><strong>途径路段被共线高速：</strong>G6京藏高速</p>
+                   <p><strong>简介：</strong>中国跨越阶梯爬坡最<bold>陡</bold>的高速</p>
+        `
+    },
+    {
         id: 'G45',
         name: 'G45大广高速',
         type: '仅图标',
-        positions: [[955, 253], [842,467],[836,551],[784,635]], // 地图坐标 [x, y]
+        positions: [[955, 253], [842, 467], [836, 551], [784, 635]], // 地图坐标 [x, y]
         imageUrl: 'icon/G45.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -126,7 +145,7 @@ let landmarks = [
         id: 'G4',
         name: 'G4京港澳高速',
         type: '仅图标',
-        positions: [[809,730],[808,626],[829,466]], // 地图坐标 [x, y]
+        positions: [[809, 730], [808, 626], [829, 466]], // 地图坐标 [x, y]
         imageUrl: 'icon/G4.svg', // 图标路径
         width: 8,
         highwayId: ['G4'],
@@ -146,7 +165,7 @@ let landmarks = [
         id: 'G3',
         name: 'G3京台高速',
         type: '仅图标',
-        positions: [[873,704],[805,634],[822,545]], // 地图坐标 [x, y]
+        positions: [[873, 704], [805, 634], [822, 545]], // 地图坐标 [x, y]
         imageUrl: 'icon/G3.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -166,7 +185,7 @@ let landmarks = [
         id: 'G13',
         name: 'G13哈海高速',
         type: '仅图标',
-        positions: [[712,777]], // 地图坐标 [x, y]
+        positions: [[712, 777]], // 地图坐标 [x, y]
         imageUrl: 'icon/G13.svg', // 图标路径
         // highwayId: ['G13'],
         width: 8,
@@ -186,7 +205,7 @@ let landmarks = [
         id: 'G2',
         name: 'G2京沪高速',
         type: '仅图标',
-        positions: [[871,539],[829,470],[845,408]], // 地图坐标 [x, y]
+        positions: [[871, 539], [829, 470], [845, 408]], // 地图坐标 [x, y]
         imageUrl: 'icon/G2.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -205,7 +224,7 @@ let landmarks = [
         id: 'G55',
         name: 'G55二广高速',
         type: '仅图标',
-        positions: [[784,643],[790,548],[747,389]], // 地图坐标 [x, y]
+        positions: [[784, 643], [790, 548], [747, 389]], // 地图坐标 [x, y]
         imageUrl: 'icon/G55.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -219,11 +238,11 @@ let landmarks = [
                    <p><strong>途径路段被共线高速：</strong><br>G30沪霍高速<br>G4京港澳高速<br>G45大广高速<br>G13哈海高速</p>
                    <p><strong>简介：</strong>中国第一条山区高速公路</p>
         `
-    },  {
+    }, {
         id: 'S2',
         name: 'S2成都支线',
         type: '仅图标',
-        positions: [[629,642]], // 地图坐标 [x, y]
+        positions: [[629, 642]], // 地图坐标 [x, y]
         imageUrl: 'icon/S2.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -242,7 +261,7 @@ let landmarks = [
         id: 'G5',
         name: 'G5京昆高速',
         type: '仅图标',
-        positions: [[509,704],[643,704],[805,645],[822,504],[844,418]], // 地图坐标 [x, y]
+        positions: [[509, 704], [643, 704], [805, 645], [822, 504], [844, 418]], // 地图坐标 [x, y]
         imageUrl: 'icon/G5.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -261,7 +280,7 @@ let landmarks = [
         id: 'G75',
         name: 'G5海蓉高速',
         type: '仅图标',
-        positions: [[720,718],], // 地图坐标 [x, y]
+        positions: [[720, 718],], // 地图坐标 [x, y]
         imageUrl: 'icon/G75.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -275,11 +294,11 @@ let landmarks = [
                    <p><strong>途径路段被共线高速：</strong>无</p>
                    <p><strong>简介：</strong>是广州向中国西北乃至国外的重要干线主线高速</p>
         `
-    },{
+    }, {
         id: 'G14',
         name: 'G14沪拉高速',
         type: '仅图标',
-        positions: [[362,600],[509,611],[606,683],[732,683],[811,617],[863,539]], // 地图坐标 [x, y]
+        positions: [[362, 600], [509, 611], [606, 683], [732, 683], [811, 617], [863, 539]], // 地图坐标 [x, y]
         imageUrl: 'icon/G14.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -293,11 +312,11 @@ let landmarks = [
                    <p><strong>途径路段被共线高速：</strong>G4京港澳高速（京港高速）</p>
                    <p><strong>简介：</strong>中国第一条藏区高原高速公路</p>
         `
-    },{
+    }, {
         id: 'G67',
         name: 'G67乌蓉高速',
         type: '仅图标',
-        positions: [[665,477],], // 地图坐标 [x, y]
+        positions: [[665, 477],], // 地图坐标 [x, y]
         imageUrl: 'icon/G67.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -311,11 +330,11 @@ let landmarks = [
                    <p><strong>途径路段被共线高速：</strong>无</p>
                    <p><strong>简介：</strong>中国唯一跨秦岭仍然保持双向四车道的冰高速路</p>
         `
-    },{
+    }, {
         id: 'G42',
         name: 'G42沪蓉高速',
         type: '仅图标',
-        positions: [[740,578],], // 地图坐标 [x, y]
+        positions: [[740, 578],], // 地图坐标 [x, y]
         imageUrl: 'icon/G42.svg', // 图标路径
         width: 8,
         group: '冰高速',
@@ -354,7 +373,7 @@ let landmarks = [
         id: '乌鲁木齐',
         name: '乌鲁木齐市贴图',
         type: '仅图标',
-        positions: [[246, 251],[224,252],[266,256],[235,251],[256,258],[279,264],[294,252],[223,276],[218,229]],
+        positions: [[246, 251], [224, 252], [266, 256], [235, 251], [256, 258], [279, 264], [294, 252], [223, 276], [218, 229]],
         imageUrl: 'icon/城市.png',
         width: 20,
         height: 20,
@@ -409,7 +428,7 @@ let landmarks = [
         id: '乌鲁木齐',
         name: '乌鲁木齐的城市名称',
         type: '仅文本',
-        positions: [[256,294]],
+        positions: [[256, 294]],
         text: '乌鲁木齐',
         textStyle: {
             // 字体属性
@@ -449,13 +468,13 @@ let landmarks = [
         id: '广州',
         name: '广州',
         type: '图文组合',
-        positions: [[751, 720],[760,721],[755,730],[775,712],[770,722],[770,736],[780,730],[740,740],[750,745]],
+        positions: [[751, 720], [760, 721], [755, 730], [775, 712], [770, 722], [770, 736], [780, 730], [740, 740], [750, 745]],
         imageUrl: 'icon/城市.png',
         width: 16,
         height: 16,
         group: '主要城市',
 
-    },  {
+    }, {
         id: '广州',
         name: '广州',
         type: '图文组合',
@@ -499,7 +518,7 @@ let landmarks = [
         <h3><s>实际游戏里就一个火车站和一个机场</s></h3>
         `
     },
-{
+    {
         id: '成都',
         name: '成都',
         type: '图文组合',
@@ -543,7 +562,7 @@ let landmarks = [
         <h3>边境小城（？）</h3>
         `
     },
-        {
+    {
         id: '上海',
         name: '上海',
         type: '图文组合',
@@ -565,7 +584,7 @@ let landmarks = [
         <h3>还没想好怎么介绍……</h3>
         `
     },
-            {
+    {
         id: '北京',
         name: '北京',
         type: '图文组合',
@@ -586,7 +605,7 @@ let landmarks = [
         info: `
         <h3>还没想好怎么介绍……</h3>
         `
-    },{
+    }, {
         id: '乌海市',
         name: '乌海市',
         type: '图文组合',
@@ -652,11 +671,11 @@ let landmarks = [
         <h3>还没想好怎么介绍……</h3>
         `
     },
-        {
+    {
         id: '三沙市',
         name: '三沙市',
         type: '图文组合',
-        positions: [[810, 1055],[803,1071]],
+        positions: [[810, 1055], [803, 1071]],
         imageUrl: 'icon/城市.png',
         width: 4,
         height: 4,
@@ -665,7 +684,7 @@ let landmarks = [
         info: `
         <h3>还没想好怎么介绍……我只知道这是中国最南边的城市</h3>
         `
-    },  {
+    }, {
         id: '三沙市',
         name: '三沙市',
         type: '图文组合',
@@ -708,7 +727,7 @@ let landmarks = [
         info: `
         <h3>还没想好怎么介绍……</h3>
         `
-    },   {
+    }, {
         id: '大庆',
         name: '大庆市',
         type: '图文组合',
@@ -732,13 +751,13 @@ let landmarks = [
     },
 
     // 更多地标...
- 
-        {
+
+    {
         id: 'G30的立交桥',
         // highwayId: ['G30沪霍'],
         name: 'G30连霍高速巴音郭勒立交桥',
         type: '仅图标',
-        positions: [[353,345],], // 地图坐标 [x, y]
+        positions: [[353, 345],], // 地图坐标 [x, y]
         imageUrl: 'icon/交通枢纽.png', // 图标路径
         width: 18,
         group: '冰高速',
@@ -751,7 +770,7 @@ let landmarks = [
         id: 'G7的立交桥',
         name: 'G7的立交桥',
         type: '仅图标',
-        positions: [[637,350],], // 地图坐标 [x, y]
+        positions: [[637, 350],], // 地图坐标 [x, y]
         imageUrl: 'icon/交通枢纽.png', // 图标路径
         width: 18,
         group: '冰高速',
@@ -763,7 +782,7 @@ let landmarks = [
         id: '成都东立交桥',
         name: '成都东立交桥',
         type: '仅图标',
-        positions: [[663,572],], // 地图坐标 [x, y]
+        positions: [[663, 572],], // 地图坐标 [x, y]
         imageUrl: 'icon/交通枢纽.png', // 图标路径
         width: 18,
         group: '冰高速',
@@ -773,11 +792,11 @@ let landmarks = [
                    <p>这是一个交通枢纽，公路的分岔口</p>
         `
     },
-     {
+    {
         id: '立交桥',
         name: '立交桥',
         type: '仅图标',
-        positions: [[745,410],], // 地图坐标 [x, y]
+        positions: [[745, 410],], // 地图坐标 [x, y]
         imageUrl: 'icon/交通枢纽.png', // 图标路径
         width: 18,
         group: '冰高速',

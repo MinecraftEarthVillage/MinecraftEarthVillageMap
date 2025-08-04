@@ -9,7 +9,8 @@ let config = {
     //路线组，你可以按格式创建更多分类
     groups: [
         { id: '冰高速', name: '冰高速', color: '#6cb5e6ff', visible: true,},
-        { id: '混凝土国道', name: '混凝土国道', color: '#e74c3c', visible: true },
+        { id: '混凝土国道', name: '混凝土国道', color: '#292929ff', visible: true },
+        { id: '损坏', name: '损坏的公路', color: '#fe0000ff', visible: false },
         { id: '主要城市', name: '城市', color: '#c7c0bfff', visible: true },
         // { id: '唯一识别码，这个不可以重名', name: '实际显示的名字', color: '#2ecc71颜色代码呃你随便怎么写', visible: true或者false，是否在网页端显示这条线 }
     ],
