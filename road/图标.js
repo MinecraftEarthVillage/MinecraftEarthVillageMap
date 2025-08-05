@@ -93,7 +93,7 @@ let landmarks = [
         group: '冰高速',
         height: 8,
         info: `
-                   <h3>G7京哈高速</h3>
+                   <h3>G1京哈高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>北京市</p>
                    <p><strong>终点：</strong>哈尔滨</p>

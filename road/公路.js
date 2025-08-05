@@ -1,4 +1,4 @@
-// config.js - 公路数据配置文件
+// 公路数据配置文件
 let config = {
     background: {
         // 直接指定背景图URL（可以是本地路径或网络URL）
