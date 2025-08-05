@@ -3,14 +3,14 @@ let landmarks = [
     // 图片地标
     {
         id: 'G30',//如果公路的id也是这个，那么你就可以去掉下面的highwayId了，这里因为ID不一样，所以必须指定公路ID，否则点击路牌图标只会显示沿线图标，线段是不会亮起来的（不会有人喜欢这个吧）
-        name: '沪霍高速',
-        type: '仅图标',
-        highwayId: ['G30沪霍'],//点击该图标时同时亮起指定ID某条公路，需要在config.js里有这个
+        名称: '沪霍高速',
+        图标类型: '仅图标',
+        绑定公路ID: ['G30沪霍'],//点击该图标时同时亮起指定ID某条公路，需要在config.js里有这个
         positions: [[172, 263], [210, 287], [386, 345], [504, 372], [597, 404], [706, 408], [790, 460], [790, 557], [270, 315]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G30.svg', // 图标路径
-        width: 8,
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G30.svg', // 图标路径
+        宽: 8,
+        高: 8,
+        信息: `
                     <h3>G30沪霍高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>上海</p>
@@ -19,18 +19,18 @@ let landmarks = [
                    <p><strong>途径路段被共线高速：</strong>S1（新高速）、乌鲁木齐西支线、G0711喀什支线、G55二广高速、G42沪蓉高速</p>
                    <p><strong>简介：</strong>中国最长高速公路</p>
         `,
-        group: '冰高速', // 添加分组属性
+        分组: '冰高速', // 添加分组属性
     },
     {
         id: 'G0711',//这个ID在config.js里也能找到，所以无需再设定highwayId字段
-        name: 'G0711喀什支线',
-        type: '仅图标',
+        名称: 'G0711喀什支线',
+        图标类型: '仅图标',
         positions: [[326, 314], [180, 323], [39, 370]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G0711.svg', // 图标路径
-        width: 8,
-        height: 8,
-        group: '冰高速',
-        info: `
+        图标图片路径: 'icon/G0711.svg', // 图标路径
+        宽: 8,
+        高: 8,
+        分组: '冰高速',
+        信息: `
                     <h3>G0711喀什支线</h3>
                    <p><strong>类别：</strong>支线</p>
                    <p><strong>起点：</strong>G7京新高速乌鲁木齐东南立交桥</p>
@@ -42,16 +42,16 @@ let landmarks = [
     },
     {
         id: '乌鲁木齐绕城',
-        highwayId: [''], // 绑定公路ID，这里不需要了
-        name: 'G701乌市环线',
-        type: '仅图标',
+        绑定公路ID: [''], // 绑定公路ID，这里不需要了
+        名称: 'G701乌市环线',
+        图标类型: '仅图标',
         positions: [[236, 236]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G0701.svg', // 图标路径
-        width: 8,
-        height: 8,
-        group: '冰高速',
-        highwayId: ['G0701'],
-        info: `
+        图标图片路径: 'icon/G0701.svg', // 图标路径
+        宽: 8,
+        高: 8,
+        分组: '冰高速',
+        绑定公路ID: ['G0701'],
+        信息: `
                    <h3>G0701乌市环线</h3>
                    <p><strong>类别：</strong>环城高速</p>
                    <p><strong>起点：</strong>---</p>
@@ -63,16 +63,16 @@ let landmarks = [
     },
     {
         id: 'G7京新高速',//config.js里找不到对应的id，
-        highwayId: ['G7'],//需要在此处指定config.js里的ID
-        name: 'G7京新高速',
-        type: '仅图标',
+        绑定公路ID: ['G7'],//需要在此处指定config.js里的ID
+        名称: 'G7京新高速',
+        图标类型: '仅图标',
         positions: [[335, 270], [386, 319], [542, 337], [773, 379], [690, 362]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G7.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
+        图标图片路径: 'icon/G7.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
 
-        height: 8,
-        info: `
+        高: 8,
+        信息: `
                    <h3>G7京新高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>北京市</p>
@@ -84,15 +84,15 @@ let landmarks = [
     },
     {
         id: 'G1',
-        name: 'G1京哈高速',
-        type: '仅图标',
-        highwayId: ['G1'],
+        名称: 'G1京哈高速',
+        图标类型: '仅图标',
+        绑定公路ID: ['G1'],
         positions: [[900, 392], [956, 294], [1021, 267],], // 地图坐标 [x, y]
-        imageUrl: 'icon/G1.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G1.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>G1京哈高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>北京市</p>
@@ -104,14 +104,14 @@ let landmarks = [
     },
     {
         id: 'G17',
-        name: 'G17新藏高速',
-        type: '仅图标',
+        名称: 'G17新藏高速',
+        图标类型: '仅图标',
         positions: [[344, 484],], // 地图坐标 [x, y]
-        imageUrl: 'icon/G17.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G17.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                             <h3>G17新藏高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>G30连霍高速巴音郭勒立交桥</p>
@@ -123,15 +123,15 @@ let landmarks = [
     },
     {
         id: 'G45',
-        name: 'G45大广高速',
-        type: '仅图标',
+        名称: 'G45大广高速',
+        图标类型: '仅图标',
         positions: [[955, 253], [842, 467], [836, 551], [784, 635]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G45.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        highwayId: ['G45'],
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G45.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        绑定公路ID: ['G45'],
+        高: 8,
+        信息: `
                    <h3>G45大广高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>黑龙江省大庆市</p>
@@ -143,15 +143,15 @@ let landmarks = [
     },
     {
         id: 'G4',
-        name: 'G4京港澳高速',
-        type: '仅图标',
+        名称: 'G4京港澳高速',
+        图标类型: '仅图标',
         positions: [[809, 730], [808, 626], [829, 466]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G4.svg', // 图标路径
-        width: 8,
-        highwayId: ['G4'],
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G4.svg', // 图标路径
+        宽: 8,
+        绑定公路ID: ['G4'],
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>G4京港澳高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>北京</p>
@@ -163,15 +163,15 @@ let landmarks = [
     },
     {
         id: 'G3',
-        name: 'G3京台高速',
-        type: '仅图标',
+        名称: 'G3京台高速',
+        图标类型: '仅图标',
         positions: [[873, 704], [805, 634], [822, 545]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G3.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        highwayId: ['G3'],
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G3.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        绑定公路ID: ['G3'],
+        高: 8,
+        信息: `
                    <h3>G3京台高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>北京</p>
@@ -183,15 +183,15 @@ let landmarks = [
     },
     {
         id: 'G13',
-        name: 'G13哈海高速',
-        type: '仅图标',
+        名称: 'G13哈海高速',
+        图标类型: '仅图标',
         positions: [[712, 777]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G13.svg', // 图标路径
-        // highwayId: ['G13'],
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G13.svg', // 图标路径
+        // 绑定公路ID: ['G13'],
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>G13哈海高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>哈尔滨</p>
@@ -203,14 +203,14 @@ let landmarks = [
     },
     {
         id: 'G2',
-        name: 'G2京沪高速',
-        type: '仅图标',
+        名称: 'G2京沪高速',
+        图标类型: '仅图标',
         positions: [[871, 539], [829, 470], [845, 408]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G2.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G2.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>G2京沪高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>北京</p>
@@ -222,14 +222,14 @@ let landmarks = [
     },
     {
         id: 'G55',
-        name: 'G55二广高速',
-        type: '仅图标',
+        名称: 'G55二广高速',
+        图标类型: '仅图标',
         positions: [[784, 643], [790, 548], [747, 389]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G55.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G55.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>G55二广高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>二连浩特</p>
@@ -240,14 +240,14 @@ let landmarks = [
         `
     }, {
         id: 'S2',
-        name: 'S2成都支线',
-        type: '仅图标',
+        名称: 'S2成都支线',
+        图标类型: '仅图标',
         positions: [[629, 642]], // 地图坐标 [x, y]
-        imageUrl: 'icon/S2.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/S2.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>S2成都支线</h3>
                    <p><strong>类别：</strong>省级主线</p>
                    <p><strong>起点：</strong>G14成都南立交</p>
@@ -259,14 +259,14 @@ let landmarks = [
     },
     {
         id: 'G5',
-        name: 'G5京昆高速',
-        type: '仅图标',
+        名称: 'G5京昆高速',
+        图标类型: '仅图标',
         positions: [[509, 704], [643, 704], [805, 645], [822, 504], [844, 418]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G5.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G5.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>G5京昆高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>北京</p>
@@ -278,14 +278,14 @@ let landmarks = [
     },
     {
         id: 'G75',
-        name: 'G5海蓉高速',
-        type: '仅图标',
+        名称: 'G5海蓉高速',
+        图标类型: '仅图标',
         positions: [[720, 718],], // 地图坐标 [x, y]
-        imageUrl: 'icon/G75.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G75.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>G75海蓉高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>G13高速海口北立交桥</p>
@@ -296,14 +296,14 @@ let landmarks = [
         `
     }, {
         id: 'G14',
-        name: 'G14沪拉高速',
-        type: '仅图标',
+        名称: 'G14沪拉高速',
+        图标类型: '仅图标',
         positions: [[362, 600], [509, 611], [606, 683], [732, 683], [811, 617], [863, 539]], // 地图坐标 [x, y]
-        imageUrl: 'icon/G14.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G14.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>G14沪拉高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>拉萨</p>
@@ -314,14 +314,14 @@ let landmarks = [
         `
     }, {
         id: 'G67',
-        name: 'G67乌蓉高速',
-        type: '仅图标',
+        名称: 'G67乌蓉高速',
+        图标类型: '仅图标',
         positions: [[665, 477],], // 地图坐标 [x, y]
-        imageUrl: 'icon/G67.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G67.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>G67乌蓉高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>乌海市</p>
@@ -332,14 +332,14 @@ let landmarks = [
         `
     }, {
         id: 'G42',
-        name: 'G42沪蓉高速',
-        type: '仅图标',
+        名称: 'G42沪蓉高速',
+        图标类型: '仅图标',
         positions: [[740, 578],], // 地图坐标 [x, y]
-        imageUrl: 'icon/G42.svg', // 图标路径
-        width: 8,
-        group: '冰高速',
-        height: 8,
-        info: `
+        图标图片路径: 'icon/G42.svg', // 图标路径
+        宽: 8,
+        分组: '冰高速',
+        高: 8,
+        信息: `
                    <h3>G42沪蓉高速</h3>
                    <p><strong>类别：</strong>主线</p>
                    <p><strong>起点：</strong>成都市东</p>
@@ -352,18 +352,18 @@ let landmarks = [
     // //文本地标
     // {
     //     id: 'lm2',
-    //     name: '收费站',
-    //     type: '仅文本',
+    //     名称: '收费站',
+    //     图标类型: '仅文本',
     //     positions: [450, 350],
     //     text: '收费站A',
-    //     textStyle: {
+    //     文本样式: {
     //         color: '#fff',
     //         fontSize: '14px',
     //         backgroundColor: 'rgba(0,0,0,0.5)',
     //         padding: '4px 8px',
     //         borderRadius: '4px'
     //     },
-    //     info: `<h3>收费站A</h3>
+    //     信息: `<h3>收费站A</h3>
     //            <p>收费：¥15/次</p>
     //            <p>开放时间：24小时</p>`
     // },
@@ -371,29 +371,29 @@ let landmarks = [
     // 图文组合地标
     {
         id: '乌鲁木齐',
-        name: '乌鲁木齐市贴图',
-        type: '仅图标',
+        名称: '乌鲁木齐市贴图',
+        图标类型: '仅图标',
         positions: [[250, 281], [228, 282], [270, 286], [239, 281], [260, 288], [283, 294], [298, 282], [227, 306], [222, 259]],
-        imageUrl: 'icon/城市.png',
-        width: 20,
-        height: 20,
-        group: '主要城市',
-        textStyle: {
+        图标图片路径: 'icon/城市.png',
+        宽: 20,
+        高: 20,
+        分组: '主要城市',
+        文本样式: {
             color: '#ffffff',
             fontSize: '12px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 1,
         },
-        info: `一座城市`
+        信息: `一座城市`
     },
     // {
     //     id: '乌鲁木齐的文字',
-    //     name: '装饰文本示例',
-    //     type: '仅文本',
+    //     名称: '装饰文本示例',
+    //     图标类型: '仅文本',
     //     positions: [[256,294]],
     //     text: '乌鲁木齐',
-    //     textStyle: {
+    //     文本样式: {
     //         // 字体属性
     //         fontFamily: 'Microsoft YaHei, sans-serif',
     //         fontSize: '24px',
@@ -410,7 +410,7 @@ let landmarks = [
     //         backgroundPadding: [8, 15], // [垂直, 水平]
     //         borderRadius: 8,
     //         borderColor: '#f1c40f',
-    //         borderWidth: 2,
+    //         border宽: 2,
 
     //         // 阴影效果
     //         textShadow: true,
@@ -422,15 +422,15 @@ let landmarks = [
     //         // 旋转
     //         rotation: -51 // 倾斜角度
     //     },
-    //     info: '装饰性文本示例'
+    //     信息: '装饰性文本示例'
     // },
     {
         id: '乌鲁木齐',
-        name: '乌鲁木齐的城市名称',
-        type: '仅文本',
+        名称: '乌鲁木齐的城市名称',
+        图标类型: '仅文本',
         positions: [[260, 324]],
         text: '乌鲁木齐',
-        textStyle: {
+        文本样式: {//填写Canven属性
             // 字体属性
             fontFamily: 'Microsoft YaHei, sans-serif',
             fontSize: '20px',
@@ -442,310 +442,310 @@ let landmarks = [
             strokeStyle: '#000000', // 描边颜色
             strokeWidth: 1,         // 描边宽度
         },
-        info: '一个id和乌鲁木齐市图标一样的文本，它已经和图标绑定显示了'
+        信息: '一个id和乌鲁木齐市图标一样的文本，它已经和图标绑定显示了'
     },
     {
         id: '郑州市',
-        name: '郑州市',
-        type: '图文组合',
+        名称: '郑州市',
+        图标类型: '图文组合',
         positions: [[833, 524]],
-        imageUrl: 'icon/城市.png',
-        width: 6.5,
-        height: 4,
+        图标图片路径: 'icon/城市.png',
+        宽: 6.5,
+        高: 4,
         text: '郑州',
-        group: '主要城市',
-        textOffset: [2, 2], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [2, 2], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '2px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 0.2,
         },
-        info: `一座半废弃的城市`
+        信息: `一座半废弃的城市`
     },
     {
         id: '广州',
-        name: '广州',
-        type: '图文组合',
+        名称: '广州',
+        图标类型: '仅图标',
         positions: [[751, 750], [760, 751], [755, 760], [775, 742], [770, 752], [770, 766], [780, 760], [740, 770], [750, 775]],
-        imageUrl: 'icon/城市.png',
-        width: 16,
-        height: 16,
-        group: '主要城市',
+        图标图片路径: 'icon/城市.png',
+        宽: 16,
+        高: 16,
+        分组: '主要城市',
 
     }, {
         id: '广州',
-        name: '广州',
-        type: '图文组合',
+        名称: '广州',
+        图标类型: '图文组合',
         positions: [[790, 746]],
-        imageUrl: 'icon/城市.png',
-        width: 30,
-        height: 20,
+        图标图片路径: 'icon/城市.png',
+        宽: 30,
+        高: 20,
         text: '广州',
-        group: '主要城市',
-        textOffset: [-10, 15], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [-10, 15], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '10px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 1,
         },
-        info: `
+        信息: `
         <h3>大粤之首都、亚洲经济之王</h3>
         `
     },
     {
         id: '拉萨',
-        name: '拉萨',
-        type: '图文组合',
+        名称: '拉萨',
+        图标类型: '图文组合',
         positions: [[348, 611]],
-        imageUrl: 'icon/城市.png',
-        width: 30,
-        height: 20,
+        图标图片路径: 'icon/城市.png',
+        宽: 30,
+        高: 20,
         text: '拉萨',
-        group: '主要城市',
-        textOffset: [0, 0], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [0, 0], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '10px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 1,
         },
-        info: `
+        信息: `
         <h3><s>实际游戏里就一个火车站和一个机场</s></h3>
         `
     },
     {
         id: '成都',
-        name: '成都',
-        type: '图文组合',
+        名称: '成都',
+        图标类型: '图文组合',
         positions: [[636, 607]],
-        imageUrl: 'icon/城市.png',
-        width: 50,
-        height: 40,
+        图标图片路径: 'icon/城市.png',
+        宽: 50,
+        高: 40,
         text: '成都',
-        group: '主要城市',
-        textOffset: [0, 5], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [0, 5], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '10px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 1,
         },
-        info: `
+        信息: `
         <h3><s></s></h3>
         `
     },
     {
         id: '二连浩特',
-        name: '二连浩特',
-        type: '图文组合',
+        名称: '二连浩特',
+        图标类型: '图文组合',
         positions: [[756, 290]],
-        imageUrl: 'icon/城市.png',
-        width: 20,
-        height: 20,
+        图标图片路径: 'icon/城市.png',
+        宽: 20,
+        高: 20,
         text: '二连浩特',
-        group: '主要城市',
-        textOffset: [0, 10], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [0, 10], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '5px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 2,
         },
-        info: `
+        信息: `
         <h3>边境小城（？）</h3>
         `
     },
     {
         id: '上海',
-        name: '上海',
-        type: '图文组合',
+        名称: '上海',
+        图标类型: '图文组合',
         positions: [[910, 580]],
-        imageUrl: 'icon/城市.png',
-        width: 60,
-        height: 60,
+        图标图片路径: 'icon/城市.png',
+        宽: 60,
+        高: 60,
         text: '上 海',
-        group: '主要城市',
-        textOffset: [-10, 30], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [-10, 30], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '10px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 2,
         },
-        info: `
+        信息: `
         <h3>还没想好怎么介绍……</h3>
         `
     },
     {
         id: '北京',
-        name: '北京',
-        type: '图文组合',
+        名称: '北京',
+        图标类型: '图文组合',
         positions: [[821, 420]],
-        imageUrl: 'icon/城市.png',
-        width: 50,
-        height: 50,
+        图标图片路径: 'icon/城市.png',
+        宽: 50,
+        高: 50,
         text: '北 京',
-        group: '主要城市',
-        textOffset: [-10, 26], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [-10, 26], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '10px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 2,
         },
-        info: `
+        信息: `
         <h3>还没想好怎么介绍……</h3>
         `
     }, {
         id: '乌海市',
-        name: '乌海市',
-        type: '图文组合',
+        名称: '乌海市',
+        图标类型: '图文组合',
         positions: [[631, 390]],
-        imageUrl: 'icon/城市.png',
-        width: 20,
-        height: 20,
+        图标图片路径: 'icon/城市.png',
+        宽: 20,
+        高: 20,
         text: '乌海市',
-        group: '主要城市',
-        textOffset: [-1, 5], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [-1, 5], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '6px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 1,
         },
-        info: `
+        信息: `
         <h3>还没想好怎么介绍……</h3>
         `
     },
     {
         id: '台北',
-        name: '台北',
-        type: '图文组合',
+        名称: '台北',
+        图标类型: '图文组合',
         positions: [[927, 738]],
-        imageUrl: 'icon/城市.png',
-        width: 20,
-        height: 20,
+        图标图片路径: 'icon/城市.png',
+        宽: 20,
+        高: 20,
         text: '台北',
-        group: '主要城市',
-        textOffset: [-10, 10], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [-10, 10], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '8px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 2,
         },
-        info: `
+        信息: `
         <h3>还没想好怎么介绍……</h3>
         `
     },
     {
         id: '海口',
-        name: '海口',
-        type: '图文组合',
+        名称: '海口',
+        图标类型: '图文组合',
         positions: [[716, 844]],
-        imageUrl: 'icon/城市.png',
-        width: 20,
-        height: 20,
+        图标图片路径: 'icon/城市.png',
+        宽: 20,
+        高: 20,
         text: '海口',
-        group: '主要城市',
-        textOffset: [0, 10], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [0, 10], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '5px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 1,
         },
-        info: `
+        信息: `
         <h3>还没想好怎么介绍……</h3>
         `
     },
     {
         id: '三沙市',
-        name: '三沙市',
-        type: '图文组合',
+        名称: '三沙市',
+        图标类型: '图文组合',
         positions: [[810, 1055], [803, 1071]],
-        imageUrl: 'icon/城市.png',
-        width: 4,
-        height: 4,
-        group: '主要城市',
-        textOffset: [0, 3], // 文本相对于图标的偏移 [dx, dy]
-        info: `
+        图标图片路径: 'icon/城市.png',
+        宽: 4,
+        高: 4,
+        分组: '主要城市',
+        文本偏移: [0, 3], // 文本相对于图标的偏移 [dx, dy]
+        信息: `
         <h3>还没想好怎么介绍……我只知道这是中国最南边的城市</h3>
         `
     }, {
         id: '三沙市',
-        name: '三沙市',
-        type: '图文组合',
+        名称: '三沙市',
+        图标类型: '图文组合',
         positions: [[770, 916]],
-        imageUrl: 'icon/城市.png',
-        width: 10,
-        height: 10,
+        图标图片路径: 'icon/城市.png',
+        宽: 10,
+        高: 10,
         text: '三沙市',
-        group: '主要城市',
-        textOffset: [0, 3], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [0, 3], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '5px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 1,
         },
-        info: `
+        信息: `
         <h3>还没想好怎么介绍……我只知道这是中国最南边的城市</h3>
         `
     },
     {
         id: '哈尔滨',
-        name: '哈尔滨',
-        type: '图文组合',
+        名称: '哈尔滨',
+        图标类型: '图文组合',
         positions: [[1045, 242]],
-        imageUrl: 'icon/城市.png',
-        width: 20,
-        height: 20,
+        图标图片路径: 'icon/城市.png',
+        宽: 20,
+        高: 20,
         text: '哈尔滨',
-        group: '主要城市',
-        textOffset: [0, 13], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [0, 13], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '5px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 1,
         },
-        info: `
+        信息: `
         <h3>还没想好怎么介绍……</h3>
         `
     }, {
         id: '大庆',
-        name: '大庆市',
-        type: '图文组合',
+        名称: '大庆市',
+        图标类型: '图文组合',
         positions: [[961, 266]],
-        imageUrl: 'icon/城市.png',
-        width: 20,
-        height: 20,
+        图标图片路径: 'icon/城市.png',
+        宽: 20,
+        高: 20,
         text: '大庆市',
-        group: '主要城市',
-        textOffset: [0, 10], // 文本相对于图标的偏移 [dx, dy]
-        textStyle: {
+        分组: '主要城市',
+        文本偏移: [0, 10], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
             color: '#ffffff',
             fontSize: '5px',
             fontWeight: 'bold',
             strokeStyle: 'black',
             strokeWidth: 1,
         },
-        info: `
+        信息: `
         <h3>还没想好怎么介绍……</h3>
         `
     },
@@ -754,68 +754,68 @@ let landmarks = [
 
     {
         id: 'G30的立交桥',
-        // highwayId: ['G30沪霍'],
-        name: 'G30连霍高速巴音郭勒立交桥',
-        type: '仅图标',
+        // 绑定公路ID: ['G30沪霍'],
+        名称: 'G30连霍高速巴音郭勒立交桥',
+        图标类型: '仅图标',
         positions: [[358, 374],], // 地图坐标 [x, y]
-        imageUrl: 'icon/交通枢纽.png', // 图标路径
-        width: 18,
-        group: '冰高速',
-        height: 18,
-        info: `
+        图标图片路径: 'icon/交通枢纽.png', // 图标路径
+        宽: 18,
+        分组: '冰高速',
+        高: 18,
+        信息: `
                    <h3>这是一个交通枢纽，公路的分岔口</h3>
         `
     },
     {
         id: 'G7的立交桥',
-        name: 'G7的立交桥',
-        type: '仅图标',
+        名称: 'G7的立交桥',
+        图标类型: '仅图标',
         positions: [[643, 379],], // 地图坐标 [x, y]
-        imageUrl: 'icon/交通枢纽.png', // 图标路径
-        width: 18,
-        group: '冰高速',
-        height: 18,
-        info: `
+        图标图片路径: 'icon/交通枢纽.png', // 图标路径
+        宽: 18,
+        分组: '冰高速',
+        高: 18,
+        信息: `
                    <h3>这是一个交通枢纽，公路的分岔口</h3>
         `
     }, {
         id: '成都东立交桥',
-        name: '成都东立交桥',
-        type: '仅图标',
+        名称: '成都东立交桥',
+        图标类型: '仅图标',
         positions: [[669, 600],], // 地图坐标 [x, y]
-        imageUrl: 'icon/交通枢纽.png', // 图标路径
-        width: 18,
-        group: '冰高速',
-        height: 18,
-        info: `
+        图标图片路径: 'icon/交通枢纽.png', // 图标路径
+        宽: 18,
+        分组: '冰高速',
+        高: 18,
+        信息: `
                    <h3>成都东立交桥</h3>
                    <p>这是一个交通枢纽，公路的分岔口</p>
         `
     },
     {
         id: '立交桥',
-        name: '立交桥',
-        type: '仅图标',
+        名称: '立交桥',
+        图标类型: '仅图标',
         positions: [[751, 439],], // 地图坐标 [x, y]
-        imageUrl: 'icon/交通枢纽.png', // 图标路径
-        width: 18,
-        group: '冰高速',
-        height: 18,
-        info: `
+        图标图片路径: 'icon/交通枢纽.png', // 图标路径
+        宽: 18,
+        分组: '冰高速',
+        高: 18,
+        信息: `
     
                    <p>这是一个交通枢纽，公路的分岔口</p>
         `
     },
     {
         id: 'G102',
-        name: 'G102',
-        type: '仅图标',
+        名称: 'G102',
+        图标类型: '仅图标',
         positions: [[1011, 290],], // 地图坐标 [x, y]
-        imageUrl: 'icon/G102.png', // 图标路径
-        width: 18,
-        group: '混凝土国道',
-        height: 18,
-        info: `
+        图标图片路径: 'icon/G102.png', // 图标路径
+        宽: 18,
+        分组: '混凝土国道',
+        高: 18,
+        信息: `
                    <h3>G102京哈线</h3>
                    <p><strong>类别：</strong>国家级干线公路</p>
                    <p><strong>起点：</strong>北京市</p>
@@ -829,14 +829,14 @@ let landmarks = [
     },
     {
         id: '国道',
-        name: '国道映射',
-        type: '仅图标',
+        名称: '国道映射',
+        图标类型: '仅图标',
         positions: [[594, 495],], // 地图坐标 [x, y]
-        imageUrl: 'icon/国道映射.svg', // 图标路径
-        width: 900,
-        group: '损坏',
-        height: 550,
-        info: `
+        图标图片路径: 'icon/国道映射.svg', // 图标路径
+        宽: 900,
+        分组: '损坏',
+        高: 550,
+        信息: `
                    <h3>所有的国道都在这里了</h3>
                    <p><strong>类别：</strong></p>
                    <p><strong>起点：</strong> </p>
@@ -850,14 +850,14 @@ let landmarks = [
     },
     {
             id: 'g101',
-            name: '101国道',
-            type:'仅图标',
-            group: '混凝土国道',
+            名称: '101国道',
+            图标类型:'仅图标',
+            分组: '混凝土国道',
             positions: [[879, 400],],
-            imageUrl: 'icon/G101.png', // 图标路径
-            width: 18,
-            height:18,
-            info: `<h3>101国道</h3>
+            图标图片路径: 'icon/G101.png', // 图标路径
+            宽: 18,
+            高:18,
+            信息: `<h3>101国道</h3>
                    <p><strong>起点：</strong>北京市</p>
                    <p><strong>终点：</strong>沈阳市</p>
                    <p><strong>Information信息：</strong>东北地区首条干线公路</p>`
