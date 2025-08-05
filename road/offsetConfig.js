@@ -1,10 +1,10 @@
 // offsetConfig.js - 偏移配置文件
-const offsetConfig = {
+let offsetConfig = {
     // 全局偏移（应用于所有元素）
-    globalOffset: [0, 0], // [x, y] 偏移量
+    全局偏移: [0, 0], // [x, y] 偏移量
 
     // 特定元素的偏移（覆盖全局偏移）
-    specificOffsets: {
+    特定偏移: {
         // 公路偏移
         highways: {
             'G0711': [5, 30], // 公路ID: [x偏移, y偏移]

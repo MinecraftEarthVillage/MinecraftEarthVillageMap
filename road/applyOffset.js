@@ -17,10 +17,10 @@ function applyOffsetToPath(path, offsets = [0, 0]) {
 // 获取特定元素的偏移量
 function getSpecificOffset(id, type) {
     // 安全访问特定偏移配置
-    if (offsetConfig.specificOffsets && 
-        offsetConfig.specificOffsets[type] && 
-        offsetConfig.specificOffsets[type][id]) {
-        return offsetConfig.specificOffsets[type][id];
+    if (offsetConfig.特定偏移 && 
+        offsetConfig.特定偏移[type] && 
+        offsetConfig.特定偏移[type][id]) {
+        return offsetConfig.特定偏移[type][id];
     }
     return null; // 未找到特定偏移时返回 null
 }
@@ -30,7 +30,7 @@ export function processConfigWithOffset(config, landmarks) {
     // 处理公路配置
     const processedHighways = config.highways.map(highway => {
         const specificOffset = getSpecificOffset(highway.id, 'highways');
-        const offsets = specificOffset || offsetConfig.globalOffset;
+        const offsets = specificOffset || offsetConfig.全局偏移;
         
         return {
             ...highway,
@@ -41,7 +41,7 @@ export function processConfigWithOffset(config, landmarks) {
     // 处理地标配置
     const processedLandmarks = landmarks.map(landmark => {
         const specificOffset = getSpecificOffset(landmark.id, 'landmarks');
-        const offsets = specificOffset || offsetConfig.globalOffset;
+        const offsets = specificOffset || offsetConfig.全局偏移;
         
         return {
             ...landmark,

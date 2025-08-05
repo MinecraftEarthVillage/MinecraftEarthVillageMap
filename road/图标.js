@@ -430,7 +430,7 @@ let landmarks = [
         图标类型: '仅文本',
         positions: [[260, 324]],
         text: '乌鲁木齐',
-        文本样式: {//填写Canven属性
+        文本样式: {//填写Canvas属性
             // 字体属性
             fontFamily: 'Microsoft YaHei, sans-serif',
             fontSize: '20px',
