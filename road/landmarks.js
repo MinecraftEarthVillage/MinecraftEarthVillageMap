@@ -834,7 +834,7 @@ let landmarks = [
         positions: [[594, 495],], // 地图坐标 [x, y]
         imageUrl: 'icon/国道映射.svg', // 图标路径
         width: 900,
-        group: '混凝土国道',
+        group: '损坏',
         height: 550,
         info: `
                    <h3>所有的国道都在这里了</h3>
@@ -848,4 +848,18 @@ let landmarks = [
                    <p><strong>简介：</strong>缺点是这是一个整体，哈哈🤪</p>
         `
     },
+    {
+            id: 'g101',
+            name: '101国道',
+            type:'仅图标',
+            group: '混凝土国道',
+            positions: [[879, 400],],
+            imageUrl: 'icon/G101.png', // 图标路径
+            width: 18,
+            height:18,
+            info: `<h3>101国道</h3>
+                   <p><strong>起点：</strong>北京市</p>
+                   <p><strong>终点：</strong>沈阳市</p>
+                   <p><strong>Information信息：</strong>东北地区首条干线公路</p>`
+        },
 ];
