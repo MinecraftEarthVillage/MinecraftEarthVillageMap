@@ -827,4 +827,25 @@ let landmarks = [
                    <p><strong>简介：</strong>中国东北重要干线的国道</p>
         `
     },
+    {
+        id: '国道',
+        name: '国道映射',
+        type: '仅图标',
+        positions: [[594, 495],], // 地图坐标 [x, y]
+        imageUrl: 'icon/国道映射.svg', // 图标路径
+        width: 900,
+        group: '混凝土国道',
+        height: 550,
+        info: `
+                   <h3>所有的国道都在这里了</h3>
+                   <p><strong>类别：</strong></p>
+                   <p><strong>起点：</strong> </p>
+                   <p><strong>终点：</strong>   </p>
+                   <p><strong>途径城市：</strong>   </p>
+                   <p><strong>途径城市：</strong>    </p>
+                   <p><strong>途径城市：</strong>           </p>
+                   <p><strong>途径路段被共线国道：</strong>         </p>
+                   <p><strong>简介：</strong>缺点是这是一个整体，哈哈🤪</p>
+        `
+    },
 ];
