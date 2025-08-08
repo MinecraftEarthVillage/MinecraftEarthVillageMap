@@ -305,7 +305,7 @@ let config = {
                    <p><strong>起点：</strong>乌海市</p>
                    <p><strong>终点：</strong>成都市东</p>
                    <p><strong>途径城市：</strong>乌海、成都</p>
-                   <p><strong>途径路段被共线高速：</strong>无</p>
+                   <p><strong>途径路段被共线高速：</strong>G6京藏高速</p>
                    <p><strong>简介：</strong>中国唯一跨秦岭仍然保持双向四车道的冰高速路</p>
                    `
         }, {
@@ -343,7 +343,22 @@ let config = {
                    <p><strong>简介：</strong>中国跨越阶梯爬坡最陡的高速</p>
                    `
         },
-
+        {
+            id: 'G6',
+            名称: 'G6京藏高速',
+            分组: '冰高速',
+            path: [[349, 606], [349, 503], [460, 503], [460, 479], [553, 479], [553, 487], [636, 489], [638, 472], [670, 472], [670, 412], [643, 412], [643, 380], [661, 392], [709, 391], [712, 386], [752, 386], [761, 394], [761, 409], [805, 409]]
+            ,公路宽度: 3,
+            信息: `                    
+                   <h3>G6京藏高速</h3>
+                   <p><strong>类别：</strong>主线</p>
+                   <p><strong>起点：</strong>北京市</p>
+                   <p><strong>终点：</strong>拉萨市</p>
+                   <p><strong>途径城市：</strong>北京市、乌海市、拉萨市</p>
+                   <p><strong>途径路段被共线高速：</strong>G17新藏高速、G67乌蓉高速、G7京新高速</p>
+                   <p><strong>简介：</strong>跨越青藏高原开凿隧道最多的主线高速</p>
+                   `
+        },
 
 
 
@@ -359,7 +374,7 @@ let config = {
 
 
         //终于到了万众瞩目的混凝土国道部分了
-         {
+ {
             id: 'G102',
             名称: 'G102',
             分组: '混凝土国道',
@@ -371,8 +386,7 @@ let config = {
                    <h3>102国道</h3>
                    <p><strong>类别：</strong>国家级别干线公路</p>
                    <p><strong>起点：</strong>北京市</p>
-                   <p><strong>终点：</strong>沈阳市</p>
-                   <p><strong>途径路段被共线国道：</strong>G101</p>
+                   <p><strong>终点：</strong>哈尔滨市</p>
                    <p><strong>Information信息：</strong>中国东北重要干线的国道</p>
                    `
         },
@@ -386,7 +400,6 @@ let config = {
                    <p><strong>类别：</strong>国家级别干线公路</p>
                    <p><strong>起点：</strong>北京市</p>
                    <p><strong>终点：</strong>沈阳市</p>
-                   <p><strong>途径路段被共线国道：</strong>G102</p>
                    <p><strong>Information信息：</strong>东北地区首条干线公路</p>`
         },
         {
