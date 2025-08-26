@@ -359,6 +359,100 @@ let config = {
                    <p><strong>简介：</strong>跨越青藏高原开凿隧道最多的主线高速</p>
                    `
         },
+        {
+            id: 'G0(National)',
+            名称: 'G0(National)迪台高速',
+            分组: '冰高速',
+            path:  [[917, 734], [350, 734], [330, 723], [280, 723], [260, 711], [-550, 711], [-558, 703], [-558, 631], [-568, 621], [-639, 621], [-649, 631], [-649, 765]]
+            ,公路宽度: 3,
+            信息: `                    
+                   <h3>G0(National)迪台高速</h3>
+                   <p><strong>类别：</strong>主线（国际高速）</p>
+                   <p><strong>起点：</strong>台北(taipei)</p>
+                   <p><strong>终点：</strong>迪拜(Dubai)</p>
+                   <p><strong>途径国家：</strong>中国China,缅甸Burma,印度India,孟加拉国Bangladesh,巴基斯坦Pakistan,伊朗Iran,阿拉伯联合酋长国The United Arab Emirates</p>
+                   <p><strong>途径路段被共线高速：</strong>G3京台高速（国内），G5京昆高速（国内）</p>
+                   <p><strong>简介：</strong>目前唯一连接中国与外国的主线高速</p>
+                   `
+        },
+        {
+            id: 'G1(National)',
+            名称: 'G1(National)迪阿高速',
+            分组: '冰高速',
+            path:  [[-649, 765], [-676, 765], [-676, 793], [-701, 793], [-717, 815], [-1104, 815], [-1139, 764], [-1153, 703], [-1183, 640], [-1183, 400]]
+            ,公路宽度: 3,
+            信息: `                    
+                   <h3>G1(National)迪阿高速</h3>
+                   <p><strong>类别：</strong>主线（国际高速）</p>
+                   <p><strong>起点：</strong>迪拜(Dubai)</p>
+                   <p><strong>终点：</strong>阿达纳(Adana)</p>
+                   <p><strong>途径国家：</strong>阿拉伯联合酋长国The United Arab Emirates,沙特阿拉伯Saudi Arabia</p>
+                   <p><strong>途径路段被共线高速：</strong>无</p>
+                   <p><strong>简介：</strong><s>没词了</s></p>
+                   `
+        },
+        {
+            id: 'G3(National)',
+            名称: 'G3(National)巴格达环线',
+            分组: '冰高速',
+            path:  [[-649, 765], [-676, 765], [-676, 793], [-701, 793], [-731, 793], [-753, 773], [-799, 773], [-828, 745], [-828, 630], [-802, 604], [-684, 604], [-649, 631], [-649, 765]]
+            ,公路宽度: 3,
+            信息: `                    
+                   <h3>G3(National)巴格达环线</h3>
+                   <p><strong>类别：</strong>主线（国际高速）</p>
+                   <p><strong>起点：</strong>---</p>
+                   <p><strong>终点：</strong>---</p>
+                   <p><strong>途径国家：</strong>阿拉伯联合酋长国The United Arab Emirates,伊朗Iran,沙特阿拉伯Saudi Arabia</p>
+                   <p><strong>途径路段被共线高速：</strong>无</p>
+                   <p><strong>简介：</strong>国外第一条环线高速公路</p>
+                   `
+        },
+        {
+            id: 'G2(National)',
+            名称: 'G2(National)德里高速',
+            分组: '冰高速',
+            path:  [[-769, 462], [-3008, 462], [-3043, 439], [-3043, 284]]
+            ,公路宽度: 3,
+            信息: `                    
+                   <h3>G2(National)德里高速</h3>
+                   <p><strong>类别：</strong>主线（国际高速）</p>
+                   <p><strong>起点：</strong>德黑兰(Tehran)</p>
+                   <p><strong>终点：</strong>里斯本(Lisboa)</p>
+                   <p><strong>途径国家：</strong>伊朗Iran,沙特阿拉伯Saudi Arabia,伊拉克Iraq,叙利亚Syria,突尼斯Tonis,阿尔及利亚Algeria,摩洛哥Morocco,葡萄牙Portugal,</p>
+                   <p><strong>途径路段被共线高速：</strong>无</p>
+                   <p><strong>简介：</strong>中美高速重要组成部分</p>
+                   `
+        },{
+            id: 'G6(National)',
+            名称: 'G6(National)纽里高速',
+            分组: '冰高速',
+            path:  [[-3043, 313],[-3030, 313], [-3030, 256], [-2987, 256], [-2987, 218], [-2955, 218], [-2955, 100], [-6000, 100]]
+            ,公路宽度: 3,
+            信息: `                    
+                   <h3>G6(National)纽里高速</h3>
+                   <p><strong>类别：</strong>主线（国际高速）</p>
+                   <p><strong>起点：</strong>里斯本(Lisboa)</p>
+                   <p><strong>终点：</strong>纽约(New York)</p>
+                   <p><strong>途径国家：</strong>葡萄牙Portugal,美国America</p>
+                   <p><strong>途径路段被共线高速：</strong>无</p>
+                   <p><strong>简介：</strong>别名：跨海高速</p>
+                   `
+        },{
+            id: 'G8(National)',
+            名称: 'G8(National)迪柏高速',
+            分组: '冰高速',
+            path:  [[-602, 621], [-602, 592], [-908, 592], [-908, 274], [-1495, 274], [-1495, -150], [-2210, -150]]
+            ,公路宽度: 3,
+            信息: `                    
+                   <h3>G8(National)迪柏高速</h3>
+                   <p><strong>类别：</strong>主线（国际高速）</p>
+                   <p><strong>起点：</strong>迪拜(Dubai)</p>
+                   <p><strong>终点：</strong>柏林(Berlin)</p>
+                   <p><strong>途径国家：</strong>伊朗Iran,土耳其(Turkey)[火鸡（bush],保加利亚Bulgaria,罗马尼亚Romania,匈牙利Hungary,斯洛伐克Slovakia,波兰Poland,德国Germany</p>
+                   <p><strong>途径路段被共线高速：</strong>无</p>
+                   <p><strong>简介：</strong>别名：另外一个玩家修建的高速公路</p>
+                   `
+        },
 
 
 

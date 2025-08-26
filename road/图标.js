@@ -735,10 +735,116 @@ let landmarks = [
         信息: `
         <h3>G45大广高速起点</h3>
         `
+    },{
+        id: '迪拜市',
+        名称: '迪拜市(Dubayy)',
+        图标类型: '图文组合',
+        positions: [[-648, 780]],
+        图标图片路径: 'icon/城市.png',
+        宽: 30,
+        高: 30,
+        text: '迪拜市(Dubayy)',
+        分组: '主要城市',
+        文本偏移: [0, 3], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
+            color: '#ffffff',
+            fontSize: '20px',
+            fontWeight: 'bold',
+            strokeStyle: 'black',
+            strokeWidth: 1,
+        },
+        信息: `
+        <h3>国外的一座城市</h3>
+        `
+    },{
+        id: '德黑兰',
+        名称: '德黑兰(Tehran)',
+        图标类型: '图文组合',
+        positions: [[-748, 462]],
+        图标图片路径: 'icon/城市.png',
+        宽: 20,
+        高: 20,
+        text: '德黑兰(Tehran)',
+        分组: '主要城市',
+        文本偏移: [0, 3], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
+            color: '#ffffff',
+            fontSize: '10px',
+            fontWeight: 'bold',
+            strokeStyle: 'black',
+            strokeWidth: 1,
+        },
+        信息: `
+        <h3>国外的一座城市</h3>
+        `
+    },{
+        id: '里斯本',
+        名称: '里斯本(Lisboa)',
+        图标类型: '图文组合',
+        positions: [[-3046, 266]],
+        图标图片路径: 'icon/城市.png',
+        宽: 20,
+        高: 20,
+        text: '里斯本(Lisboa)',
+        分组: '主要城市',
+        文本偏移: [0, 3], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
+            color: '#ffffff',
+            fontSize: '10px',
+            fontWeight: 'bold',
+            strokeStyle: 'black',
+            strokeWidth: 1,
+        },
+        信息: `
+        <h3>国外的一座城市</h3>
+        `
+    },{
+        id: '纽约市',
+        名称: '纽约市(New York)',
+        图标类型: '图文组合',
+        positions: [[-6029, 69]],
+        图标图片路径: 'icon/城市.png',
+        宽: 30,
+        高: 30,
+        text: '纽约市(New York)',
+        分组: '主要城市',
+        文本偏移: [0, 3], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
+            color: '#ffffff',
+            fontSize: '20px',
+            fontWeight: 'bold',
+            strokeStyle: 'black',
+            strokeWidth: 1,
+    },
+    信息: `
+        <h3>国外的一座城市</h3>
+        `
+    },{
+        id: '柏林',
+        名称: '柏林(Berlin)',
+        图标类型: '图文组合',
+        positions: [[-2231, -153]],
+        图标图片路径: 'icon/城市.png',
+        宽: 20,
+        高: 20,
+        text: '柏林(Berlin)',
+        分组: '主要城市',
+        文本偏移: [0, 3], // 文本相对于图标的偏移 [dx, dy]
+        文本样式: {
+            color: '#ffffff',
+            fontSize: '10px',
+            fontWeight: 'bold',
+            strokeStyle: 'black',
+            strokeWidth: 1,
+        },
+        信息: `
+        <h3>国外的一座城市</h3>
+        `
     },
 
+        
+    
     // 更多地标...
-
     {
         id: 'G30的立交桥',
         // 绑定公路ID: ['G30沪霍'],
@@ -752,8 +858,7 @@ let landmarks = [
         信息: `
                    <h3>这是一个交通枢纽，公路的分岔口</h3>
         `
-    },
-    {
+    },{
         id: 'G7的立交桥',
         名称: 'G7的立交桥',
         图标类型: '仅图标',
